@@ -285,7 +285,7 @@ SESSION_START();
                     $descuento = $_POST['descuento_producto'];
 
                     if ($imagen != '') {
-                        $carpeta_destino = 'fotos/';
+                        $carpeta_destino = 'public_html/fotos/';
                         $ruta_imagen = $carpeta_destino . $imagen;
                         move_uploaded_file($_FILES['imagen_producto']['tmp_name'], $ruta_imagen);
                     }
