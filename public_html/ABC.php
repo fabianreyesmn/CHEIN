@@ -25,21 +25,54 @@ SESSION_START();
                     <input type="text" id="existencias_producto" name="existencias_producto"><br>
 
                     <label for="agotado_producto">Esta Agotado?</label><br>
-                    <input type="checkbox" id="agotado_producto" name="agotado_producto" value="1"><br>
+                    <input type="checkbox" id="agotado_producto" name="agotado_producto" value="1" onclick="toggleExistencias()"><br>
 
                     <label for="precio_producto">Precio</label><br>
                     <input type="text" id="precio_producto" name="precio_producto"><br>
 
                     <label for="imagen_producto">Imagen</label><br>
                     <input type="file" id="imagen_producto" name="imagen_producto"><br>
+
                     <label for="tiene_descuento">Tiene descuento</label><br>
-                    <input type="checkbox" id="tiene_descuento" name="tiene_descuento" value="1"><br>
+                    <input type="checkbox" id="tiene_descuento" name="tiene_descuento" value="1" onclick="toggleDescuento()"><br>
 
                     <label for="descuento_producto">Descuento</label><br>
                     <input type="text" id="descuento_producto" name="descuento_producto"><br>
 
+                    <input type="hidden" id="existencias_hidden" name="existencias_hidden">
+                    <input type="hidden" id="descuento_hidden" name="descuento_hidden">
+
                     <input type="hidden" name="formulario" value="productos">
                     <input id="boton" type="submit" value="Enviar">
+                    <script>
+                        function toggleExistencias() {
+                            var existenciasInput = document.getElementById('existencias_producto');
+                            var agotadoCheckbox = document.getElementById('agotado_producto');
+                            var existenciasHidden = document.getElementById('existencias_hidden');
+
+                            if (agotadoCheckbox.checked) {
+                                existenciasInput.style.display = 'none';
+                                existenciasHidden.value = '0';
+                            } else {
+                                existenciasInput.style.display = 'block';
+                                existenciasHidden.value = '';
+                            }
+                        }
+
+                        function toggleDescuento() {
+                            var descuentoInput = document.getElementById('descuento_producto');
+                            var tieneDescuentoCheckbox = document.getElementById('tiene_descuento');
+                            var descuentoHidden = document.getElementById('descuento_hidden');
+
+                            if (tieneDescuentoCheckbox.checked) {
+                                descuentoInput.style.display = 'none';
+                                descuentoHidden.value = '0';
+                            } else {
+                                descuentoInput.style.display = 'block';
+                                descuentoHidden.value = '';
+                            }
+                        }
+                    </script>
                     <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($_POST["formulario"]) && $_POST["formulario"] == "productos") {
@@ -61,7 +94,7 @@ SESSION_START();
                                 $precio_producto = $_POST["precio_producto"];
 
                                 // Manejo de la subida de la imagen
-                                $targetDir = "fotos/";  // Directorio donde se guardarán las imágenes
+                                $targetDir = "public_html/fotos/";  // Directorio donde se guardarán las imágenes
                                 $targetFile = $targetDir . basename($_FILES["imagen_producto"]["name"]);
 
                                 $check = getimagesize($_FILES["imagen_producto"]["tmp_name"]);
