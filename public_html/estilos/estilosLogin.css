@@ -1,0 +1,112 @@
+div#contenedor{
+    position: fixed;
+    width: 845px;
+    height: 670px;
+    display: grid;
+    top: 20;
+    right: 20;
+    grid-template-columns: 1fr 1fr;
+    z-index: 1;
+}
+
+div.formulariosLoginRegistro{
+    border: 1px solid black;
+    width: 401px;
+    height: 625px;
+    border-end-end-radius: 10px;
+    border-start-end-radius: 10px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+}
+
+div.carruselLogin{
+    border: 1px solid black;
+    width: 421px;
+    height: 645px;
+    border-start-start-radius: 10px;
+    border-end-start-radius: 10px;
+}
+
+.cerrar-menu {
+    position: absolute;
+    top: 0px;
+    right: 825px;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+}
+
+nav#menu{
+    text-align: right;
+    font-size: 15px;
+}
+
+nav#menu button{
+    text-decoration: none;
+    color: white;
+    border: 2px solid white;
+    padding: 3px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    width: 100px;
+    height: 35px;
+}
+
+form#formLogin{
+    /* border: 1px solid black; */
+    margin-top: 10px;
+    padding: 20px;
+    font-size: 16px;
+}
+
+form#formLogin input{
+    margin:10px 0 25px 0;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid white;
+    outline: none;
+    background-color: black;
+    padding: 3px;
+    color: white;
+    font-size: 14px;
+}
+
+form#formLogin input:focus {
+    background-color: black; /* Cambia este valor al color que deseas */
+}
+
+input::content{
+    transition: background-color 5000s ease-in-out 0s; /* Ajusta la duración de la transición según tus necesidades */
+    background-color: black !important; /* Cambia este valor al color que deseas */
+    color: white !important; /* Cambia este valor al color que deseas para el texto */
+}
+
+
+form#formLogin select {
+    padding: 5px 0; 
+    font-size: 12px; 
+    border: 1px solid white; 
+    border-radius: 4px; 
+    outline: none; 
+    width: 100%;
+    margin:10px 0 0 0;
+    background-color: black;
+    color: white;
+}
+
+button#submit{
+    color: white;
+    border: 1px solid white;
+    background-color: black;
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+button#submit:hover{
+    background-color: rgb(54, 54, 54);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
