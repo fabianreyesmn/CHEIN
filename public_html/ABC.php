@@ -94,7 +94,7 @@ SESSION_START();
                                 $precio_producto = $_POST["precio_producto"];
 
                                 // Manejo de la subida de la imagen
-                                $targetDir = "public_html/fotos/";  // Directorio donde se guardarán las imágenes
+                                $targetDir = "fotos/";  // Directorio donde se guardarán las imágenes
                                 $targetFile = $targetDir . basename($_FILES["imagen_producto"]["name"]);
 
                                 $check = getimagesize($_FILES["imagen_producto"]["tmp_name"]);
@@ -285,7 +285,7 @@ SESSION_START();
                     $descuento = $_POST['descuento_producto'];
 
                     if ($imagen != '') {
-                        $carpeta_destino = 'public_html/fotos/';
+                        $carpeta_destino = 'fotos/';
                         $ruta_imagen = $carpeta_destino . $imagen;
                         move_uploaded_file($_FILES['imagen_producto']['tmp_name'], $ruta_imagen);
                     }
