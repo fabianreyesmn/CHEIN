@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-11-2023 a las 20:02:32
+-- Tiempo de generación: 29-11-2023 a las 20:18:07
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -96,6 +96,7 @@ CREATE TABLE `usuario` (
   `Correo_U` varchar(40) DEFAULT NULL,
   `Contrasena_U` varchar(256) DEFAULT NULL,
   `Contrasena_Seg_U` varchar(256) DEFAULT NULL,
+  `Pregunta_Seg_U` varchar(50) DEFAULT NULL,
   `Rango_U` int(11) DEFAULT NULL,
   `Esta_Bloqueada` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -104,10 +105,10 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`ID_Usuario`, `Nombre_U`, `Cuenta_U`, `Correo_U`, `Contrasena_U`, `Contrasena_Seg_U`, `Rango_U`, `Esta_Bloqueada`) VALUES
-(1, 'Usuario1', 'Cuenta1', 'usuario1@example.com', 'contrasena1', 'seguridad1', 1, 0),
-(2, 'Usuario2', 'Cuenta2', 'usuario2@example.com', 'contrasena2', 'seguridad2', 2, 0),
-(3, 'Usuario3', 'Cuenta3', 'usuario3@example.com', 'contrasena3', 'seguridad3', 3, 1);
+INSERT INTO `usuario` (`ID_Usuario`, `Nombre_U`, `Cuenta_U`, `Correo_U`, `Contrasena_U`, `Contrasena_Seg_U`, `Pregunta_Seg_U`, `Rango_U`, `Esta_Bloqueada`) VALUES
+(1, 'Usuario1', 'Cuenta1', 'usuario1@example.com', 'contrasena1', 'seguridad1', '¿Cómo se llama tu perro?', 2, 0),
+(2, 'Usuario2', 'Cuenta2', 'usuario2@example.com', 'contrasena2', 'seguridad2', 'Color favorito', 2, 0),
+(3, 'Usuario3', 'Cuenta3', 'usuario3@example.com', 'contrasena3', 'seguridad3', '¿A qué país te gustaría viajar?', 2, 1);
 
 --
 -- Índices para tablas volcadas
