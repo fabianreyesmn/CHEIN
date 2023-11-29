@@ -1,0 +1,281 @@
+<?php
+SESSION_START();
+?>
+
+<head>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body id="html">
+    <div class="contenido2">
+        <div class="contenedor-Altas">
+            <div class="flex">
+                <form id="productos" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="altas" enctype="multipart/form-data">
+                    <legend>Nuevo producto</legend>
+                    <label for="nombre_producto">Nombre del producto</label><br>
+                    <input type="text" id="nombre_producto" name="nombre_producto" required><br>
+
+                    <label for="descripcion_producto">Descripcion del producto</label><br>
+                    <textarea id="descripcion_producto" name="descripcion_producto" rows="7" cols="40" required></textarea><br>
+
+                    <label for="categoria_producto">Categoria</label><br>
+                    <input type="text" id="categoria_producto" name="categoria_producto"><br>
+
+                    <label for="existencias_producto">Cantidad en existencia</label><br>
+                    <input type="text" id="existencias_producto" name="existencias_producto"><br>
+
+                    <label for="agotado_producto">Esta Agotado?</label><br>
+                    <input type="checkbox" id="agotado_producto" name="agotado_producto" value="1"><br>
+
+                    <label for="precio_producto">Precio</label><br>
+                    <input type="text" id="precio_producto" name="precio_producto"><br>
+
+                    <label for="imagen_producto">Imagen</label><br>
+                    <input type="file" id="imagen_producto" name="imagen_producto"><br>
+                    <label for="tiene_descuento">Tiene descuento</label><br>
+                    <input type="checkbox" id="tiene_descuento" name="tiene_descuento" value="1"><br>
+
+                    <label for="descuento_producto">Descuento</label><br>
+                    <input type="text" id="descuento_producto" name="descuento_producto"><br>
+
+                    <input type="hidden" name="formulario" value="productos">
+                    <input id="boton" type="submit" value="Enviar">
+                    <?php
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        if (isset($_POST["formulario"]) && $_POST["formulario"] == "productos") {
+
+                            $servidor = 'localhost';
+                            $usuario = 'root';
+                            $contrasena = '';
+                            $base_de_datos = 'chein';
+
+                            $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
+                            if ($conexion->connect_error) {
+                                die("Conexión fallida: " . $conexion->connect_error);
+                            } else {
+                                $nombre_producto = $_POST["nombre_producto"];
+                                $descripcion_producto = $_POST["descripcion_producto"];
+                                $categoria_producto = $_POST["categoria_producto"];
+                                $existencias_producto = $_POST["existencias_producto"];
+                                $agotado_producto = isset($_POST["agotado_producto"]) ? 1 : 0;
+                                $precio_producto = $_POST["precio_producto"];
+
+                                // Manejo de la subida de la imagen
+                                $targetDir = "fotos/";  // Directorio donde se guardarán las imágenes
+                                $targetFile = $targetDir . basename($_FILES["imagen_producto"]["name"]);
+
+                                $check = getimagesize($_FILES["imagen_producto"]["tmp_name"]);
+                                if ($check !== false) {
+                                    if (move_uploaded_file($_FILES["imagen_producto"]["tmp_name"], $targetFile)) {
+                                        $nombreArchivo = pathinfo($targetFile, PATHINFO_BASENAME);
+                                        $imagen_producto = $nombreArchivo;
+                                        $tiene_descuento_producto = isset($_POST["tiene_descuento"]) ? 1 : 0;
+                                        $descuento_producto = $_POST["descuento_producto"];
+                                        $sql = "INSERT INTO Producto (ID_Producto, Nombre_P, Descripcion_P, Categoria_P, Existencias_P, Esta_Agotado_P, Precio_P, Imagen_P, Tiene_Descuento_P, Descuento_P) 
+                    VALUES (DEFAULT, '$nombre_producto', '$descripcion_producto', '$categoria_producto', '$existencias_producto', '$agotado_producto', '$precio_producto', '$imagen_producto', '$tiene_descuento_producto', '$descuento_producto');";
+
+                                        if ($conexion->query($sql) === TRUE) {
+                                            echo "<div class='agregado'>";
+                                            echo "<h4>Producto Agregado</h4>";
+                                            echo "</div>";
+                                        } else {
+                                            echo "<div class='denegado'>";
+                                            echo "<h4>Error al agregar el producto: " . $conexion->error . "</h4>";
+                                            echo "</div>";
+                                        }
+                                    } else {
+                                        echo "<div class='denegado'>";
+                                        echo "<h4>Hubo un problema al subir la imagen.</h4>";
+                                        echo "</div>";
+                                    }
+                                } else {
+                                    echo "<div class='denegado'>";
+                                    echo "<h4>El archivo no es una imagen válida.</h4>";
+                                    echo "</div>";
+                                }
+                            }
+                        }
+                    }
+                    ?>
+                </form>
+            </div>
+        </div>
+        <div class="contenedor-Bajas">
+            <legend id="title-bajas">Eliminar</legend>
+            <form id="bajas" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div id="div-bajas">
+                    <input id="bajas" type="text" placeholder="Nombre del producto" name="nombre" required>
+                    <input type="hidden" name="formulario" value="bajas">
+                    <button id="btn-bajas" type="submit">
+                        <img src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-noir.png" alt="Lupa" width="25px" height="25px">
+                    </button>
+                </div>
+            </form>
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "bajas") {
+                $servidor = 'localhost';
+                $usuario = 'root';
+                $contrasena = '';
+                $base_de_datos = 'chein';
+
+                $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
+                if ($conexion->connect_error) {
+                    die("Conexión fallida: " . $conexion->connect_error);
+                } else {
+                    $nombre = $_POST['nombre'];
+                    $sql = "DELETE FROM Producto WHERE Nombre_P = '$nombre'";
+
+                    if ($conexion->query($sql) === TRUE) {
+                        echo "<div class='eliminado bajasmsg'>";
+                        echo "<h4>Producto eliminado con éxito</h4>";
+                        echo "</div>";
+                    } else {
+                        echo "<div class='denegado bajasmsg'>";
+                        echo "<h4>Error al eliminar el producto: " . $conexion->error . "</h4>";
+                        echo "</div>";
+                    }
+                }
+            }
+            ?>
+        </div>
+        <div class="contenedor-Cambios">
+            <legend id="title-cambios">Cambios</legend>
+            <form id="cambios" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div id="div-cambios">
+                    <input id="cambios" type="text" placeholder="Nombre del producto" name="nombre" required>
+                    <input type="hidden" name="formulario" value="cambios">
+                    <button id="btn-cambios" type="submit">
+                        <img src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-noir.png" alt="Lupa" width="25px" height="25px">
+                    </button>
+                </div>
+            </form>
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "cambios") {
+
+                $servidor = 'localhost';
+                $usuario = 'root';
+                $contrasena = '';
+                $base_de_datos = 'chein';
+
+                $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
+                if ($conexion->connect_error) {
+                    die("Conexión fallida: " . $conexion->connect_error);
+                } else {
+                    $nombre = $_POST['nombre'];
+                    $sql = "SELECT
+                        Producto.ID_Producto,
+                        Producto.Nombre_P,
+                        Producto.Descripcion_P,
+                        Producto.Categoria_P,
+                        Producto.Existencias_P,
+                        Producto.Esta_Agotado_P,
+                        Producto.Precio_P,
+                        Producto.Imagen_P,
+                        Producto.Tiene_Descuento_P,
+                        Producto.Descuento_P
+                        FROM
+                            Producto
+                        WHERE 
+                            Nombre_P = '$nombre';";
+                    $resultado = $conexion->query($sql);
+                    if ($resultado->num_rows > 0) {
+                        while ($fila = $resultado->fetch_assoc()) {
+                            echo '<form id="form2" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '" method="post" enctype="multipart/form-data">';
+                            echo '<legend>Modificar producto</legend>';
+                            echo '<label for="nombre_producto">Nombre del producto</label><br>';
+                            echo '<input type="text" id="nombre_producto" name="nombre_producto" value="' . $nombre . '" required><br>';
+
+                            echo '<label for="descripcion_producto">Descripcion del producto</label><br>';
+                            echo '<textarea id="descripcion_producto" name="descripcion_producto" rows="7" cols="40" required>';
+                            echo $fila['Descripcion_P']; // Mostrar la descripción actual del producto
+                            echo '</textarea><br>';
+
+                            echo '<label for="categoria_producto">Categoria</label><br>';
+                            echo '<input type="text" id="categoria_producto" name="categoria_producto" value="' . $fila['Categoria_P'] . '"><br>';
+
+                            echo '<label for="existencias_producto">Cantidad en existencia</label><br>';
+                            echo '<input type="text" id="existencias_producto" name="existencias_producto" value="' . $fila['Existencias_P'] . '"><br>';
+
+                            echo '<label for="agotado_producto">Esta Agotado?</label><br>';
+                            echo '<input type="checkbox" id="agotado_producto" name="agotado_producto" value="1"';
+                            if ($fila['Esta_Agotado_P'] == 1) {
+                                echo ' checked';
+                            }
+                            echo '><br>';
+
+                            echo '<label for="precio_producto">Precio</label><br>';
+                            echo '<input type="text" id="precio_producto" name="precio_producto" value="' . $fila['Precio_P'] . '"><br>';
+
+                            echo '<label for="imagen_producto">Imagen actual: ' . $fila['Imagen_P'] . '</label><br>';
+                            echo '<input type="file" id="imagen_producto" name="imagen_producto"><br>';
+
+                            echo '<label for="tiene_descuento">Tiene descuento</label><br>';
+                            echo '<input type="checkbox" id="tiene_descuento" name="tiene_descuento" value="1"';
+                            if ($fila['Tiene_Descuento_P'] == 1) {
+                                echo ' checked';
+                            }
+                            echo '><br>';
+
+                            echo '<label for="descuento_producto">Descuento</label><br>';
+                            echo '<input type="text" id="descuento_producto" name="descuento_producto" value="' . $fila['Descuento_P'] . '"><br>';
+
+                            echo '<input type="hidden" name="formulario" value="realizar-cambios">';
+                            echo '<button type="submit" name="enviar_fila">Enviar</button>';
+                            echo '</form>';
+                        }
+                    } else {
+                        echo "<div class='denegado cambiosmsg'>";
+                        echo "<h4>El producto no existe</h4>";
+                        echo "</div>";
+                    }
+                }
+            }
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "realizar-cambios") {
+                $servidor = 'localhost';
+                $usuario = 'root';
+                $contrasena = '';
+                $base_de_datos = 'chein';
+
+                $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
+                if ($conexion->connect_error) {
+                    die("Conexión fallida: " . $conexion->connect_error);
+                } else {
+                    $nombre = $_POST['nombre_producto'];
+                    $descripcion = $_POST['descripcion_producto'];
+                    $categoria = $_POST['categoria_producto'];
+                    $existencias = $_POST['existencias_producto'];
+                    $agotado = isset($_POST['agotado_producto']) ? 1 : 0;
+                    $precio = $_POST['precio_producto'];
+                    $imagen = $_FILES['imagen_producto']['name']; // Nombre del archivo
+                    $tiene_descuento = isset($_POST['tiene_descuento']) ? 1 : 0;
+                    $descuento = $_POST['descuento_producto'];
+
+                    if ($imagen != '') {
+                        $carpeta_destino = 'fotos/';
+                        $ruta_imagen = $carpeta_destino . $imagen;
+                        move_uploaded_file($_FILES['imagen_producto']['tmp_name'], $ruta_imagen);
+                    }
+
+                    $sql = "UPDATE Producto SET 
+                    Nombre_P = '$nombre', 
+                    Descripcion_P = '$descripcion', 
+                    Categoria_P = '$categoria', 
+                    Existencias_P = '$existencias', 
+                    Esta_Agotado_P = '$agotado', 
+                    Precio_P = '$precio', 
+                    Imagen_P = '$imagen', 
+                    Tiene_Descuento_P = '$tiene_descuento', 
+                    Descuento_P = '$descuento' 
+                WHERE Nombre_P = '$nombre';";
+                    $conexion->query($sql);
+
+                    echo "<div class='agregado cambiosmsg'>";
+                    echo "<h4>Producto modificado con éxito</h4>";
+                    echo "</div>";
+                }
+            }
+            ?>
+        </div>
+    </div>
+</body>
