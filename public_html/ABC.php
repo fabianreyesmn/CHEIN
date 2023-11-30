@@ -90,8 +90,7 @@ SESSION_START();
                                 $agotado_producto = isset($_POST["agotado_producto"]) ? 1 : 0;
                                 $precio_producto = $_POST["precio_producto"];
 
-                                // Manejo de la subida de la imagen
-                                $targetDir = "fotos/";  // Directorio donde se guardarán las imágenes
+                                $targetDir = "fotos/";  
                                 $targetFile = $targetDir . basename($_FILES["imagen_producto"]["name"]);
 
                                 $check = getimagesize($_FILES["imagen_producto"]["tmp_name"]);

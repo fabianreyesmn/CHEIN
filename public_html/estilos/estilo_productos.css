@@ -1,0 +1,40 @@
+.opciones{
+    background-color: cornflowerblue;
+    padding: 20px 50px;
+}
+
+.filtros{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 40px 0;
+    height: 100px;
+}
+
+.btn-filtros{
+    margin-right: 300px;
+}
+
+.tarjetas{
+    background-color: rgb(184, 138, 138);
+    height: 450px;
+    padding: 30px 50px;
+}
+
+.btn-categoria {
+    margin: 0 10px;
+    padding: 5px 10px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-categoria:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
