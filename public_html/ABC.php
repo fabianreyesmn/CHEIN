@@ -25,21 +25,54 @@ SESSION_START();
                     <input type="text" id="existencias_producto" name="existencias_producto"><br>
 
                     <label for="agotado_producto">Esta Agotado?</label><br>
-                    <input type="checkbox" id="agotado_producto" name="agotado_producto" value="1"><br>
+                    <input type="checkbox" id="agotado_producto" name="agotado_producto" value="1" onclick="toggleExistencias()"><br>
 
                     <label for="precio_producto">Precio</label><br>
                     <input type="text" id="precio_producto" name="precio_producto"><br>
 
                     <label for="imagen_producto">Imagen</label><br>
                     <input type="file" id="imagen_producto" name="imagen_producto"><br>
+
                     <label for="tiene_descuento">Tiene descuento</label><br>
-                    <input type="checkbox" id="tiene_descuento" name="tiene_descuento" value="1"><br>
+                    <input type="checkbox" id="tiene_descuento" name="tiene_descuento" value="1" onclick="toggleDescuento()"><br>
 
                     <label for="descuento_producto">Descuento</label><br>
                     <input type="text" id="descuento_producto" name="descuento_producto"><br>
 
+                    <input type="hidden" id="existencias_hidden" name="existencias_hidden">
+                    <input type="hidden" id="descuento_hidden" name="descuento_hidden">
+
                     <input type="hidden" name="formulario" value="productos">
                     <input id="boton" type="submit" value="Enviar">
+                    <script>
+                        function toggleExistencias() {
+                            var existenciasInput = document.getElementById('existencias_producto');
+                            var agotadoCheckbox = document.getElementById('agotado_producto');
+                            var existenciasHidden = document.getElementById('existencias_hidden');
+
+                            if (agotadoCheckbox.checked) {
+                                existenciasInput.style.display = 'none';
+                                existenciasHidden.value = '0';
+                            } else {
+                                existenciasInput.style.display = 'block';
+                                existenciasHidden.value = '';
+                            }
+                        }
+
+                        function toggleDescuento() {
+                            var descuentoInput = document.getElementById('descuento_producto');
+                            var tieneDescuentoCheckbox = document.getElementById('tiene_descuento');
+                            var descuentoHidden = document.getElementById('descuento_hidden');
+
+                            if (tieneDescuentoCheckbox.checked) {
+                                descuentoInput.style.display = 'none';
+                                descuentoHidden.value = '0';
+                            } else {
+                                descuentoInput.style.display = 'block';
+                                descuentoHidden.value = '';
+                            }
+                        }
+                    </script>
                     <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($_POST["formulario"]) && $_POST["formulario"] == "productos") {
@@ -247,7 +280,10 @@ SESSION_START();
                     $existencias = $_POST['existencias_producto'];
                     $agotado = isset($_POST['agotado_producto']) ? 1 : 0;
                     $precio = $_POST['precio_producto'];
-                    $imagen = $_FILES['imagen_producto']['name']; // Nombre del archivo
+
+                    // Verifica si se proporcionó una nueva imagen
+                    $imagen = isset($_FILES['imagen_producto']['name']) ? $_FILES['imagen_producto']['name'] : '';
+
                     $tiene_descuento = isset($_POST['tiene_descuento']) ? 1 : 0;
                     $descuento = $_POST['descuento_producto'];
 
@@ -255,6 +291,14 @@ SESSION_START();
                         $carpeta_destino = 'fotos/';
                         $ruta_imagen = $carpeta_destino . $imagen;
                         move_uploaded_file($_FILES['imagen_producto']['tmp_name'], $ruta_imagen);
+                    } else {
+                        $sqlImagen = "SELECT Imagen_P FROM Producto WHERE Nombre_P = '$nombre'";
+                        $resultadoImagen = $conexion->query($sqlImagen);
+
+                        if ($resultadoImagen->num_rows > 0) {
+                            $filaImagen = $resultadoImagen->fetch_assoc();
+                            $imagen = $filaImagen['Imagen_P'];
+                        }
                     }
 
                     $sql = "UPDATE Producto SET 
