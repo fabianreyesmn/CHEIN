@@ -280,7 +280,10 @@ SESSION_START();
                     $existencias = $_POST['existencias_producto'];
                     $agotado = isset($_POST['agotado_producto']) ? 1 : 0;
                     $precio = $_POST['precio_producto'];
-                    $imagen = $_FILES['imagen_producto']['name']; // Nombre del archivo
+
+                    // Verifica si se proporcionó una nueva imagen
+                    $imagen = isset($_FILES['imagen_producto']['name']) ? $_FILES['imagen_producto']['name'] : '';
+
                     $tiene_descuento = isset($_POST['tiene_descuento']) ? 1 : 0;
                     $descuento = $_POST['descuento_producto'];
 
@@ -288,6 +291,14 @@ SESSION_START();
                         $carpeta_destino = 'fotos/';
                         $ruta_imagen = $carpeta_destino . $imagen;
                         move_uploaded_file($_FILES['imagen_producto']['tmp_name'], $ruta_imagen);
+                    } else {
+                        $sqlImagen = "SELECT Imagen_P FROM Producto WHERE Nombre_P = '$nombre'";
+                        $resultadoImagen = $conexion->query($sqlImagen);
+
+                        if ($resultadoImagen->num_rows > 0) {
+                            $filaImagen = $resultadoImagen->fetch_assoc();
+                            $imagen = $filaImagen['Imagen_P'];
+                        }
                     }
 
                     $sql = "UPDATE Producto SET 
