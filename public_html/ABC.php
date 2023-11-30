@@ -1,11 +1,9 @@
 <?php
 SESSION_START();
 ?>
-
 <head>
     <link rel="stylesheet" href="estilos.css">
 </head>
-
 <body id="html">
     <div class="contenido2">
         <div class="contenedor-Altas">
@@ -58,7 +56,6 @@ SESSION_START();
                                 existenciasHidden.value = '';
                             }
                         }
-
                         function toggleDescuento() {
                             var descuentoInput = document.getElementById('descuento_producto');
                             var tieneDescuentoCheckbox = document.getElementById('tiene_descuento');
@@ -93,8 +90,7 @@ SESSION_START();
                                 $agotado_producto = isset($_POST["agotado_producto"]) ? 1 : 0;
                                 $precio_producto = $_POST["precio_producto"];
 
-                                // Manejo de la subida de la imagen
-                                $targetDir = "fotos/";  // Directorio donde se guardarán las imágenes
+                                $targetDir = "fotos/";  
                                 $targetFile = $targetDir . basename($_FILES["imagen_producto"]["name"]);
 
                                 $check = getimagesize($_FILES["imagen_producto"]["tmp_name"]);
@@ -281,7 +277,6 @@ SESSION_START();
                     $agotado = isset($_POST['agotado_producto']) ? 1 : 0;
                     $precio = $_POST['precio_producto'];
 
-                    // Verifica si se proporcionó una nueva imagen
                     $imagen = isset($_FILES['imagen_producto']['name']) ? $_FILES['imagen_producto']['name'] : '';
 
                     $tiene_descuento = isset($_POST['tiene_descuento']) ? 1 : 0;
