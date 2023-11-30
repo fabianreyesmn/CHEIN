@@ -120,8 +120,26 @@
                     $sql = "SELECT * FROM producto";
                     $result = $conn->query($sql);
 
-                    while ($row = $result->fetch_assoc()) {
-                        echo "Nombre: " . $row['Nombre_P'] . " - Precio: " . $row['Precio_P'] . "<br>";
+                    if ($result->num_rows > 0){
+                        echo '<div class="cuadricula">';
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<div class="card-producto">';
+                            echo '<img src="fotos/' . $row['Imagen_P'] . '" alt="' . $row['Nombre_P'] . '">';
+                            echo '<h3>' . $row['Nombre_P'] . '</h3>';
+                            echo '<p>' . $row['Descripcion_P'] . '</p>';
+                            echo '<p>Existencias: ' . $row['Existencias_P'] . '</p>';
+                            echo '<p>Precio: ' . $row['Precio_P'] . '</p>';
+                            
+                            if ($row['Tiene_Descuento_P']) {
+                                echo '<p>Descuento: ' . $row['Descuento_P'] . '</p>';
+                            }
+
+                            echo '<button>Agregar al carrito</button>';
+                            echo '</div>';
+                        }
+                        echo '</div>';
+                    }else{
+                        echo "0 resultados";
                     }
                 }
             ?>
