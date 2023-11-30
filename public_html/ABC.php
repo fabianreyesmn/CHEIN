@@ -216,7 +216,7 @@ SESSION_START();
 
                             echo '<label for="descripcion_producto">Descripcion del producto</label><br>';
                             echo '<textarea id="descripcion_producto" name="descripcion_producto" rows="7" cols="40" required>';
-                            echo $fila['Descripcion_P']; // Mostrar la descripción actual del producto
+                            echo $fila['Descripcion_P']; 
                             echo '</textarea><br>';
 
                             echo '<label for="categoria_producto">Categoria</label><br>';
@@ -259,7 +259,6 @@ SESSION_START();
                     }
                 }
             }
-
             if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "realizar-cambios") {
                 $servidor = 'localhost';
                 $usuario = 'root';
