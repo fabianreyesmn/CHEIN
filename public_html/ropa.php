@@ -25,7 +25,7 @@
     <div class="contenido">
         <div class="opciones">
             <div class="informacion">
-                <h2>Todos los productos</h2>
+                <h2>Ropa</h2>
             </div>
             <div class="filtros">
                 <div>
@@ -58,7 +58,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="btns-categorias">
@@ -89,7 +88,7 @@
                     $existencias_min = $_POST['existencias_min'];
                     $descuento = $_POST['descuento'];
 
-                    $sql = "SELECT * FROM producto WHERE Precio_P >= $precio_min AND Precio_P <= $precio_max AND Existencias_P >= $existencias_min";
+                    $sql = "SELECT * FROM producto WHERE Categoria_P = 'Ropa' AND Precio_P >= $precio_min AND Precio_P <= $precio_max AND Existencias_P >= $existencias_min";
 
                     if ($descuento == 1) {
                         $sql .= " AND Descuento_P > 0;";
@@ -105,19 +104,22 @@
                 }elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ordenar'])){
                     $orden = $_POST['orden'];
 
-                    $sql = "SELECT * FROM producto";
+                    $sql = "SELECT * FROM producto WHERE Categoria_P = 'Ropa'";
                     
                     if ($orden == 'asc') {
                         $sql .= " ORDER BY Precio_P ASC";
                     } elseif ($orden == 'desc') {
                         $sql .= " ORDER BY Precio_P DESC";
-                    }$result = $conn->query($sql);
+                    } else{
+                        $sql .= ";";
+                    }
+                    $result = $conn->query($sql);
 
                     while ($row = $result->fetch_assoc()) {
                         echo "Nombre: " . $row['Nombre_P'] . " - Precio: " . $row['Precio_P'] . "<br>";
                     }
                 }else{
-                    $sql = "SELECT * FROM producto";
+                    $sql = "SELECT * FROM producto WHERE Categoria_P = 'Ropa';";
                     $result = $conn->query($sql);
 
                     while ($row = $result->fetch_assoc()) {
