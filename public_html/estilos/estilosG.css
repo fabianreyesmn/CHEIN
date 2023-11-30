@@ -1,0 +1,149 @@
+.cont .input{
+	border: 0;
+	outline: none;
+	color: #8b7d77;
+}
+.search_wrap{
+	width: 500px;
+	margin: 38px auto;
+}
+.search_wrap .search_box{
+	position: relative;
+	width: 500px;
+	height: 60px;
+}
+.search_wrap .search_box .input{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 10px 20px;
+	border-radius: 3px;
+	font-size: 18px;
+}
+
+.search_wrap .search_box .btn:hover{
+	background: #708bd2;	
+}
+.search_wrap.search_wrap_3 .search_box .input{
+	padding-right: 80px;
+}
+.search_wrap.search_wrap_3 .search_box .input{
+	border-radius: 50px;
+}
+.search_wrap.search_wrap_3 .search_box .btn{
+	right: 0px;
+	border-radius: 50%;
+}
+
+
+.search_wrap .search_box .btn.btn_common .fas{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: #fff;
+	font-size: 20px;
+}
+
+.search_wrap .search_box .btn{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 60px;
+	height: 100%;
+	background: #7690da;
+	z-index: 1;
+	cursor: pointer;
+}
+
+
+
+.ay{
+    color: black;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'GFS Didot', serif;
+    text-align: center;
+}
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body{
+    background: white;
+    color:  #1c1c1c;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+section{
+    min-height: 100vh;
+    width: 100%;
+    margin: 0 auto;
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ola{
+    font-size: 3rem;
+    margin: 2rem 0rem;
+    font-family: 'GFS Didot', serif;
+}
+.faq{
+    max-width: 900px;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #1c1c1c;
+    cursor: pointer;
+}
+.preg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.preg h3{
+    font-size: 25px;
+    /* font-size: 1.8rem; */
+    font-family: 'Roboto', sans-serif;
+}
+
+.res{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1.4s ease;
+}
+.res p{
+    padding-top: 1rem;
+    line-height: 1.6;
+    font-size: 21px;
+    /* font-size: 1.4rem; */
+    text-align: justify; 
+    font-family: 'Roboto', sans-serif;
+}
+
+.faq.active .res{
+    max-height: 500px;
+    animation: fade 1s ease-in-out;
+}
+.faq.active svg{
+    transform: rotate(180deg);
+}
+svg{
+    transition: transform 0.5s ease-in;
+}
+
+@keyframes fade{
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform: translateY(0px);
+    }
+}
