@@ -1,11 +1,9 @@
 <?php
 SESSION_START();
 ?>
-
 <head>
     <link rel="stylesheet" href="estilos.css">
 </head>
-
 <body id="html">
     <div class="contenido2">
         <div class="contenedor-Altas">
@@ -58,7 +56,6 @@ SESSION_START();
                                 existenciasHidden.value = '';
                             }
                         }
-
                         function toggleDescuento() {
                             var descuentoInput = document.getElementById('descuento_producto');
                             var tieneDescuentoCheckbox = document.getElementById('tiene_descuento');
@@ -93,8 +90,7 @@ SESSION_START();
                                 $agotado_producto = isset($_POST["agotado_producto"]) ? 1 : 0;
                                 $precio_producto = $_POST["precio_producto"];
 
-                                // Manejo de la subida de la imagen
-                                $targetDir = "fotos/";  // Directorio donde se guardarán las imágenes
+                                $targetDir = "fotos/";  
                                 $targetFile = $targetDir . basename($_FILES["imagen_producto"]["name"]);
 
                                 $check = getimagesize($_FILES["imagen_producto"]["tmp_name"]);
@@ -106,7 +102,6 @@ SESSION_START();
                                         $descuento_producto = $_POST["descuento_producto"];
                                         $sql = "INSERT INTO Producto (ID_Producto, Nombre_P, Descripcion_P, Categoria_P, Existencias_P, Esta_Agotado_P, Precio_P, Imagen_P, Tiene_Descuento_P, Descuento_P) 
                     VALUES (DEFAULT, '$nombre_producto', '$descripcion_producto', '$categoria_producto', '$existencias_producto', '$agotado_producto', '$precio_producto', '$imagen_producto', '$tiene_descuento_producto', '$descuento_producto');";
-
                                         if ($conexion->query($sql) === TRUE) {
                                             echo "<div class='agregado'>";
                                             echo "<h4>Producto Agregado</h4>";
@@ -220,7 +215,7 @@ SESSION_START();
 
                             echo '<label for="descripcion_producto">Descripcion del producto</label><br>';
                             echo '<textarea id="descripcion_producto" name="descripcion_producto" rows="7" cols="40" required>';
-                            echo $fila['Descripcion_P']; // Mostrar la descripción actual del producto
+                            echo $fila['Descripcion_P']; 
                             echo '</textarea><br>';
 
                             echo '<label for="categoria_producto">Categoria</label><br>';
@@ -263,7 +258,6 @@ SESSION_START();
                     }
                 }
             }
-
             if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "realizar-cambios") {
                 $servidor = 'localhost';
                 $usuario = 'root';
@@ -281,7 +275,6 @@ SESSION_START();
                     $agotado = isset($_POST['agotado_producto']) ? 1 : 0;
                     $precio = $_POST['precio_producto'];
 
-                    // Verifica si se proporcionó una nueva imagen
                     $imagen = isset($_FILES['imagen_producto']['name']) ? $_FILES['imagen_producto']['name'] : '';
 
                     $tiene_descuento = isset($_POST['tiene_descuento']) ? 1 : 0;
@@ -300,7 +293,6 @@ SESSION_START();
                             $imagen = $filaImagen['Imagen_P'];
                         }
                     }
-
                     $sql = "UPDATE Producto SET 
                     Nombre_P = '$nombre', 
                     Descripcion_P = '$descripcion', 
