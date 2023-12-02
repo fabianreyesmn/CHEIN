@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/48174618d9.js" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
@@ -24,12 +25,13 @@
         }
         .cute3{
             display: flex;
-            padding-left: 20%;
+            padding-left: 15%;
             width: 30%;
             padding-top: 40px;
            
         }
         .titulo{
+            padding-top: 20px;
             text-align: center;
             font-family: 'GFS Didot', serif;
             font-weight: bolder;
@@ -40,7 +42,10 @@
             text-decoration: none;
             font-family: 'GFS Didot', serif;
        }
-        
+       .links:hover{
+        text-decoration: none;
+        color: black; 
+       }
     </style>
 </head>
 <body>
