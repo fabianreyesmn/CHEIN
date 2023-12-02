@@ -1,37 +1,156 @@
+<?php
+    function generarClaveAleatoria() {
+      $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#${}^&*()+=?';
+      $longitud = 6;
+      $clave = '';
+
+      for ($i = 0; $i < $longitud; $i++) {
+          $clave .= $caracteres[rand(0, strlen($caracteres) - 1)];
+      }
+
+      return $clave;
+    }
+  ?>
+
+<head>
+    <script src="https://kit.fontawesome.com/6661c2c190.js" crossorigin="anonymous"></script>
+</head>
+
 <nav id="menu">
     <button id="iniciarSesion" style="border: 2px solid white;">Iniciar Sesion</button>
     <button id="registrar" style="border:none;">Registrarse</button>
 </nav>
 
-<!-- <form action="" method="post" id="formLogin">
-    <label for="nombre">Nombre: </label>
-    <br>
-    <input type="text" name="nombre" placeholder="Nombre" required>
-    <br>
-    <label for="cuenta">Cuenta: </label>
-    <br>
-    <input type="text" name="cuenta" placeholder="Usuario" required>
-    <br>
-    <label for="correo">Correo electronico: </label>
-    <br>
-    <input type="email" name="correo" placeholder="Correo electronico" required>
-    <br>
-    <label for="password">Contrasena: </label>
-    <br>
-    <input type="password" name="password" placeholder="Ingresa tu contraseña" required>
-    <br>
-    <label for="password2">Repetir Contrasena: </label>
-    <br>
-    <input type="password" name="password2" placeholder="Confirma tu contraseña" required>
-    <br>
-    <label for="preguntaSeguridad">Pregunta de Seguridad: </label>
-    <br>
-    <select id="preguntaSeguridad" name="preguntaSeguridad" required>
-        <option value="" disabled selected hidden>Selecciona una pregunta</option>
-        <option value="mascota">¿Cuál es el nombre de tu primera mascota?</option>
-        <option value="deporte">¿Cuál es tu deporte favorito?</option>
-        <option value="lugar">¿En qué ciudad naciste?</option>
-    </select>
-    <br>
-    <input type="password" name="preguntaSeguridad" placeholder="Ingresa tu contraseña" id="" required>
-</form> -->
+<form method="post" id="formLogin" onsubmit="return validarCaptcha();">
+    <label for="cuenta">Cuenta: </label><br>
+    <input type="text" name="cuenta" placeholder="Usuario"><br>
+    <label for="password">Contrasena: </label><br>
+    <input type="password" name="password" placeholder="Ingresa tu contraseña"><br>
+    <label for="password">Escriba el texto de la imagen </label><br><br>
+    
+    <div class="Rcaptcha" style="width: 220px; height: 25px; text-align: center; display: flex; margin-bottom: 10px;">
+        <div id="recargarCaptcha">
+            <?php
+                $input_text = generarClaveAleatoria();
+                $width = 70;
+                $height = 25;
+            
+                $textImage = imagecreatetruecolor($width, $height);
+                $color = imagecolorallocate($textImage, 0, 0, 0);
+                imagecolortransparent($textImage, $color);            
+                $blue = imagecolorallocate($textImage, 216, 213, 216);            
+                $background = imagecreatetruecolor($width, $height);
+                $backgroundColor = imagecolorallocate($background, 65, 66, 64 ); // Color de fondo
+                imagefilledrectangle($background, 0, 0, $width, $height, $backgroundColor);
+                
+                $font = 'fonts/Arial.otf';
+                //imagefilter($textImage, IMG_FILTER_GAUSSIAN_BLUR);
+                imagettftext($textImage, 12, 0, 7, 17, $blue, $font, $input_text);            
+                for ($i = 0; $i < 10; $i++) {
+                    $green = imagecolorallocatealpha($background, 38, 54, 122, rand(50, 100)); // Color verde
+                    $circleSize = rand(5, 20);
+                    $circleX = rand(0, $width);
+                    $circleY = rand(0, $height);
+                    imagefilledellipse($background, $circleX, $circleY, $circleSize, $circleSize, $green);            
+                    $lineColor = imagecolorallocatealpha($background, 56, 11, 59 , rand(50, 100)); // Color rojo
+                    $lineX1 = rand(0, $width);
+                    $lineY1 = rand(0, $height);
+                    $lineX2 = rand(0, $width);
+                    $lineY2 = rand(0, $height);
+                    imageline($background, $lineX1, $lineY1, $lineX2, $lineY2, $lineColor);
+                }
+                imagecopymerge($background, $textImage, 0, 0, 0, 0, $width, $height, 100);
+                $output = imagecreatetruecolor($width, $height);            
+                imagecopy($output, $background, 0, 0, 0, 0, $width, $height);            
+                imagefilter($output, IMG_FILTER_GAUSSIAN_BLUR);
+                ob_start();
+                imagepng($output);
+                printf('<img id="output" src="data:image/png;base64,%s" />', base64_encode(ob_get_clean()));            
+            ?>
+        </div>
+        <div>
+            <button type="button" id="btnRecargar"><i class="fa-solid fa-rotate-right fa-lg" style="color: #ffffff;"></i></button>
+        </div>
+        
+        <input type="hidden" value="<?php echo htmlspecialchars($input_text); ?>" id="captcha1">
+        <input id="captcha2" name="captcha2" style="width: 70px; margin:0 0 0 10px; height: 25px; text-align: center;" type="text" placeholder="<?php echo htmlspecialchars($input_text); ?>"><br>
+    </div>
+
+    
+        <small id="captchaMatchError" style="color: red;"></small><br>
+    <div style="display: flex; align-items: left; margin-bottom: 20px; margin-top: 5px;">
+        <div>
+            <input style="margin: 0; transform: scale(0.8);" type="checkbox" name="remember">
+        </div>
+        <div style="margin-left: 10px;">
+            <small style="font-size: 0.8em; height: 1px; margin: 0;">Recordar usuario y contraseña</small>
+        </div>
+    </div>
+    <input type="hidden" name="formulario" value="inicioSesion">
+    <button id="submit" type="submit" onclick="validadCaptcha()">Entrar</button>
+</form>
+
+<script>
+    document.getElementById('formLogin').addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (validarCaptcha()) {
+            // Obtener la información del formulario
+            var formData = new FormData(this);
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                type: 'post',
+                url: 'info.php',  // Cambia esto a la ruta correcta de tu archivo PHP
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    // Actualizar el contenido del div con la respuesta del servidor
+                    document.getElementById('infoPHP').innerHTML = response;
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    });
+
+    $(document).ready(function() {
+        $(document).on("click", "#btnRecargar", function() {
+            event.preventDefault();
+            // Recarga el captcha llamando a la función cargarCaptcha
+            cargarCaptcha('captcha.php');
+        });
+
+        function cargarCaptcha(url) {
+            $.ajax({
+                type: "get",
+                url: url,
+                success: function(data) {
+                    $("#recargarCaptcha").html(data);
+
+                    // Actualiza el placeholder del input
+                    $("#captcha2").attr("placeholder", captchaValue);
+                    $("#captcha1").attr("value", captchaValue);
+                },
+                error: function() {
+                    console.log("Error al cargar el captcha");
+                }
+            });
+        }
+    });
+
+    function validarCaptcha() {
+            var captcha1 = document.getElementById('captcha1').value;
+            var captcha2 = document.getElementById('captcha2').value;
+            var errorMensaje = document.getElementById('captchaMatchError');
+
+            if (captcha1 !== captcha2) {
+                errorMensaje.textContent = 'El texto ingresado no coincide con la imagen';
+                return false;
+            } else {
+                errorMensaje.textContent = captcha2.value;
+                return true;
+            }
+        }
+</script>
