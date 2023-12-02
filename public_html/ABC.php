@@ -2,7 +2,8 @@
 SESSION_START();
 ?>
 <head>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="estilos/estilosABC.css">
+
 </head>
 <body id="html">
     <div class="contenido2">
