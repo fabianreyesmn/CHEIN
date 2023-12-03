@@ -1,8 +1,20 @@
 <?php
-    session_start();
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (isset($_SESSION['nombre'])) {
+        $nombre_usuario = $_SESSION['nombre'];
+        echo $nombre_usuario;
+    }
 ?>
 
-<head>
+<script>
+    function reiniciarPagina(){
+        location.reload();
+    }
+</script>
+
 <head>
     <link rel="stylesheet" type="text/css" href="estilos/estilosLogin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -10,7 +22,12 @@
 </head>
 
 <body>
+<a id='msg' href='logout.php?logout'>Cerrar sesión</a>
+<button onclick="reiniciarPagina()">Refrescar</button>
+<!-- Aqui va lo de Sio, pero mientras esto es el menu -->
+<button id="btnMostrarMenu">Mostrar</button>
     <div id="contenedor">
+        
         <div id="menuCierre" class="cerrar-menu">&times;</div>
         <div class="carruselLogin">
             <div class="slideshow-container">
@@ -52,25 +69,35 @@
             </script>
         </div>
         <div class="formulariosLoginRegistro" id="registroFormulario">
-            <div class="formulariosLR">
+            <div class="formulariosLR" style="padding-bottom: 0;">
                 <?php include "registrarse.php"; ?>
             </div>
             <div id="infoPHP"> </div>
+            <!-- FIN DE INFO.PHP -->
         </div>
 
 
     </div>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            btnOcultarMenu = document.getElementById('menuCierre');
             var btnMostrarMenu = document.getElementById('btnMostrarMenu');
             var menuFlotante = document.getElementById('contenedor');
+
+            btnOcultarMenu.addEventListener('click', function() {
+                var estiloDisplay = window.getComputedStyle(menuFlotante).display;
+                
+                if (estiloDisplay == 'grid') {
+                    menuFlotante.style.display = 'none';
+                }
+            });
 
             btnMostrarMenu.addEventListener('click', function() {
                 var estiloDisplay = window.getComputedStyle(menuFlotante).display;
                 
-                if (estiloDisplay === 'grid') {
-                    menuFlotante.style.display = 'none';
-                } else {
+                if (estiloDisplay === 'none') {
                     menuFlotante.style.display = 'grid';
                 }
             });
@@ -89,29 +116,5 @@
                 return true;
             }
         }
-
-        document.getElementById('formLogin').addEventListener('submit', function (event) {
-            event.preventDefault();
-            if (validarFormulario()) {
-                // Obtener la información del formulario
-                var formData = new FormData(this);
-
-                // Realizar la solicitud AJAX
-                $.ajax({
-                    type: 'post',
-                    url: 'info.php',  // Cambia esto a la ruta correcta de tu archivo PHP
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        // Actualizar el contenido del div con la respuesta del servidor
-                        document.getElementById('infoPHP').innerHTML = response;
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            }
-        });
     </script>   
 </body>

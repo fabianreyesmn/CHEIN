@@ -13,6 +13,7 @@
   ?>
 
 <head>
+    <link rel="stylesheet" href="estilos/estilosLogin.css">
     <script src="https://kit.fontawesome.com/6661c2c190.js" crossorigin="anonymous"></script>
 </head>
 
@@ -20,12 +21,12 @@
     <button id="iniciarSesion" style="border: 2px solid white;">Iniciar Sesion</button>
     <button id="registrar" style="border:none;">Registrarse</button>
 </nav>
-
-<form method="post" id="formLogin" onsubmit="return validarCaptcha();">
+<!-- onsubmit="return validarCaptcha();" -->
+<form id="formLogin" onsubmit="return validarCaptcha();" style="padding-bottom: 5px; margin-bottom: 2px;">
     <label for="cuenta">Cuenta: </label><br>
-    <input type="text" name="cuenta" placeholder="Usuario"><br>
+    <input type="text" name="cuenta" placeholder="Usuario" required><br>
     <label for="password">Contrasena: </label><br>
-    <input type="password" name="password" placeholder="Ingresa tu contraseña"><br>
+    <input type="password" name="password" placeholder="Ingresa tu contraseña" required><br>
     <label for="password">Escriba el texto de la imagen </label><br><br>
     
     <div class="Rcaptcha" style="width: 220px; height: 25px; text-align: center; display: flex; margin-bottom: 10px;">
@@ -69,28 +70,32 @@
             ?>
         </div>
         <div>
-            <button type="button" id="btnRecargar"><i class="fa-solid fa-rotate-right fa-lg" style="color: #ffffff;"></i></button>
+            <button type="button" id="btnRecargar" style="border: none; height: 25px; width: 25px; background-color: transparent; padding: 0;"><i class="fa-solid fa-rotate-right fa-lg" style="color: #ffffff;"></i></button>
         </div>
         
         <input type="hidden" value="<?php echo htmlspecialchars($input_text); ?>" id="captcha1">
-        <input id="captcha2" name="captcha2" style="width: 70px; margin:0 0 0 10px; height: 25px; text-align: center;" type="text" placeholder="<?php echo htmlspecialchars($input_text); ?>"><br>
+        <input id="captcha2" name="captcha2" style="width: 70px; margin:0 0 0 10px; height: 25px; text-align: center;" type="text" placeholder="<?php echo htmlspecialchars($input_text); ?>" required><br>
     </div>
 
     
         <small id="captchaMatchError" style="color: red;"></small><br>
     <div style="display: flex; align-items: left; margin-bottom: 20px; margin-top: 5px;">
         <div>
-            <input style="margin: 0; transform: scale(0.8);" type="checkbox" name="remember">
+            <input style="margin: 0; transform: scale(0.8);" type="checkbox" name="remember" >
         </div>
         <div style="margin-left: 10px;">
             <small style="font-size: 0.8em; height: 1px; margin: 0;">Recordar usuario y contraseña</small>
         </div>
     </div>
     <input type="hidden" name="formulario" value="inicioSesion">
-    <button id="submit" type="submit" onclick="validadCaptcha()">Entrar</button>
+    <button id="submit" type="submit">Entrar</button>
 </form>
 
 <script>
+    function reiniciarPagina(){
+        location.reload();
+    }
+
     document.getElementById('formLogin').addEventListener('submit', function (event) {
         event.preventDefault();
         if (validarCaptcha()) {
