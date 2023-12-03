@@ -21,11 +21,11 @@
             display: flex;
             width: 60%;
             margin: 0;
-            padding-left: 25%;
+            padding-left: 15%;
         }
         .cute3{
             display: flex;
-            padding-left: 15%;
+            padding-left: 5%;
             width: 30%;
             padding-top: 40px;
            
@@ -51,16 +51,19 @@
 <body>
     <div class="cute">
         <div class="cute1">
-           <p>&nbsp;&nbsp;<a class="links" href="mujer.html">MUJER</a>&nbsp;&nbsp;&nbsp;&nbsp;</p> 
-            <p><a class="links" href="hombre.php">HOMBRE</a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <p><a class="links" href="accesorios.php">ACCESORIOS</a></p>
+           <p>&nbsp;&nbsp;&nbsp;<a class="links" href="">TIENDA</a>&nbsp;&nbsp;&nbsp;</p> 
+            <p><a class="links" href="">ABOUT</a></p>
+            <p>&nbsp;&nbsp;&nbsp;<a class="links" href="">CONTACTANOS</a>&nbsp;&nbsp;</p>
+            <p>&nbsp;&nbsp;&nbsp;<a class="links" href="">Q&A</a>&nbsp;&nbsp;&nbsp;</p>
+            <p><a class="links" href="">CAMBIOS</a></p>
         </div>
         <div class="cute2">
-            <p class="titulo"><a class="links" href="paginicio.html">CHEIN</a></p>
+            <p class="titulo"><a class="links" href="paginicio.php">CHEIN</a></p>
         </div>
         <div class="cute3">
+            <p><a class="links" href="">Usuario</a>&nbsp;&nbsp;&nbsp;</p>
             <p><a class="links" href=""><i class="fa-regular fa-user" style="color: #050505;"></i>Iniciar Sesion</a></p>
-            &nbsp;&nbsp;&nbsp;&nbsp;<p><a class="links" href=""><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a></p>&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;<p><a class="links" href=""><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a></p>&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 </body>
