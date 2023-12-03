@@ -56,14 +56,16 @@
 <body>
     <div class="cute">
         <div class="cute1">
-            <p><a class="links" href="productos.php">TIENDA</a></p> 
-            <p><a class="links" href="ropa.php">ROPA</a></p>
-            <p><a class="links" href="accesorios.php">ACCESORIOS</a></p>
+            <p><a class="links" href="productos.php">TIENDA</a></p>
+            <p><a class="links" href="">Q&A</a></p>
+            <p><a class="links" href="">CONTACTANOS</a></p>
+            <p><a class="links" href="">ABOUT</a></p>
         </div>
         <div class="cute2">
             <p class="titulo"><a class="links" href="paginicio.html">CHEIN</a></p>
         </div>
         <div class="cute3">
+            <p><a class="links" href="">Usuario</a></p>
             <p><a class="links" href=""><i class="fa-regular fa-user" style="color: #050505;">&nbsp;</i>Iniciar Sesion</a></p>
             <p><a class="links" href=""><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a></p>
         </div>
