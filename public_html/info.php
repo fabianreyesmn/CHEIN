@@ -63,8 +63,10 @@
                     $usuario = $resultado->fetch_assoc();
                     // Verificar la contraseña
                     if (password_verify($password, $usuario['Contrasena_U'])) {
+                        $rango = $usuario['Rango_U'];
                         if($usuario['Esta_Bloqueada'] < 3){
                             $_SESSION['nombre'] = $cuenta;
+                            $_SESSION['rango'] = $rango;
                             $sqlUpdate = "UPDATE usuario SET Esta_Bloqueada = 0 WHERE Cuenta_U = '$cuenta'";
                             $conexion->query($sqlUpdate);
                             echo '<div id="navegar">';

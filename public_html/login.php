@@ -3,8 +3,12 @@
         session_start();
     }
 
-    if (isset($_SESSION['nombre'])) {
+    if (isset($_SESSION['nombre']) && isset($_SESSION['rango'])) {
         $nombre_usuario = $_SESSION['nombre'];
+        $rango_usuario = $_SESSION['rango'];
+        if($rango_usuario == 1){
+            echo "ADMIN - ";
+        }
         echo $nombre_usuario;
     }
 ?>
