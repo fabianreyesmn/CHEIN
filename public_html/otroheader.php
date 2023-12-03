@@ -9,61 +9,65 @@
     <style>
         .cute{
             display: flex;
+            justify-content: space-between;
+            align-items: center;
             text-align: center;
             background-color: whitesmoke;
+            font-family: 'GFS Didot', serif;
+            padding: 20px;
+            width: 100%;
         }
         .cute1{
             display: flex;
-            width: 30%;
-            padding-top: 40px;
+            flex: 1;
+            justify-content: flex-start;
+        }
+        .cute1 p{
+            margin: 0 20px;
         }
         .cute2{
             display: flex;
-            width: 60%;
-            margin: 0;
-            padding-left: 15%;
+            flex: 1;
+            justify-content: center;
         }
         .cute3{
             display: flex;
-            padding-left: 5%;
-            width: 30%;
-            padding-top: 40px;
-           
+            flex: 1;
+            justify-content: flex-end;
+        }
+        .cute3 p{
+            margin: 0 20px;
         }
         .titulo{
-            padding-top: 20px;
             text-align: center;
-            font-family: 'GFS Didot', serif;
             font-weight: bolder;
             font-size: 40px;
         }
         .links{
             color: black; 
             text-decoration: none;
-            font-family: 'GFS Didot', serif;
-       }
-       .links:hover{
-        text-decoration: none;
-        color: black; 
-       }
+        }
+        .links:hover{
+            text-decoration: none;
+            color: black; 
+        }
     </style>
 </head>
 <body>
     <div class="cute">
         <div class="cute1">
-           <p>&nbsp;&nbsp;&nbsp;<a class="links" href="">TIENDA</a>&nbsp;&nbsp;&nbsp;</p> 
+            <p><a class="links" href="productos.php">TIENDA</a></p>
+            <p><a class="links" href="">Q&A</a></p>
+            <p><a class="links" href="">CONTACTANOS</a></p>
             <p><a class="links" href="">ABOUT</a></p>
-            <p>&nbsp;&nbsp;&nbsp;<a class="links" href="">CONTACTANOS</a>&nbsp;&nbsp;</p>
-            <p>&nbsp;&nbsp;&nbsp;<a class="links" href="">Q&A</a>&nbsp;&nbsp;&nbsp;</p>
-            <p><a class="links" href="">CAMBIOS</a></p>
         </div>
         <div class="cute2">
-            <p class="titulo"><a class="links" href="paginicio.php">CHEIN</a></p>
+            <p class="titulo"><a class="links" href="paginicio.html">CHEIN</a></p>
         </div>
         <div class="cute3">
-            <p><a class="links" href="">Usuario</a>&nbsp;&nbsp;&nbsp;</p>
-            <p><a class="links" href=""><i class="fa-regular fa-user" style="color: #050505;"></i>Iniciar Sesion</a></p>
-            &nbsp;&nbsp;&nbsp;<p><a class="links" href=""><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a></p>&nbsp;&nbsp;&nbsp;&nbsp;
+            <p><a class="links" href="">Usuario</a></p>
+            <p><a class="links" href=""><i class="fa-regular fa-user" style="color: #050505;">&nbsp;</i>Iniciar Sesion</a></p>
+            <p><a class="links" href=""><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a></p>
         </div>
     </div>
 </body>

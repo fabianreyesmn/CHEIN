@@ -10,27 +10,41 @@
         die('Error en la conexion');
     }else{
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Obtener la información del formulario
-            $nombre = $_POST["nombre"];
-            $cuenta = $_POST["cuenta"];
-            $correo = $_POST["correo"];
-            $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-            //$password2 = $_POST["password2"];
-            $preguntaSeguridad = $_POST["preguntaSeguridad"];
-            $respuestaSeguridad = $_POST["respuestaSeguridad"];
-        
-            // Imprimir la información recolectada
-            echo "Nombre: " . $nombre . "<br>";
-            echo "Cuenta: " . $cuenta . "<br>";
-            echo "Correo electrónico: " . $correo . "<br>";
-            echo "Contraseña: " . $password . "<br>";
-            echo "Repetir Contraseña: " . $password2 . "<br>";
-            echo "Pregunta de Seguridad: " . $preguntaSeguridad . "<br>";
-            echo "Respuesta de Seguridad: " . $respuestaSeguridad . "<br>";
+            if($_POST["formulario"] == "registro"){
+                $nombre = $_POST["nombre"];
+                $cuenta = $_POST["cuenta"];
+                $correo = $_POST["correo"];
+                $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+                $preguntaSeguridad = $_POST["preguntaSeguridad"];
+                $respuestaSeguridad = password_hash($_POST["respuestaSeguridad"], PASSWORD_DEFAULT);
+                // Imprimir la información recolectada
+                echo "Nombre: " . $nombre . "<br>";
+                echo "Cuenta: " . $cuenta . "<br>";
+                echo "Correo electrónico: " . $correo . "<br>";
+                echo "Contraseña: " . $password . "<br>";
+                echo "Pregunta de Seguridad: " . $preguntaSeguridad . "<br>";
+                echo "Respuesta de Seguridad: " . $respuestaSeguridad . "<br>";
+                // $sql = "INSERT INTO usuario (ID_Usuario, Nombre_U, Cuenta_U, Correo_U, Contrasena_U, Pregunta_Seg_U, Contrasena_Seg_U, Rango_U, Esta_Bloqueada) VALUES
+                // (DEFAULT, '$nombre', '$cuenta', '$correo', '$password', '$preguntaSeguridad', '$$respuestaSeguridad', 0, 0);";
 
+                // $resultado = $conexion->query($sql);
+                // if($resultado){
+                    // echo "Usuario ingresado con exito";
+                // }
+            }else if($_POST["formulario"] == "inicioSesion"){
+                $cuenta = $_POST["cuenta"];
+                $password = $_POST["password"];
+                echo "Cuenta: " . $cuenta . "<br>";
+                echo "Contraseña: " . $password . "<br>";
+                //$sql = "SELECT * FROM usuario WHERE Nombre_U = '$nombre'";
+                //$resultado = $conexion->query($sql);
+                //if($resultado){
+                    // echo "Si esta el usuario bro";
+                //}else{
+                    // echo "Que haces bobo";
+                //}
 
-            $sql = "INSERT INTO usuario (ID_Usuario, Nombre_U, Cuenta_U, Correo_U, Contrasena_U, Pregunta_Seg_U, Contrasena_Seg_U, Rango_U, Esta_Bloqueada) VALUES
-            (DEFAULT, '$nombre', '$cuenta', '$correo', '$password', '$preguntaSeguirdad', '$$respuestaSeguridad', 1, 0),";
-        }
+           }
+       }
     }
 ?>

@@ -1,38 +1,74 @@
 <nav id="menu">
-        <button id="iniciarSesion" style="border:none;">Iniciar Sesion</button>
-        <button id="registrar" style="border: 2px solid white;">Registrarse</button>
-</nav>
+                <button id="iniciarSesion" style="border: none;">Iniciar Sesion</button>
+                <button id="registrar" style="border: 2px solid white;">Registrarse</button>
+            </nav>
+            <form id="formLogin" method="post" onsubmit="return validarFormulario();">
+                    <label for="nombre">Nombre:</label><br>
+                    <input type="text" name="nombre" placeholder="Nombre" required autocomplete="off"><br>
 
-<form action="info.php" method="post" id="formLogin">
-        <label for="nombre">Nombre: </label>
-        <br>
-        <input type="text" name="nombre" placeholder="Nombre" required autocomplete="off">
-        <br>
-        <label for="cuenta">Cuenta: </label>
-        <br>
-        <input type="text" name="cuenta" placeholder="Usuario" required required autocomplete="off">
-        <br>
-        <label for="correo">Correo electronico: </label>
-        <br>
-        <input type="email" name="correo" placeholder="Correo electronico" required required autocomplete="off">
-        <br>
-        <label for="password">Contraseña: </label>
-        <br>
-        <input type="password" name="password" placeholder="Ingresa tu contraseña" required required autocomplete="off">
-        <br>
-        <label for="password2">Repetir Contraseña: </label>
-        <br>
-        <input type="password" name="password2" placeholder="Confirma tu contraseña" required required autocomplete="off">
-        <br>
-        <label for="respuestaSeguridad">Pregunta de Seguridad: </label>
-        <br>
-        <select name="preguntaSeguridad" required>
-            <option value="" disabled selected hidden>Selecciona una pregunta</option>
-            <option value="PreguntaSeguridad">¿Cuál es el nombre de tu primera mascota?</option>
-            <option value="PreguntaSeguridad">¿Cuál es tu deporte favorito?</option>
-            <option value="PreguntaSeguridad">¿En qué ciudad naciste?</option>
-        </select>
-        <br>
-        <input type="password" name="respuestaSeguridad" placeholder="Ingresa tu contraseña" required required autocomplete="off">
-        <button id="submit" type="submit">Registrarse</button>
-</form>
+                    <label for="cuenta">Cuenta:</label><br>
+                    <input type="text" name="cuenta" placeholder="Usuario" required autocomplete="off"><br>
+
+                    <label for="correo">Correo electrónico:</label><br>
+                    <input type="text" name="correo" placeholder="Correo electrónico" required autocomplete="off"><br>
+
+                    <label for="password">Contraseña:</label><br>
+                    <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" required autocomplete="off"><br>
+
+                    <label for="password2">Repetir Contraseña:</label><br>
+                    <input type="password" name="password2" id="password2" placeholder="Confirma tu contraseña" required autocomplete="off" style="margin-bottom: 5px;">
+                    <small id="passwordMatchError" style="color: red;"></small><br><br>
+
+                    <label for="respuestaSeguridad">Pregunta de Seguridad:</label><br>
+                    <select name="preguntaSeguridad" required>
+                            <option value="" disabled selected hidden>Selecciona una pregunta</option>
+                            <option value="Mascota">¿Cuál es el nombre de tu primera mascota?</option>
+                            <option value="Deporte">¿Cuál es tu deporte favorito?</option>
+                            <option value="Ciudad">¿En qué ciudad naciste?</option>
+                    </select><br>
+
+                    <input type="password" name="respuestaSeguridad" placeholder="Ingresa tu respuesta" required autocomplete="off"><br>
+                    <input type="hidden" name="formulario" value="registro">
+                    <button id="submit" type="submit" onclick="validadFormulario()">Registrarse</button>
+            </form>
+
+<script>
+       function validarFormulario() {
+            var password1 = document.getElementById('password').value;
+            var password2 = document.getElementById('password2').value;
+            var errorMensaje = document.getElementById('passwordMatchError');
+
+            if (password1 !== password2) {
+                errorMensaje.textContent = 'Las contraseñas no coinciden';
+                return false;
+            } else {
+                errorMensaje.textContent = '';
+                return true;
+            }
+        }
+
+        document.getElementById('formLogin').addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (validarFormulario()) {
+                // Obtener la información del formulario
+                var formData = new FormData(this);
+
+                // Realizar la solicitud AJAX
+                $.ajax({
+                    type: 'post',
+                    url: 'info.php',  // Cambia esto a la ruta correcta de tu archivo PHP
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // Actualizar el contenido del div con la respuesta del servidor
+                        document.getElementById('infoPHP').innerHTML = response;
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+</script>
+

@@ -1,10 +1,18 @@
 <?php
 SESSION_START();
 ?>
+<!DOCTYPE html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/48174618d9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC</title>
     <link rel="stylesheet" href="estilos/estilosABC.css">
-
 </head>
+
 <body id="html">
     <div class="contenido2">
         <div class="contenedor-Altas">
@@ -57,6 +65,7 @@ SESSION_START();
                                 existenciasHidden.value = '';
                             }
                         }
+
                         function toggleDescuento() {
                             var descuentoInput = document.getElementById('descuento_producto');
                             var tieneDescuentoCheckbox = document.getElementById('tiene_descuento');
@@ -91,7 +100,7 @@ SESSION_START();
                                 $agotado_producto = isset($_POST["agotado_producto"]) ? 1 : 0;
                                 $precio_producto = $_POST["precio_producto"];
 
-                                $targetDir = "fotos/";  
+                                $targetDir = "fotos/";
                                 $targetFile = $targetDir . basename($_FILES["imagen_producto"]["name"]);
 
                                 $check = getimagesize($_FILES["imagen_producto"]["tmp_name"]);
@@ -216,7 +225,7 @@ SESSION_START();
 
                             echo '<label for="descripcion_producto">Descripcion del producto</label><br>';
                             echo '<textarea id="descripcion_producto" name="descripcion_producto" rows="7" cols="40" required>';
-                            echo $fila['Descripcion_P']; 
+                            echo $fila['Descripcion_P'];
                             echo '</textarea><br>';
 
                             echo '<label for="categoria_producto">Categoria</label><br>';
@@ -316,3 +325,4 @@ SESSION_START();
         </div>
     </div>
 </body>
+<?php include("footer.php") ?>

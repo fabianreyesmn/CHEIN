@@ -5,21 +5,17 @@
     box-sizing: border-box;
 }
 
-/* Estilos generales */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f2f2f2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: #ed6161;
     margin: 0;
 }
 
+/* Contenedor principal */
 .contenido2 {
     display: flex;
     justify-content: space-around;
     margin: 20px;
+    height: 75vh;
 }
 
 /* Estilos para el formulario de altas, bajas y cambios */
@@ -112,13 +108,6 @@ input[type="file"] {
     text-align: center;
 }
 
-/* Estilos para la sección de eliminar y cambios */
-.contenedor-Bajas,
-.contenedor-Cambios {
-    flex: 1;
-    margin-left: 20px;
-}
-
 #title-bajas,
 #title-cambios {
     font-size: 1.5em;
@@ -147,7 +136,7 @@ input[type="file"] {
     border-radius: 0 4px 4px 0;
     cursor: pointer;
     padding: 2px 7px; /* Ajustado para ser más pequeño */
-    height: 33px; /* Altura */
+    height: 43px; /* Altura */
 }
 
 #btn-bajas:hover,

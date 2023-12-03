@@ -15,6 +15,7 @@
             grid-template-rows: 2;
             grid-template-columns: 7;
             background-color: whitesmoke;
+            padding-top: 15px;
             grid-template-areas: 
                                 "espacio na    ayuda  weare  interesar iconos espacio2"
                                 "abajo2 abajo2 abajo2  abajo2  abajo3 abajo3 abajo3"
