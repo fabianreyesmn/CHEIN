@@ -12,6 +12,12 @@ a:link, a:visited, a:active{
     padding: 20px 50px;
 }
 
+.informacion{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .btns-categorias{
     display: flex;
     justify-content: center;
@@ -28,9 +34,9 @@ a:link, a:visited, a:active{
 
 .card-body input{
     margin-bottom: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 96%;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 select{

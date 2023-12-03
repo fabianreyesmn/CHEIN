@@ -29,11 +29,11 @@
         <div class="opciones">
             <div class="informacion">
                 <h2>Todos los productos</h2>
-            </div>
-            <div class="btns-categorias">
-                <a href="productos.php" role="button" class="btn-categoria">Todos</a>
-                <a href="ropa.php" role="button" class="btn-categoria">Ropa</a>
-                <a href="accesorios.php" role="button" class="btn-categoria">Accesorios</a>
+                <!-- <div class="btns-categorias">
+                    <a href="productos.php" role="button" class="btn-categoria">Todos</a>
+                    <a href="ropa.php" role="button" class="btn-categoria">Ropa</a>
+                    <a href="accesorios.php" role="button" class="btn-categoria">Accesorios</a>
+                </div> -->
             </div>
             <div class="filtros">
                 <div>
@@ -44,7 +44,7 @@
                     </p>
                     <div style="min-height: 120px;">
                         <div class="collapse collapse-horizontal" id="filtros">
-                            <div class="card card-body" style="width: 370px;">
+                            <div class="card card-body" style="width: 370px; height: 350px;">
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                                 <label for="precio_min">Precio mínimo:</label>
                                 <input type="number" name="precio_min" id="precio_min" value="0" placeholder="Precio mínimo" min="0">
@@ -134,10 +134,10 @@
                         echo '<h3>' . $row['Nombre_P'] . '</h3>';
                         echo '<p>' . $row['Descripcion_P'] . '</p>';
                         echo '<p>Existencias: ' . $row['Existencias_P'] . '</p>';
-                        echo '<p>Precio: ' . $row['Precio_P'] . '</p>';
+                        echo '<p>Precio: $' . $row['Precio_P'] . '</p>';
                         
                         if ($row['Tiene_Descuento_P']) {
-                            echo '<p>Descuento: ' . $row['Descuento_P'] . '</p>';
+                            echo '<p>Descuento: $' . $row['Descuento_P'] . '</p>';
                         }
 
                         echo '<button id="agregar-p">Agregar al carrito</button>';
