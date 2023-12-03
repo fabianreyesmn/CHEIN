@@ -9,6 +9,9 @@
 </head>
 <body>
     <?php
+
+    include "otroheader.php";
+
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -27,6 +30,11 @@
             <div class="informacion">
                 <h2>Ropa</h2>
             </div>
+            <div class="btns-categorias">
+                <a href="productos.php" role="button" class="btn-categoria">Todos</a>
+                <a href="ropa.php" role="button" class="btn-categoria">Ropa</a>
+                <a href="accesorios.php" role="button" class="btn-categoria">Accesorios</a>
+            </div>
             <div class="filtros">
                 <div>
                     <p>
@@ -36,7 +44,7 @@
                     </p>
                     <div style="min-height: 120px;">
                         <div class="collapse collapse-horizontal" id="filtros">
-                            <div class="card card-body" style="width: 300px;">
+                            <div class="card card-body" style="width: 370px;">
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                                 <label for="precio_min">Precio mínimo:</label>
                                 <input type="number" name="precio_min" id="precio_min" value="0" placeholder="Precio mínimo" min="0">
@@ -60,12 +68,6 @@
                     </div>
                 </div>
 
-                <div class="btns-categorias">
-                    <a href="productos.php" role="button" class="btn-categoria">Todos</a>
-                    <a href="ropa.php" role="button" class="btn-categoria">Ropa</a>
-                    <a href="accesorios.php" role="button" class="btn-categoria">Accesorios</a>
-                </div>
-
                 <div class="orden">
                     <form id="formulario" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <label for="orden">Ordenar por precio:</label>
@@ -75,7 +77,7 @@
                             <option value="none">Sin orden</option>
                         </select>
 
-                        <input type="submit" value="Ordenar" name="ordenar">
+                        <input type="submit" value="Ordenar" name="ordenar" id="btn-ordenar">
                     </form>
                 </div>
             </div>
@@ -98,9 +100,6 @@
 
                     $result = $conn->query($sql);
 
-                    while ($row = $result->fetch_assoc()) {
-                        echo "Nombre: " . $row['Nombre_P'] . " - Precio: " . $row['Precio_P'] . "<br>";
-                    }
                 }elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ordenar'])){
                     $orden = $_POST['orden'];
 
@@ -113,24 +112,48 @@
                     } else{
                         $sql .= ";";
                     }
+
                     $result = $conn->query($sql);
 
-                    while ($row = $result->fetch_assoc()) {
-                        echo "Nombre: " . $row['Nombre_P'] . " - Precio: " . $row['Precio_P'] . "<br>";
-                    }
                 }else{
                     $sql = "SELECT * FROM producto WHERE Categoria_P = 'Ropa';";
+                    
                     $result = $conn->query($sql);
 
+                }
+                if ($result->num_rows > 0){
+                    echo '<div class="cuadricula">';
                     while ($row = $result->fetch_assoc()) {
-                        echo "Nombre: " . $row['Nombre_P'] . " - Precio: " . $row['Precio_P'] . "<br>";
+                        echo '<div class="card-producto">';
+                        echo '<a href="producto.php?
+                            Imagen_P=' . $row['Imagen_P'] . '&Nombre_P=' . $row['Nombre_P'] . '&Descripcion_P=' . $row['Descripcion_P'] . 
+                            '&Existencias_P=' . $row['Existencias_P'] . '&Precio_P=' . $row['Precio_P'] . '&Tiene_Descuento_P=' . $row['Tiene_Descuento_P'] . 
+                            '&Descuento_P=' . $row['Descuento_P'] . '">
+                            <img src="fotos/' . $row['Imagen_P'] . '" alt="' . $row['Nombre_P'] . '"></a>';
+                        echo '<h3>' . $row['Nombre_P'] . '</h3>';
+                        echo '<p>' . $row['Descripcion_P'] . '</p>';
+                        echo '<p>Existencias: ' . $row['Existencias_P'] . '</p>';
+                        echo '<p>Precio: ' . $row['Precio_P'] . '</p>';
+                        
+                        if ($row['Tiene_Descuento_P']) {
+                            echo '<p>Descuento: ' . $row['Descuento_P'] . '</p>';
+                        }
+
+                        echo '<button id="agregar-p">Agregar al carrito</button>';
+                        echo '</div>';
                     }
+                    echo '</div>';
+                }else{
+                    echo "0 resultados";
                 }
             ?>
         </div>
     </div>
 
-    <?php $conn->close(); ?>
+    <?php
+        $conn->close();
+        include "footer.php";
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
