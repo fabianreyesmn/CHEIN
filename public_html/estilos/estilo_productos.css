@@ -1,7 +1,27 @@
+body{
+    font-family: 'GFS Didot', serif;
+}
+
+a:link, a:visited, a:active{
+    text-decoration: none;
+}
+
 .opciones{
-    background-color: rgb(39, 45, 58);
-    color: aliceblue;
+    background-color: rgb(255, 255, 255);
+    color: #000;
     padding: 20px 50px;
+}
+
+.informacion{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btns-categorias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .filtros{
@@ -12,31 +32,95 @@
     height: 100px;
 }
 
-.btn-filtros{
-    margin-right: 300px;
+.card-body input{
+    margin-bottom: 15px;
+    border-radius: 5px;
+    width: 96%;
+    font-size: 16px;
 }
 
-.tarjetas{
-    background-color: rgb(229, 240, 243);
-    padding: 30px 50px;
-}
-
-.btn-categoria {
+select{
     margin: 0 10px;
-    padding: 5px 10px;
+    padding: 3px 10px;
+    padding-bottom: 4px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.card-body input[type="submit"]{
+    width: 80px;
+    margin: 0 10px;
+    padding: 3px 10px;
+    padding-bottom: 4px;
     font-size: 18px;
     text-align: center;
     text-decoration: none;
-    background-color: #007bff;
-    color: #fff;
-    border: 1px solid #007bff;
+    background-color: whitesmoke;
+    color: #000;
+    border: 1px solid #b4b4b4;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-filtros{
+    margin: 0 10px;
+    margin-right: 260px;
+    padding: 2px 10px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #313131;
+    color: whitesmoke;
+    border: 1px solid #222222;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tarjetas{
+    background-color: rgb(255, 255, 255);
+    padding: 30px 50px;
+}
+
+.btn-categoria:link, .btn-categoria:visited, .btn-categoria:active{
+    margin: 0 10px;
+    padding: 3px 10px;
+    padding-bottom: 4px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    background-color: whitesmoke;
+    color: #000;
+    border: 1px solid #b4b4b4;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .btn-categoria:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background-color: rgb(240, 239, 239);
+    border: 1px solid #b4b4b4;
+}
+
+#btn-ordenar{
+    margin: 0 10px;
+    padding: 2px 10px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #313131;
+    color: whitesmoke;
+    border: 1px solid #222222;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-filtros:hover, #btn-ordenar:hover{
+    background-color: #414141;
+    border: 1px solid #222222;
+}
+
+label{
+    font-family: 'GFS Didot', serif;
+    font-size: 18px;
 }
 
 .cuadricula {
@@ -46,10 +130,18 @@
 }
 
 .card-producto {
-    border: 1px solid #bad6bc;
+    background-color: rgb(247, 247, 247);
+    border: 1px solid rgb(207, 207, 207);
     border-radius: 7px;
     padding: 15px;
     text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card-producto:hover{
+    transform: scale(1.02);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .card-producto img {
@@ -57,4 +149,18 @@
     max-height: 300px;
     object-fit: cover;
     border-radius: 5px;
+}
+
+#agregar-p{
+    background-color: whitesmoke;
+    border-color: #b4b4b4;
+    border-radius: 10px;
+}
+
+#agregar-p:hover{
+    background-color: rgb(235, 235, 235);
+}
+
+*{
+    font-family: 'GFS Didot', serif;
 }

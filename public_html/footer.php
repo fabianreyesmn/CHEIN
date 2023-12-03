@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/48174618d9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>footer</title>
@@ -12,11 +13,12 @@
             display: grid;
             font-family: 'GFS Didot', serif;
             grid-template-rows: 2;
-            grid-template-columns: 5;
+            grid-template-columns: 7;
             background-color: whitesmoke;
+            padding-top: 15px;
             grid-template-areas: 
-                                "na    ayuda  weare  interesar iconos"
-                                "abajo2 abajo2  abajo2  abajo3 abajo3"
+                                "espacio na    ayuda  weare  interesar iconos espacio2"
+                                "abajo2 abajo2 abajo2  abajo2  abajo3 abajo3 abajo3"
                                 ;
         }
         .abajo1 .na{grid-area: na;}
@@ -24,6 +26,8 @@
         .abajo1 .weare{grid-area: weare;}
         .abajo1 .interesar{grid-area: interesar;}
         .abajo1 .iconos{grid-area: iconos;}
+        .abajo1 .espacio{grid-area: espacio;}
+        .abajo1 .espacio2{grid-area: espacio2;}
         .abajo1 .abajo3{
             grid-area: abajo3;
             border-top: solid 1px rgb(194, 194, 194);
@@ -47,11 +51,11 @@
 <footer>
     <div class="abajo1">
         <div class="na">
-            <p class="titulom">Necesitas Ayuda?</p><br>
-            <p style="font-weight: bold;"><i class="fa-regular fa-comment-dots fa-lg" style="color: #000000;"></i> Iniciar Chat</p>
-            <p>De lunes a viernes de 9:00 a 18:00</p><br>
-            <p style="font-weight: bold;"><i class="fa-solid fa-headset fa-lg" style="color: #000000;"></i> Llamar 800 668 4389</p>
-            <p>De lunes a viernes de 9:00 a 18:00</p>
+        <p class="titulom">Necesitas Ayuda?</p><br>
+        <p style="font-weight: bold;"><i class="fa-regular fa-comment-dots fa-lg" style="color: #000000;"></i> Iniciar Chat</p>
+        <p>De lunes a viernes de 9:00 a 18:00</p><br>
+        <p style="font-weight: bold;"><i class="fa-solid fa-headset fa-lg" style="color: #000000;"></i> Llamar 800 668 4389</p>
+        <p>De lunes a viernes de 9:00 a 18:00</p>
         </div>
         <div class="ayuda">
             <p class="titulom">Ayuda</p>
@@ -98,6 +102,12 @@
         <div class="abajo3">
             <br>
             <p style="text-align: right; font-size: 14px;"><i class="fa-solid fa-globe fa-lg" style="color: #000000;"></i> ES Espanol    &#169;CHEIN</p>
+        </div>
+        <div class="espacio">
+
+        </div>
+        <div class="espacio2">
+
         </div>
     </div>
 </footer>
