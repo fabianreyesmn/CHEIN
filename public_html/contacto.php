@@ -1,9 +1,12 @@
-<link rel="stylesheet" href="estilos/estilosGi.css">
-<script src="https://kit.fontawesome.com/2c2420c96b.js" crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville:wght@400;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
 <head>
-
+    <link rel="stylesheet" href="estilos/estilosGi.css">
+    <script src="https://kit.fontawesome.com/2c2420c96b.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville:wght@400;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>CHEIN</title>
 </head>
+
+<?php include "otroheader.php"; ?>
+
 <body style="background-image: url('imagenes/g.png');" >
 
 <div class="max" >
@@ -103,3 +106,4 @@
 </div>
     
 </body>
+<?php include 'footer.php'; ?>

@@ -1,9 +1,12 @@
+<?php include 'otroheader.php'; ?>
+
 <head>
     <title>Acerca de</title>
     <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville:wght@400;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="estilos/estilosG.css">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
+
 <body>
 
 
@@ -221,3 +224,5 @@
     <script src="./scripts/app.js"></script>
 </body>
 </html>
+
+<?php include 'footer.php'; ?>

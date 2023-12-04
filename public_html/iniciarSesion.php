@@ -14,11 +14,12 @@
 
 <head>
     <link rel="stylesheet" href="estilos/estilosLogin.css">
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville:wght@400;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6661c2c190.js" crossorigin="anonymous"></script>
 </head>
 
 <nav id="menu">
-    <button id="iniciarSesion" style="border: 2px solid white;">Iniciar Sesion</button>
+    <button id="iniciarSesion" style="border: 2px solid white; width: 120px;">Iniciar Sesion</button>
     <button id="registrar" style="border:none;">Registrarse</button>
 </nav>
 <!-- onsubmit="return validarCaptcha();" -->
@@ -78,7 +79,7 @@
     </div>
 
     
-        <small id="captchaMatchError" style="color: red;"></small><br>
+        <small id="captchaMatchError" style="color: red;"></small>
     <div style="display: flex; align-items: left; margin-bottom: 20px; margin-top: 5px;">
         <div>
             <input style="margin: 0; transform: scale(0.8);" type="checkbox" name="remember" >

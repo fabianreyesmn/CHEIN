@@ -6,13 +6,14 @@ div#contenedor{
     top: 5px;
     right: 5px;
     grid-template-columns: 1fr 1fr;
-    z-index: 1;
+    z-index: 6;
+    font-family: 'Roboto', sans-serif;
 }
 
 div.formulariosLoginRegistro{
     border-right: 1px solid black;
     width: 401px;
-    height: 625px;
+    height: 645px;
     border-end-end-radius: 10px;
     border-start-end-radius: 10px;
     padding: 10px;
@@ -31,9 +32,9 @@ div.carruselLogin{
 }
 
 .cerrar-menu {
-    position: absolute;
-    top: 0px;
-    right: 825px;
+    position: fixed;
+    top: -5px;
+    right: 830px;
     cursor: pointer;
     font-size: 25px;
     font-weight: bold;
@@ -65,7 +66,7 @@ form#formLogin{
 }
 
 form#formLogin input{
-    margin:10px 0 25px 0;
+    margin:5px 0 15px 0;
     width: 100%;
     border: none;
     border-bottom: 1px solid white;
@@ -73,6 +74,11 @@ form#formLogin input{
     background-color: black;
     padding: 3px;
     color: white;
+    font-size: 14px;
+}
+
+form#formLogin label{
+    margin: 3px 0;
     font-size: 14px;
 }
 
@@ -86,6 +92,58 @@ input::content{
     color: white !important; /* Cambia este valor al color que deseas para el texto */
 }
 
+.cute{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background-color: whitesmoke;
+    font-family: 'GFS Didot', serif;
+    padding: 20px;
+    width: 100%;
+}
+
+.cute1{
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.cute1 p{
+    margin: 0 20px;
+}
+
+.cute2{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.cute3{
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.cute3 p{
+    margin: 0 20px;
+}
+
+.titulo{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+.links{
+    color: black; 
+    text-decoration: none;
+}
+
+.links:hover{
+    text-decoration: none;
+    color: black; 
+}
 
 form#formLogin select {
     padding: 5px 0; 
@@ -117,8 +175,8 @@ div#navegar{
     border-top-right-radius: 10px;
     position: absolute;
     top: 0;
-    right: -6px;
-    width: 422px;
+    right: 15px;
+    width: 401px;
     height: 500px;
     background-color: black;
     margin:0 5px; 
@@ -157,6 +215,11 @@ div#formulario_recuperar{
     border-radius: 10px;
 }
 
+div#div-form{
+    min-height: 415px;
+    max-height: 415px;
+}
+
 div#formulario_recuperar h1{
     text-align: center; 
     color: white;
@@ -187,7 +250,7 @@ input[type="text"].frecuperar, input[type="password"].frecuperar {
     padding-left: 5px;
 }
 
-input[type="submit"].frecuperar {
+input[type="submit"].frecuperar, input[type="button"].frecuperar {
     margin-left: 10px;
     height: 35px;
     width: 80px;
@@ -200,7 +263,7 @@ input[type="submit"].frecuperar {
 }
 
 
-input[type="submit"].frecuperar:hover{
+input[type="submit"].frecuperar:hover, input[type="button"].frecuperar:hover{
     background-color: rgb(54, 54, 54);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     color: white;

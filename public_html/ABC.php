@@ -84,7 +84,7 @@ SESSION_START();
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($_POST["formulario"]) && $_POST["formulario"] == "productos") {
 
-                            $servidor = 'localhost';
+                            $servidor = 'localhost:3307';
                             $usuario = 'root';
                             $contrasena = '';
                             $base_de_datos = 'chein';

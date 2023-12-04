@@ -77,7 +77,7 @@
                             echo "<button id='submit' onclick='reiniciarPagina()'>Ir a CHEIN</button>";
                             echo "</div>";
                         }else{
-                            echo "Cuenta bloqueada, para recuperar tu contrasena da click en el siguiente enlace.";
+                            echo "Cuenta bloqueada, para recuperar tu contrasena da click en el siguiente enlace.<br>";
                             echo "<a href='recuperarPassword.php'>Recuperar contrasena</a>";
                         }
                     } else {
@@ -89,7 +89,7 @@
                             $sqlUpdate = "UPDATE usuario SET Esta_Bloqueada = Esta_Bloqueada + 1 WHERE Cuenta_U = '$cuenta'";
                             $conexion->query($sqlUpdate);
                         }else{
-                            echo "Tu cuenta ha sido bloqueada, para recuperar tu contrasena da click en el siguiente enlace.";
+                            echo "Tu cuenta ha sido bloqueada, para recuperar tu contrasena da click en el siguiente enlace.<br>";
                             echo "<a href='recuperarPassword.php'>Recuperar contrasena</a>";
                         }
                     }
