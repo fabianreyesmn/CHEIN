@@ -215,6 +215,11 @@ div#formulario_recuperar{
     border-radius: 10px;
 }
 
+div#div-form{
+    min-height: 415px;
+    max-height: 415px;
+}
+
 div#formulario_recuperar h1{
     text-align: center; 
     color: white;
@@ -245,7 +250,7 @@ input[type="text"].frecuperar, input[type="password"].frecuperar {
     padding-left: 5px;
 }
 
-input[type="submit"].frecuperar {
+input[type="submit"].frecuperar, input[type="button"].frecuperar {
     margin-left: 10px;
     height: 35px;
     width: 80px;
@@ -258,7 +263,7 @@ input[type="submit"].frecuperar {
 }
 
 
-input[type="submit"].frecuperar:hover{
+input[type="submit"].frecuperar:hover, input[type="button"].frecuperar:hover{
     background-color: rgb(54, 54, 54);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     color: white;

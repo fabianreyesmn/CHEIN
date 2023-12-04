@@ -19,7 +19,7 @@
 </head>
 
 <nav id="menu">
-    <button id="iniciarSesion" style="border: 2px solid white;">Iniciar Sesion</button>
+    <button id="iniciarSesion" style="border: 2px solid white; width: 120px;">Iniciar Sesion</button>
     <button id="registrar" style="border:none;">Registrarse</button>
 </nav>
 <!-- onsubmit="return validarCaptcha();" -->

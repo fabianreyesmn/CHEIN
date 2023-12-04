@@ -26,19 +26,19 @@
     <div class="cute">
         <div class="cute1">
             <p><a class="links" href="productos.php">TIENDA</a></p>
-            <p><a class="links" href="">Q&A</a></p>
-            <p><a class="links" href="">CONTACTANOS</a></p>
-            <p><a class="links" href="">ABOUT</a></p>
+            <p><a class="links" href="faqG.php">Q&A</a></p>
+            <p><a class="links" href="contacto.php">CONTACTANOS</a></p>
+            <p><a class="links" href="acerca_de.php">ABOUT</a></p>
         </div>
         <div class="cute2">
-            <p class="titulo"><a class="links" href="paginicio.html">CHEIN</a></p>
+            <p class="titulo"><a class="links" href="index.php">CHEIN</a></p>
         </div>
         <div class="cute3">
             <?php
                 if (isset($nombre_usuario) && $nombre_usuario !== null){
                     if(isset($rango_usuario) && $rango_usuario !== null){
                         if($rango_usuario == 1){
-                            echo "<p><a class='links'>Altas, Bajas y Cambios</a></p>";
+                            echo "<p><a class='links' href='ABC.php'>Altas, Bajas y Cambios</a></p>";
                         }
                     }
                     echo "<p><a class='links'>Hola, $nombre_usuario</a></p>";
