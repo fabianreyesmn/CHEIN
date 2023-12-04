@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #ed6161;
+    background-color: #bdbdbd;
     margin: 0;
 }
 
@@ -15,7 +15,7 @@ body {
     display: flex;
     justify-content: space-around;
     margin: 20px;
-    height: 75vh;
+    height: 100vh;
 }
 
 /* Estilos para el formulario de altas, bajas y cambios */

@@ -12,7 +12,7 @@ SESSION_START();
     <title>ABC</title>
     <link rel="stylesheet" href="estilos/estilosABC.css">
 </head>
-
+<?php include("otroheader.php") ?>
 <body id="html">
     <div class="contenido2">
         <div class="contenedor-Altas">
