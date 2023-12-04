@@ -3,9 +3,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'GFS Didot', serif;
 }
 
 body {
+    font-family: 'GFS Didot', serif;
     background-color: #bdbdbd;
     margin: 0;
 }
