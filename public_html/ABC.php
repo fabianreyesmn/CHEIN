@@ -3,6 +3,7 @@ SESSION_START();
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/48174618d9.js" crossorigin="anonymous"></script>
@@ -13,6 +14,7 @@ SESSION_START();
     <link rel="stylesheet" href="estilos/estilosABC.css">
 </head>
 <?php include("otroheader.php") ?>
+
 <body id="html">
     <div class="contenido2">
         <div class="contenedor-Altas">
@@ -142,7 +144,7 @@ SESSION_START();
             <legend id="title-bajas">Eliminar</legend>
             <form id="bajas" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div id="div-bajas">
-                    <input id="bajas" type="text" placeholder="Nombre del producto" name="nombre" required>
+                    <input id="bajas" type="text" placeholder="ID del producto" name="id" required>
                     <input type="hidden" name="formulario" value="bajas">
                     <button id="btn-bajas" type="submit">
                         <img src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-noir.png" alt="Lupa" width="25px" height="25px">
@@ -159,19 +161,26 @@ SESSION_START();
                 $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
                 if ($conexion->connect_error) {
                     die("Conexión fallida: " . $conexion->connect_error);
-                } else {
-                    $nombre = $_POST['nombre'];
-                    $sql = "DELETE FROM Producto WHERE Nombre_P = '$nombre'";
-
-                    if ($conexion->query($sql) === TRUE) {
-                        echo "<div class='eliminado bajasmsg'>";
-                        echo "<h4>Producto eliminado con éxito</h4>";
+                }
+                $id = $_POST['id'];
+                $query = "SELECT * FROM producto WHERE ID_Producto = $id";
+                $result = $conexion->query($query);
+                if ($result->num_rows > 0) {
+                    $deleteQuery = "DELETE FROM producto WHERE ID_Producto = $id";
+                    if ($conexion->query($deleteQuery) === TRUE) {
+                        echo "<div class='aprobado'>";
+                        echo "<h4>El producto ha sido eliminado con éxito.</h4>";
                         echo "</div>";
                     } else {
-                        echo "<div class='denegado bajasmsg'>";
+                        echo "<div class='denegado'>";
                         echo "<h4>Error al eliminar el producto: " . $conexion->error . "</h4>";
                         echo "</div>";
                     }
+                } else {
+                    // The product does not exist, display a message
+                    echo "<div class='denegado'>";
+                    echo "<h4>El producto no existe.</h4>";
+                    echo "</div>";
                 }
             }
             ?>
@@ -180,7 +189,7 @@ SESSION_START();
             <legend id="title-cambios">Cambios</legend>
             <form id="cambios" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div id="div-cambios">
-                    <input id="cambios" type="text" placeholder="Nombre del producto" name="nombre" required>
+                    <input id="cambios" type="text" placeholder="ID del producto" name="id" required>
                     <input type="hidden" name="formulario" value="cambios">
                     <button id="btn-cambios" type="submit">
                         <img src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-noir.png" alt="Lupa" width="25px" height="25px">
@@ -199,7 +208,7 @@ SESSION_START();
                 if ($conexion->connect_error) {
                     die("Conexión fallida: " . $conexion->connect_error);
                 } else {
-                    $nombre = $_POST['nombre'];
+                    $id = $_POST['id'];
                     $sql = "SELECT
                         Producto.ID_Producto,
                         Producto.Nombre_P,
@@ -214,14 +223,18 @@ SESSION_START();
                         FROM
                             Producto
                         WHERE 
-                            Nombre_P = '$nombre';";
+                            ID_Producto = '$id';";
                     $resultado = $conexion->query($sql);
                     if ($resultado->num_rows > 0) {
                         while ($fila = $resultado->fetch_assoc()) {
                             echo '<form id="form2" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '" method="post" enctype="multipart/form-data">';
                             echo '<legend>Modificar producto</legend>';
+
+                            echo '<label for="id_producto">ID del producto</label><br>';
+                            echo '<input type="text" id="id_producto" name="id_producto" value="' . $id . '" required><br>';
+
                             echo '<label for="nombre_producto">Nombre del producto</label><br>';
-                            echo '<input type="text" id="nombre_producto" name="nombre_producto" value="' . $nombre . '" required><br>';
+                            echo '<input type="text" id="nombre_producto" name="nombre_producto" value="' . $fila['Nombre_P'] . '" required><br>';
 
                             echo '<label for="descripcion_producto">Descripcion del producto</label><br>';
                             echo '<textarea id="descripcion_producto" name="descripcion_producto" rows="7" cols="40" required>';
@@ -278,6 +291,7 @@ SESSION_START();
                 if ($conexion->connect_error) {
                     die("Conexión fallida: " . $conexion->connect_error);
                 } else {
+                    $id = isset($_POST['id_producto']) ? $_POST['id_producto'] : '';
                     $nombre = $_POST['nombre_producto'];
                     $descripcion = $_POST['descripcion_producto'];
                     $categoria = $_POST['categoria_producto'];
@@ -313,12 +327,16 @@ SESSION_START();
                     Imagen_P = '$imagen', 
                     Tiene_Descuento_P = '$tiene_descuento', 
                     Descuento_P = '$descuento' 
-                WHERE Nombre_P = '$nombre';";
-                    $conexion->query($sql);
-
-                    echo "<div class='agregado cambiosmsg'>";
-                    echo "<h4>Producto modificado con éxito</h4>";
-                    echo "</div>";
+                WHERE ID_Producto = '$id';";
+                    if ($conexion->query($sql) === TRUE) {
+                        echo "<div class='aprobado cambiosmsg'>";
+                        echo "<h4>El producto ha sido modificado con éxito.</h4>";
+                        echo "</div>";
+                    } else {
+                        echo "<div class='denegado cambiosmsg'>";
+                        echo "<h4>Error al modificar el producto: " . $conexion->error . "</h4>";
+                        echo "</div>";
+                    }
                 }
             }
             ?>
