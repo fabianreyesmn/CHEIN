@@ -13,6 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c29b677056.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="estilos/estilosProd.css">
     <title><?php echo $Nombre_P; ?></title>
 </head>
@@ -36,7 +37,7 @@
                     echo '<p>Descuento: $' . $Descuento_P . '</p>';
                 }
 
-                echo '<button id="agregar-p">Agregar al carrito</button>';
+                echo '<button id="agregar-p"><i class="fa-solid fa-cart-plus"></i></button>';
             ?>
         </div>
     </div>

@@ -129,6 +129,9 @@ label{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    padding: 30px 0;
+    border-top: 2px solid #c5c5c5;
+    /* border-bottom: 2px solid #c5c5c5; */
 }
 
 .card-producto {
@@ -154,13 +157,19 @@ label{
 }
 
 #agregar-p{
-    background-color: whitesmoke;
-    border-color: #b4b4b4;
-    border-radius: 10px;
+    background-color: rgba(187, 187, 187, 0.2);
+    border: 1px solid #2c2c2c;
+    border-radius: 50%;
+    line-height: 1.12;
+    padding: 12px;
+    color: #3d3d3d;
+    border: none;
+    font-size: 22px;
 }
 
 #agregar-p:hover{
-    background-color: rgb(235, 235, 235);
+    /* background-color: rgb(235, 235, 235); */
+    color: rgb(32, 32, 32);
 }
 
 *{
