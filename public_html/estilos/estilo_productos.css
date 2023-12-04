@@ -22,6 +22,7 @@ a:link, a:visited, a:active{
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 35px;
 }
 
 .filtros{
@@ -81,23 +82,24 @@ select{
     padding: 30px 50px;
 }
 
+.btn-categoria{
+    display: flex;
+    align-items: center;
+}
+
 .btn-categoria:link, .btn-categoria:visited, .btn-categoria:active{
-    margin: 0 10px;
-    padding: 3px 10px;
-    padding-bottom: 4px;
+    margin: 0 15px;
+    padding: 0 10px;
+    height: 33px;
     font-size: 18px;
     text-align: center;
     text-decoration: none;
-    background-color: whitesmoke;
     color: #000;
-    border: 1px solid #b4b4b4;
-    border-radius: 5px;
     cursor: pointer;
 }
 
 .btn-categoria:hover {
-    background-color: rgb(240, 239, 239);
-    border: 1px solid #b4b4b4;
+    color: #4d4d4d;
 }
 
 #btn-ordenar{

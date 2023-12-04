@@ -10,7 +10,7 @@
 <body>
     <?php
 
-    include "otroheader.php";
+    include "header_b.php";
 
     $servername = "localhost";
     $username = "root";
@@ -29,11 +29,11 @@
         <div class="opciones">
             <div class="informacion">
                 <h2>Todos los productos</h2>
-                <!-- <div class="btns-categorias">
-                    <a href="productos.php" role="button" class="btn-categoria">Todos</a>
-                    <a href="ropa.php" role="button" class="btn-categoria">Ropa</a>
-                    <a href="accesorios.php" role="button" class="btn-categoria">Accesorios</a>
-                </div> -->
+                <div class="btns-categorias">
+                    <a href="productos.php" class="btn-categoria">Todos</a>
+                    <a href="ropa.php" class="btn-categoria">Ropa</a>
+                    <a href="accesorios.php" class="btn-categoria">Accesorios</a>
+                </div>
             </div>
             <div class="filtros">
                 <div>
@@ -153,7 +153,7 @@
 
     <?php
         $conn->close();
-        include "footer.php"
+        include "footer_b.php"
         ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
