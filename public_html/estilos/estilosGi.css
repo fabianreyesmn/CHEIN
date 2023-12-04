@@ -1,0 +1,76 @@
+.mayor{
+    background-color: rgb(244, 236, 228, 0.7);
+}
+.yes{
+    width: 500px;
+    height: auto;
+}
+.contform {
+    display: flex;
+    align-items: flex-start; /* Alinea los elementos arriba */
+}
+.he{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+.are{
+    font-family: 'Roboto', sans-serif;
+    font-size: 29px;
+}
+.ho{
+    font-size: 35px;
+    font-family: 'GFS Didot', serif;
+    letter-spacing: 10px;
+    text-align: center;
+}
+.texto{
+    font-size: 20px;
+    line-height: 1.5;
+}
+.info {
+    flex: 1; /* El div con la información ocupará todo el espacio disponible */
+    margin-right: 20px; /* Espacio entre los elementos */
+}
+
+form {
+    flex: 1; /* El formulario ocupará todo el espacio disponible */
+}
+.field{
+    width:500px;
+    border: solid 1px #ccc;
+    padding: 10px;
+    
+      
+}
+
+.btn{
+    border-radius: 3px;
+    display: inline-block;
+    padding: 15px 15px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    border: 0;
+  }
+  .btn-green{
+    color: white;
+    background-color: #3CC93f;
+  }
+
+  .btn-green:hover{
+    background-color: #37B839;
+  }
+  .btn-green:active{
+    background-color: #29962A;
+  }
+  .mayor{
+    border: 1px black solid;
+    width: 1100px;
+    padding: 30px;
+
+  }
+  .max{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

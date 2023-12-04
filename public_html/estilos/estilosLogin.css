@@ -1,16 +1,16 @@
 div#contenedor{
     position: fixed;
-    width: 845px;
+    width: 842px;
     height: 670px;
-    display: grid;
-    top: 20;
-    right: 20;
+    display: none;
+    top: 5px;
+    right: 5px;
     grid-template-columns: 1fr 1fr;
     z-index: 1;
 }
 
 div.formulariosLoginRegistro{
-    border: 1px solid black;
+    border-right: 1px solid black;
     width: 401px;
     height: 625px;
     border-end-end-radius: 10px;
@@ -21,9 +21,11 @@ div.formulariosLoginRegistro{
 }
 
 div.carruselLogin{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 421px;
     height: 645px;
+    padding: 0;
+    margin: 0;
     border-start-start-radius: 10px;
     border-end-start-radius: 10px;
 }
@@ -110,3 +112,98 @@ button#submit:hover{
     background-color: rgb(54, 54, 54);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
+
+div#navegar{
+    border-top-right-radius: 10px;
+    position: absolute;
+    top: 0;
+    right: -6px;
+    width: 422px;
+    height: 500px;
+    background-color: black;
+    margin:0 5px; 
+    /* border: 1px solid white; */
+    text-align: center;
+}
+
+div#navegar h1{
+    /* border: 1px solid white; */ 
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 25px 0 0px 0;
+    font-size: 35px;
+    margin: 0;
+}
+
+div#navegar h4{
+    background-color: white;
+    color: black;
+    margin: 0;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+div#navegar p{
+    font-size: 18px;
+    padding: 5px 20px;
+}
+
+div#formulario_recuperar{
+    border: 1px solid;
+    width: 500px;
+    margin:20px auto;
+    text-align: center;
+    border-radius: 10px;
+}
+
+div#formulario_recuperar h1{
+    text-align: center; 
+    color: white;
+}
+
+div#formulario_recuperar div#titulo{
+    border: 1px solid;
+    background-color: black;
+    width: 499px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 8px; 
+}
+
+div#recuperarContenedor{
+    margin: 20px;
+}
+
+label.frecuperar{
+    font-size: 17px;
+    margin: 5px 5px;
+    /* border: 1px solid; */
+}
+
+input[type="text"].frecuperar, input[type="password"].frecuperar {
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 15px;
+    padding-left: 5px;
+}
+
+input[type="submit"].frecuperar {
+    margin-left: 10px;
+    height: 35px;
+    width: 80px;
+    padding: 5px;
+    font-size: 12px;
+    color: black;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+}
+
+
+input[type="submit"].frecuperar:hover{
+    background-color: rgb(54, 54, 54);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    color: white;
+}
+
+
