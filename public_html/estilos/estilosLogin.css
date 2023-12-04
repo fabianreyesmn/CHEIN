@@ -1,16 +1,16 @@
 div#contenedor{
     position: fixed;
-    width: 845px;
+    width: 842px;
     height: 670px;
     display: none;
-    top: 20;
-    right: 20;
+    top: 5px;
+    right: 5px;
     grid-template-columns: 1fr 1fr;
     z-index: 1;
 }
 
 div.formulariosLoginRegistro{
-    border: 1px solid black;
+    border-right: 1px solid black;
     width: 401px;
     height: 625px;
     border-end-end-radius: 10px;
@@ -21,9 +21,11 @@ div.formulariosLoginRegistro{
 }
 
 div.carruselLogin{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 421px;
     height: 645px;
+    padding: 0;
+    margin: 0;
     border-start-start-radius: 10px;
     border-end-start-radius: 10px;
 }
@@ -114,8 +116,8 @@ button#submit:hover{
 div#navegar{
     border-top-right-radius: 10px;
     position: absolute;
-    top: 1;
-    right: -5;
+    top: 0;
+    right: -6px;
     width: 422px;
     height: 500px;
     background-color: black;

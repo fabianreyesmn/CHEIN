@@ -106,6 +106,6 @@
 
 <script>
     function reiniciarPagina(){
-        location.reload();
+        window.location.href = "otroheader.php";
     }
 </script>

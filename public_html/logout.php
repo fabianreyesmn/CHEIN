@@ -5,6 +5,6 @@ if(session_status() === PHP_SESSION_NONE) {
 
 if(isset($_GET['logout'])) {
     session_destroy();
-    header("Location: login.php");
+    header("Location: otroheader.php");
 }
 ?>
