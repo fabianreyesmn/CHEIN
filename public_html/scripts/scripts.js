@@ -1,50 +1,68 @@
-function validarFormulario(){
-    var password1 = document.getElementById('password').value;
-    var password2 = document.getElementById('password2').value;
-    var errorMensaje = document.getElementById('passwordMatchError');
-
-    if (password1 !== password2) {
-        errorMensaje.textContent = 'Las contraseñas no coinciden';
-        return false; // Evita que se envíe el formulario
-    } else {
-        errorMensaje.textContent = '';
-        return true; // Envía el formulario si las contraseñas coinciden
-    }
-}
-
 $(document).ready(function() {
-    $(document).on("click", "#iniciarSesion", function() {
-        cargarContenido("iniciarSesion.php");
+    let formularioActual = "registrarse";
+
+    $(document).on("click", "#registrar", function(event) {
+        event.preventDefault();
+        if (formularioActual !== "registrarse") {
+            resetearDiv('infoPHP');
+            cargarContenido("registrarse.php");
+            formularioActual = "registrarse";
+        }
     });
 
-    $(document).on("click", "#registrar", function() {
-        $(this).addClass("boton-clic-registrar");
-        cargarContenido("registrarse.php");
-    });
+    $(document).on("click", "#iniciarSesion", function(event) {
+        event.preventDefault();
+        if (formularioActual !== "iniciarSesion") {
+            resetearDiv('infoPHP');
+            cargarContenido("iniciarSesion.php");
+            formularioActual = "iniciarSesion";
+            //cargarCaptcha("captcha.php");
+        }
+    });     
 });
 
+document.getElementById('formLogin').addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (validarFormulario()) {
+        // Obtener la información del formulario
+        var formData = new FormData(this);
 
-function cargarContenido(url) {
+        // Realizar la solicitud AJAX
+        $.ajax({
+            type: 'post',
+            url: 'info.php',  // Cambia esto a la ruta correcta de tu archivo PHP
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Actualizar el contenido del div con la respuesta del servidor
+                document.getElementById('infoPHP').innerHTML = response;
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+});
+
+function resetearDiv(idDiv) {
+    $("#" + idDiv).empty();  // Elimina todos los nodos hijos del div
+}
+
+function cargarContenido(url, formType) {
     $.ajax({
-        type: "get",
+        type: "post",
         url: url,
+        data: { formulario: formType },
         success: function(data) {
-            $(".formulariosLoginRegistro").html(data);
+            $(".formulariosLR").html(data);
+            formularioActual = formType;
         },
         error: function() {
-            alert("Error al cargar el contenido.");
+            console.log("Error al cargar el contenido");
         }
     });
 }
-
-document.getElementById('mostrarLoginBtn').addEventListener('click', function() {
-    // Obtener el elemento del formulario de inicio de sesión
-    var formularioLogin = document.getElementById('formularioLogin');
-
-    // Alternar la clase "visible" para mostrar u ocultar el formulario al hacer clic en el botón
-    formularioLogin.classList.toggle('visible');
-});
-  
 
 
 

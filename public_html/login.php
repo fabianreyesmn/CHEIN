@@ -1,15 +1,37 @@
 <?php
-    session_start();
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (isset($_SESSION['nombre']) && isset($_SESSION['rango'])) {
+        $nombre_usuario = $_SESSION['nombre'];
+        $rango_usuario = $_SESSION['rango'];
+        if($rango_usuario == 1){
+            echo "ADMIN - ";
+        }
+        echo $nombre_usuario;
+    }
 ?>
 
+<script>
+    function reiniciarPagina(){
+        location.reload();
+    }
+</script>
+
 <head>
-    <link rel="stylesheet" href="estilos/estilosLogin.css">
+    <link rel="stylesheet" type="text/css" href="estilos/estilosLogin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="scripts/scripts.js"></script>
 </head>
 
 <body>
+<a id='msg' href='logout.php?logout'>Cerrar sesión</a>
+<button onclick="reiniciarPagina()">Refrescar</button>
+<!-- Aqui va lo de Sio, pero mientras esto es el menu -->
+<button id="btnMostrarMenu">Mostrar</button>
     <div id="contenedor">
+        
         <div id="menuCierre" class="cerrar-menu">&times;</div>
         <div class="carruselLogin">
             <div class="slideshow-container">
@@ -50,89 +72,53 @@
                 }
             </script>
         </div>
-        <div class="formulariosLoginRegistro">
-            <nav id="menu">
-                <button id="iniciarSesion" style="border:none;">Iniciar Sesion</button>
-                <button id="registrar" style="border: 2px solid white;">Registrarse</button>
-            </nav>
-            <form action="info.php" method="post" id="formLogin" onsubmit="return validarFormulario()">
-                <label for="nombre">Nombre:</label><br>
-                <input type="text" name="nombre" placeholder="Nombre" required autocomplete="off"><br>
-
-                <label for="cuenta">Cuenta:</label><br>
-                <input type="text" name="cuenta" placeholder="Usuario" required autocomplete="off"><br>
-
-                <label for="correo">Correo electrónico:</label><br>
-                <input type="email" name="correo" placeholder="Correo electrónico" required autocomplete="off"><br>
-
-                <label for="password">Contraseña:</label><br>
-                <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" required autocomplete="off"><br>
-
-                <label for="password2">Repetir Contraseña:</label><br>
-                <input type="password" name="password2" id="password2" placeholder="Confirma tu contraseña" required autocomplete="off" style="margin-bottom: 5px;">
-                <small id="passwordMatchError" style="color: red;"></small><br><br>
-
-                <label for="respuestaSeguridad">Pregunta de Seguridad:</label><br>
-                <select name="preguntaSeguridad" required>
-                    <option value="" disabled selected hidden>Selecciona una pregunta</option>
-                    <option value="PreguntaSeguridad">¿Cuál es el nombre de tu primera mascota?</option>
-                    <option value="PreguntaSeguridad">¿Cuál es tu deporte favorito?</option>
-                    <option value="PreguntaSeguridad">¿En qué ciudad naciste?</option>
-                </select><br>
-
-                <input type="password" name="respuestaSeguridad" placeholder="Ingresa tu respuesta" required autocomplete="off"><br>
-
-                <button id="submit" type="submit">Registrarse</button>
-            </form>
-
-            <script>
-                function validarFormulario() {
-                    var password1 = document.getElementById('password').value;
-                    var password2 = document.getElementById('password2').value;
-                    var errorMensaje = document.getElementById('passwordMatchError');
-
-                    if (password1 !== password2) {
-                        errorMensaje.textContent = 'Las contraseñas no coinciden';
-                        password2.value = ' ';
-                        return false;
-                    } else {
-                        errorMensaje.textContent = '';
-                        return true;
-                    }
-                }
-            </script>
+        <div class="formulariosLoginRegistro" id="registroFormulario">
+            <div class="formulariosLR" style="padding-bottom: 0;">
+                <?php include "registrarse.php"; ?>
+            </div>
+            <div id="infoPHP"> </div>
+            <!-- FIN DE INFO.PHP -->
         </div>
+
+
     </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            btnOcultarMenu = document.getElementById('menuCierre');
             var btnMostrarMenu = document.getElementById('btnMostrarMenu');
             var menuFlotante = document.getElementById('contenedor');
+
+            btnOcultarMenu.addEventListener('click', function() {
+                var estiloDisplay = window.getComputedStyle(menuFlotante).display;
+                
+                if (estiloDisplay == 'grid') {
+                    menuFlotante.style.display = 'none';
+                }
+            });
 
             btnMostrarMenu.addEventListener('click', function() {
                 var estiloDisplay = window.getComputedStyle(menuFlotante).display;
                 
-                if (estiloDisplay === 'grid') {
-                    menuFlotante.style.display = 'none';
-                } else {
+                if (estiloDisplay === 'none') {
                     menuFlotante.style.display = 'grid';
                 }
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var btnMostrarMenu = document.getElementById('iniciarSesion');
-            var menuFlotante = document.getElementById('contenedor');
-            var btnCerrarMenu = document.getElementById('menuCierre');
+        function validarFormulario() {
+            var password1 = document.getElementById('password').value;
+            var password2 = document.getElementById('password2').value;
+            var errorMensaje = document.getElementById('passwordMatchError');
 
-            btnMostrarMenu.addEventListener('click', function() {
-                menuFlotante.style.display = 'grid';
-            });
-
-            btnCerrarMenu.addEventListener('click', function() {
-                menuFlotante.style.display = 'none';
-            });
-        });
-    </script>
-    
+            if (password1 !== password2) {
+                errorMensaje.textContent = 'Las contraseñas no coinciden';
+                return false;
+            } else {
+                errorMensaje.textContent = '';
+                return true;
+            }
+        }
+    </script>   
 </body>
