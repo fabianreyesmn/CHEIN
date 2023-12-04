@@ -47,7 +47,10 @@
                     echo '<p><a class="links" id="btnMostrarMenu"><i class="fa-regular fa-user" style="color: #050505;">&nbsp;</i>Iniciar Sesion</a></p>';
                 }
             ?>
-            <p><a class="links" href=""><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a></p>
+            <p>
+                <a class="links" href=""><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
+                <span id="carritoContador" class="carrito-contador">0</span>
+            </p>
         </div>
     </div>
 
