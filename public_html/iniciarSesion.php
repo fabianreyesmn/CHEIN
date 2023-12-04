@@ -10,6 +10,16 @@
 
       return $clave;
     }
+
+    if(isset($_COOKIE['nombre_usuario']) && isset($_COOKIE['password_usuario'])) {
+        // Obtener el valor de la cookie
+        $valorUsuario = $_COOKIE['nombre_usuario'];
+        $valorUsuario_P = $_COOKIE['password_usuario'];
+    } else {
+        // Valor por defecto si la cookie no está presente
+        $valorUsuario_P = '';
+        $valorUsuario = '';
+    }
   ?>
 
 <head>
@@ -25,9 +35,9 @@
 <!-- onsubmit="return validarCaptcha();" -->
 <form id="formLogin" onsubmit="return validarCaptcha();" style="padding-bottom: 5px; margin-bottom: 2px;">
     <label for="cuenta">Cuenta: </label><br>
-    <input type="text" name="cuenta" placeholder="Usuario" required><br>
+    <input type="text" name="cuenta" placeholder="Usuario" value="<?php echo htmlspecialchars($valorUsuario); ?>" required><br>
     <label for="password">Contrasena: </label><br>
-    <input type="password" name="password" placeholder="Ingresa tu contraseña" required><br>
+    <input type="password" name="password" placeholder="Ingresa tu contraseña" value="<?php echo htmlspecialchars($valorUsuario_P); ?>" required><br>
     <label for="password">Escriba el texto de la imagen </label><br><br>
     
     <div class="Rcaptcha" style="width: 220px; height: 25px; text-align: center; display: flex; margin-bottom: 10px;">
@@ -75,7 +85,8 @@
         </div>
         
         <input type="hidden" value="<?php echo htmlspecialchars($input_text); ?>" id="captcha1">
-        <input id="captcha2" name="captcha2" style="width: 70px; margin:0 0 0 10px; height: 25px; text-align: center;" type="text" placeholder="<?php echo htmlspecialchars($input_text); ?>" required><br>
+        <!-- placeholder="<?php echo htmlspecialchars($input_text); ?>" -->
+        <input id="captcha2" name="captcha2" style="width: 70px; margin:0 0 0 10px; height: 25px; text-align: center;" type="text" required><br>
     </div>
 
     

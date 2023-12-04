@@ -67,6 +67,15 @@
                         if($usuario['Esta_Bloqueada'] < 3){
                             $_SESSION['nombre'] = $cuenta;
                             $_SESSION['rango'] = $rango;
+                            if (isset($_POST['remember'])){
+                                $cookie_nombre = "nombre_usuario";
+                                $cookie_valor = $cuenta;
+                                setcookie($cookie_nombre, $cookie_valor, time() + (86400 * 30), "/"); // Cookie válida por 30 días
+
+                                $cookie_password = "password_usuario";
+                                $cookie_password_v = $password;
+                                setcookie($cookie_password, $cookie_password_v, time() + (86400 * 30), "/"); // Cookie válida por 30 días    
+                            }
                             $sqlUpdate = "UPDATE usuario SET Esta_Bloqueada = 0 WHERE Cuenta_U = '$cuenta'";
                             $conexion->query($sqlUpdate);
                             echo '<div id="navegar">';
