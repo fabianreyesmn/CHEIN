@@ -1,8 +1,10 @@
+
 <nav id="menu">
                 <button id="iniciarSesion" style="border: none;">Iniciar Sesion</button>
                 <button id="registrar" style="border: 2px solid white;">Registrarse</button>
             </nav>
-            <form id="formLogin" method="post" onsubmit="return validarFormulario();">
+            <!-- onsubmit="return validarFormulario();"  -->
+            <form id="formLogin" style="padding-bottom: 5px; margin-bottom: 2px;">
                     <label for="nombre">Nombre:</label><br>
                     <input type="text" name="nombre" placeholder="Nombre" required autocomplete="off"><br>
 
@@ -10,7 +12,7 @@
                     <input type="text" name="cuenta" placeholder="Usuario" required autocomplete="off"><br>
 
                     <label for="correo">Correo electrónico:</label><br>
-                    <input type="text" name="correo" placeholder="Correo electrónico" required autocomplete="off"><br>
+                    <input type="email" name="correo" placeholder="Correo electrónico" required autocomplete="off"><br>
 
                     <label for="password">Contraseña:</label><br>
                     <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" required autocomplete="off"><br>
@@ -29,7 +31,7 @@
 
                     <input type="password" name="respuestaSeguridad" placeholder="Ingresa tu respuesta" required autocomplete="off"><br>
                     <input type="hidden" name="formulario" value="registro">
-                    <button id="submit" type="submit" onclick="validadFormulario()">Registrarse</button>
+                    <button id="submit" type="submit" style="margin-bottom: 0;">Registrarse</button>
             </form>
 
 <script>
@@ -40,6 +42,7 @@
 
             if (password1 !== password2) {
                 errorMensaje.textContent = 'Las contraseñas no coinciden';
+                document.getElementById('infoPHP').innerHTML = '';
                 return false;
             } else {
                 errorMensaje.textContent = '';
@@ -62,7 +65,9 @@
                     contentType: false,
                     success: function(response) {
                         // Actualizar el contenido del div con la respuesta del servidor
+                        document.getElementById('infoPHP').innerHTML = '';
                         document.getElementById('infoPHP').innerHTML = response;
+                        document.getElementById('formLogin').reset();
                     },
                     error: function(error) {
                         console.log(error);

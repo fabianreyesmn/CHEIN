@@ -18,7 +18,31 @@ $(document).ready(function() {
             formularioActual = "iniciarSesion";
             //cargarCaptcha("captcha.php");
         }
-    });   
+    });     
+});
+
+document.getElementById('formLogin').addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (validarFormulario()) {
+        // Obtener la información del formulario
+        var formData = new FormData(this);
+
+        // Realizar la solicitud AJAX
+        $.ajax({
+            type: 'post',
+            url: 'info.php',  // Cambia esto a la ruta correcta de tu archivo PHP
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Actualizar el contenido del div con la respuesta del servidor
+                document.getElementById('infoPHP').innerHTML = response;
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
 });
 
 function resetearDiv(idDiv) {
@@ -39,14 +63,6 @@ function cargarContenido(url, formType) {
         }
     });
 }
-
-document.getElementById('mostrarLoginBtn').addEventListener('click', function() {
-    // Obtener el elemento del formulario de inicio de sesión
-    var formularioLogin = document.getElementById('formularioLogin');
-
-    // Alternar la clase "visible" para mostrar u ocultar el formulario al hacer clic en el botón
-    formularioLogin.classList.toggle('visible');
-});
 
 
 
