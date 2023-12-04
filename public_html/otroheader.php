@@ -13,59 +13,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="estilos/estilosLogin.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/48174618d9.js" crossorigin="anonymous"></script>
     <script src="scripts/scripts.js"></script>
-    <title>Document</title>
-    <style>
-        .cute{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            background-color: whitesmoke;
-            font-family: 'GFS Didot', serif;
-            padding: 20px;
-            height: 70px;
-        }
-        .cute1{
-            display: flex;
-            flex: 1;
-            justify-content: flex-start;
-        }
-        .cute1 p{
-            margin: 0 20px;
-        }
-        .cute2{
-            display: flex;
-            flex: 1;
-            justify-content: center;
-        }
-        .cute3{
-            display: flex;
-            flex: 1;
-            justify-content: flex-end;
-        }
-        .cute3 p{
-            margin: 0 20px;
-        }
-        .titulo{
-            text-align: center;
-            font-weight: bolder;
-            font-size: 40px;
-        }
-        .links{
-            color: black; 
-            text-decoration: none;
-        }
-        .links:hover{
-            text-decoration: none;
-            color: black; 
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="estilos/estilosLogin.css">
+    <title>CHEIN</title>
+    
 </head>
 <body>
     <div class="cute">
@@ -95,16 +50,17 @@
             <p><a class="links" href=""><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a></p>
         </div>
     </div>
+
     <div id="contenedor">
         <div id="menuCierre" class="cerrar-menu">&times;</div>
         <div class="carruselLogin">
-            <div class="mySlides fade" style="width:100%;  height: 100%;">
+            <div class="mySlides" style="width:100%;  height: 100%;">
                 <img src="imagenes/carrusel-1.png" style="width:100%;  height: 100%; border-start-start-radius: 9px; border-end-start-radius: 9px;">
             </div>
-            <div class="mySlides fade" style="width:100%;  height: 100%;">
+            <div class="mySlides" style="width:100%;  height: 100%;">
                 <img src="imagenes/carrusel-2.png" style="width:100%;  height: 100%; border-start-start-radius: 9px; border-end-start-radius: 9px;">
             </div>
-            <div class="mySlides fade" style="width:100%;  height: 100%;">
+            <div class="mySlides" style="width:100%;  height: 100%;">
                 <img src="imagenes/carrusel-3.png" style="width:100%;  height: 100%; border-start-start-radius: 9px; border-end-start-radius: 9px;">
             </div>
             <div style="text-align:center">
@@ -144,7 +100,6 @@
 
 
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             btnOcultarMenu = document.getElementById('menuCierre');

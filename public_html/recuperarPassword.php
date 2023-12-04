@@ -107,7 +107,7 @@
                                     <input class="frecuperar" type="submit">
                                 </form>
                                 <?php
-                                echo "Respuesta incorrecta. Intenta de nuevo.";
+                                echo "<br>Respuesta incorrecta. Intenta de nuevo.";
                             }
                         }
                     } elseif ($_POST["form_R"] == "Cambiar_Contrasena_U") {
