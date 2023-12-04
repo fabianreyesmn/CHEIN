@@ -298,6 +298,16 @@ SESSION_START();
                     $existencias = $_POST['existencias_producto'];
                     $agotado = isset($_POST['agotado_producto']) ? 1 : 0;
                     $precio = $_POST['precio_producto'];
+                    $imagen = basename($_FILES["imagen_producto"]["name"]);
+                    $tiene_descuento = isset($_POST['tiene_descuento']) ? 1 : 0;
+                    $descuento = $_POST['descuento_producto'];
+
+                    if ($agotado == 1) {
+                        $existencias = 0;
+                    }
+                    if ($tiene_descuento == 0) {
+                        $descuento = 0;
+                    }
 
                     $imagen = isset($_FILES['imagen_producto']['name']) ? $_FILES['imagen_producto']['name'] : '';
 
