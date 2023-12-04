@@ -15,7 +15,7 @@ body {
     display: flex;
     justify-content: space-around;
     margin: 20px;
-    height: 100vh;
+    height: 190vh;
 }
 
 /* Estilos para el formulario de altas, bajas y cambios */
