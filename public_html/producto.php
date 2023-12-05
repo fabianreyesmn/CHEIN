@@ -1,5 +1,6 @@
 <?php
     $Nombre_P = $_GET['Nombre_P'];
+    $ID_Producto = $_GET['ID_Producto'];
     $Imagen_P = $_GET['Imagen_P'];
     $Descripcion_P = $_GET['Descripcion_P'];
     $Existencias_P = $_GET['Existencias_P'];
@@ -29,6 +30,7 @@
         <div class="informacion">
             <?php
                 echo '<h1>' . $Nombre_P . '</h1>';
+                echo '<p>ID: ' . $ID_Producto . '</p>';
                 echo '<p>' . $Descripcion_P . '</p>';
                 echo '<p>Existencias: ' . $Existencias_P . ' unidades</p>';
                 echo '<p>Precio: $' . $Precio_P . '</p>';
