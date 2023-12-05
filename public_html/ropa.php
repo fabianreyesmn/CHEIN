@@ -127,11 +127,12 @@
                     while ($row = $result->fetch_assoc()) {
                         echo '<div class="card-producto">';
                         echo '<a href="producto.php?
-                            Imagen_P=' . $row['Imagen_P'] . '&Nombre_P=' . $row['Nombre_P'] . '&Descripcion_P=' . $row['Descripcion_P'] . 
+                            Imagen_P=' . $row['Imagen_P'] . '&Nombre_P=' . $row['Nombre_P'] . '&ID_Producto=' . $row['ID_Producto'] . '&Descripcion_P=' . $row['Descripcion_P'] . 
                             '&Existencias_P=' . $row['Existencias_P'] . '&Precio_P=' . $row['Precio_P'] . '&Tiene_Descuento_P=' . $row['Tiene_Descuento_P'] . 
                             '&Descuento_P=' . $row['Descuento_P'] . '">
                             <img src="fotos/' . $row['Imagen_P'] . '" alt="' . $row['Nombre_P'] . '"></a>';
                         echo '<h3>' . $row['Nombre_P'] . '</h3>';
+                        echo '<p>ID: ' . $row['ID_Producto'] . '</p>';
                         echo '<p>' . $row['Descripcion_P'] . '</p>';
                         echo '<p>Existencias: ' . $row['Existencias_P'] . '</p>';
                         echo '<p>Precio: $' . $row['Precio_P'] . '</p>';
