@@ -48,13 +48,13 @@
                             <div class="card card-body" style="width: 370px; height: 350px;">
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                                 <label for="precio_min">Precio mínimo:</label>
-                                <input type="number" name="precio_min" id="precio_min" value="0" placeholder="Precio mínimo" min="0">
+                                <input type="number" name="precio_min" id="precio_min" placeholder="Precio mínimo" min="0">
 
                                 <label for="precio_max">Precio máximo:</label>
-                                <input type="number" name="precio_max" id="precio_max" value="9999" placeholder="Precio máximo" min="0">
+                                <input type="number" name="precio_max" id="precio_max" placeholder="Precio máximo" min="0">
 
                                 <label for="existencias_min">Existencias mínimas:</label>
-                                <input type="number" name="existencias_min" id="existencias_min" value="0" placeholder="Existencias mínimas" min="0">
+                                <input type="number" name="existencias_min" id="existencias_min" placeholder="Existencias mínimas" min="0">
 
                                 <label for="descuento">Con descuento:</label>
                                 <select name="descuento" id="descuento">
@@ -91,12 +91,22 @@
                     $existencias_min = $_POST['existencias_min'];
                     $descuento = $_POST['descuento'];
 
-                    $sql = "SELECT * FROM producto WHERE Categoria_P = 'Accesorio' AND Precio_P >= $precio_min AND Precio_P <= $precio_max AND Existencias_P >= $existencias_min";
+                    if ($precio_min == null){
+                        $precio_min = 0;
+                    }
+                    if ($precio_max == null){
+                        $precio_max = 999999999;
+                    }
+                    if ($existencias_min == null){
+                        $existencias_min = 0;
+                    }
+
+                    $sql = "SELECT * FROM producto WHERE Categoria_P = 'Accesorio' AND Precio_P - Descuento_P >= $precio_min AND Precio_P - Descuento_P <= $precio_max AND Existencias_P >= $existencias_min";
 
                     if ($descuento == 1) {
                         $sql .= " AND Descuento_P > 0;";
                     }else{
-                        $sql .= ";";
+                        $sql .= " AND Descuento_P = 0;";
                     }
 
                     $result = $conn->query($sql);
@@ -107,9 +117,9 @@
                     $sql = "SELECT * FROM producto WHERE Categoria_P = 'Accesorio'";
                     
                     if ($orden == 'asc') {
-                        $sql .= " ORDER BY Precio_P ASC";
+                        $sql .= " ORDER BY Precio_P - Descuento_P ASC";
                     } elseif ($orden == 'desc') {
-                        $sql .= " ORDER BY Precio_P DESC";
+                        $sql .= " ORDER BY Precio_P - Descuento_P DESC";
                     } else{
                         $sql .= ";";
                     }
@@ -131,17 +141,32 @@
                             '&Existencias_P=' . $row['Existencias_P'] . '&Precio_P=' . $row['Precio_P'] . '&Tiene_Descuento_P=' . $row['Tiene_Descuento_P'] . 
                             '&Descuento_P=' . $row['Descuento_P'] . '">
                             <img src="fotos/' . $row['Imagen_P'] . '" alt="' . $row['Nombre_P'] . '"></a>';
-                        echo '<h3>' . $row['Nombre_P'] . '</h3>';
-                        echo '<p>ID: ' . $row['ID_Producto'] . '</p>';
-                        echo '<p>' . $row['Descripcion_P'] . '</p>';
-                        echo '<p>Existencias: ' . $row['Existencias_P'] . '</p>';
-                        echo '<p>Precio: $' . $row['Precio_P'] . '</p>';
+                        echo '<h4>' . $row['Nombre_P'] . '</h4>';
+                        echo '<div class="centrar-card">';
+                        echo '<p><i class="fa-solid fa-fingerprint"></i> ' . $row['ID_Producto'] . '</p>';
+                        if ($row['Existencias_P'] > 125){
+                            echo '<p class="verde">' . $row['Existencias_P'] . ' pzas.</p>';
+                        }elseif ($row['Existencias_P'] >=50 && $row['Existencias_P'] <= 125){
+                            echo '<p class="gris">' . $row['Existencias_P'] . ' pzas.</p>';
+                        }elseif ($row['Existencias_P'] < 50 && $row['Existencias_P'] > 0){
+                            echo '<p class="naranja">' . $row['Existencias_P'] . ' pzas.</p>';
+                        }elseif ($row['Existencias_P'] == 0){
+                            echo '<p class="rojo">' . $row['Existencias_P'] . ' pzas.</p>';
+                        }
+                        echo '<button id="agregar-p"><i class="fa-solid fa-cart-plus"></i></button>';
+                        echo '</div>';
                         
                         if ($row['Tiene_Descuento_P']) {
-                            echo '<p>Descuento: $' . $row['Descuento_P'] . '</p>';
+                            echo '<div class="centrar-card">';
+                            echo '<p class="tachado"><i class="fa-solid fa-dollar-sign"></i> ' . $row['Precio_P'] . '</p>';
+                            echo '<p><i class="fa-solid fa-dollar-sign"></i> ' . ($row['Precio_P'] - $row['Descuento_P']) . '</p>';
+                            echo '</div>';
+                        }else{
+                            echo '<p><i class="fa-solid fa-dollar-sign"></i> ' . $row['Precio_P'] . '</p>';
                         }
 
-                        echo '<button id="agregar-p"><i class="fa-solid fa-cart-plus"></i></button>';
+                        echo '<p>' . $row['Descripcion_P'] . '</p>';
+
                         echo '</div>';
                     }
                     echo '</div>';
