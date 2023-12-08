@@ -54,39 +54,28 @@ SESSION_START();
                     <input type="hidden" name="formulario" value="productos">
                     <input id="boton" type="submit" value="Enviar">
                     <script>
-                        function toggleExistencias() {
-                            var existenciasInput = document.getElementById('existencias_producto');
-                            var agotadoCheckbox = document.getElementById('agotado_producto');
-                            var existenciasHidden = document.getElementById('existencias_hidden');
-
-                            if (agotadoCheckbox.checked) {
-                                existenciasInput.style.display = 'none';
-                                existenciasHidden.value = '0';
-                            } else {
-                                existenciasInput.style.display = 'block';
-                                existenciasHidden.value = '';
-                            }
-                        }
-
                         function toggleDescuento() {
                             var descuentoInput = document.getElementById('descuento_producto');
                             var tieneDescuentoCheckbox = document.getElementById('tiene_descuento');
                             var descuentoHidden = document.getElementById('descuento_hidden');
 
                             if (tieneDescuentoCheckbox.checked) {
-                                descuentoInput.style.display = 'none';
-                                descuentoHidden.value = '0';
-                            } else {
                                 descuentoInput.style.display = 'block';
                                 descuentoHidden.value = '';
+                            } else {
+                                descuentoInput.style.display = 'none';
+                                descuentoHidden.value = '0';
                             }
                         }
+
+                        // Llama a la función al cargar la página para asegurarte de que el campo de descuento tenga el estado correcto
+                        window.onload = toggleDescuento;
                     </script>
                     <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($_POST["formulario"]) && $_POST["formulario"] == "productos") {
 
-                            $servidor = 'localhost:3307';
+                            $servidor = 'localhost';
                             $usuario = 'root';
                             $contrasena = '';
                             $base_de_datos = 'chein';
@@ -95,6 +84,13 @@ SESSION_START();
                             if ($conexion->connect_error) {
                                 die("Conexión fallida: " . $conexion->connect_error);
                             } else {
+                                $query = "SELECT MAX(ID_Producto) as maxID FROM Producto";
+                                $result = $conexion->query($query);
+                                $row = $result->fetch_assoc();
+                                $lastID = $row['maxID'];
+
+                                // Incrementar el último ID de producto para obtener un nuevo ID
+                                $newID = $lastID + 1;
                                 $nombre_producto = $_POST["nombre_producto"];
                                 $descripcion_producto = $_POST["descripcion_producto"];
                                 $categoria_producto = $_POST["categoria_producto"];
@@ -112,8 +108,9 @@ SESSION_START();
                                         $imagen_producto = $nombreArchivo;
                                         $tiene_descuento_producto = isset($_POST["tiene_descuento"]) ? 1 : 0;
                                         $descuento_producto = $_POST["descuento_producto"];
+
                                         $sql = "INSERT INTO Producto (ID_Producto, Nombre_P, Descripcion_P, Categoria_P, Existencias_P, Esta_Agotado_P, Precio_P, Imagen_P, Tiene_Descuento_P, Descuento_P) 
-                    VALUES (DEFAULT, '$nombre_producto', '$descripcion_producto', '$categoria_producto', '$existencias_producto', '$agotado_producto', '$precio_producto', '$imagen_producto', '$tiene_descuento_producto', '$descuento_producto');";
+                                VALUES ('$newID', '$nombre_producto', '$descripcion_producto', '$categoria_producto', '$existencias_producto', '$agotado_producto', '$precio_producto', '$imagen_producto', '$tiene_descuento_producto', '$descuento_producto');";
                                         if ($conexion->query($sql) === TRUE) {
                                             echo "<div class='agregado'>";
                                             echo "<h4>Producto Agregado</h4>";
@@ -305,7 +302,7 @@ SESSION_START();
                     if ($agotado == 1) {
                         $existencias = 0;
                     }
-                    if ($tiene_descuento == 0) {
+                    if($tiene_descuento == 0){
                         $descuento = 0;
                     }
 

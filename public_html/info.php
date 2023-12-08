@@ -9,7 +9,7 @@
 </head>
 
 <?php
-    $servidor='localhost:3307';
+    $servidor='localhost';
     $cuenta='root';
     $password='';
     $bd='chein';
