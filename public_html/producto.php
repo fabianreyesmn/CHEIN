@@ -1,12 +1,12 @@
 <?php
-    $Nombre_P = $_GET['Nombre_P'];
-    $ID_Producto = $_GET['ID_Producto'];
-    $Imagen_P = $_GET['Imagen_P'];
-    $Descripcion_P = $_GET['Descripcion_P'];
-    $Existencias_P = $_GET['Existencias_P'];
-    $Precio_P = $_GET['Precio_P'];
-    $Tiene_Descuento_P = $_GET['Tiene_Descuento_P'];
-    $Descuento_P = $_GET['Descuento_P'];
+    $Nombre_P = $_POST['Nombre_P'];
+    $ID_Producto = $_POST['ID_Producto'];
+    $Imagen_P = $_POST['Imagen_P'];
+    $Descripcion_P = $_POST['Descripcion_P'];
+    $Existencias_P = $_POST['Existencias_P'];
+    $Precio_P = $_POST['Precio_P'];
+    $Tiene_Descuento_P = $_POST['Tiene_Descuento_P'];
+    $Descuento_P = $_POST['Descuento_P'];
 ?>
 
 <!DOCTYPE html>

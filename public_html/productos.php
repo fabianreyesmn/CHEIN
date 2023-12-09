@@ -137,11 +137,17 @@
                     echo '<div class="cuadricula">';
                     while ($row = $result->fetch_assoc()) {
                         echo '<div class="card-producto">';
-                        echo '<a href="producto.php?
-                            Imagen_P=' . $row['Imagen_P'] . '&Nombre_P=' . $row['Nombre_P'] . '&ID_Producto=' . $row['ID_Producto'] . '&Descripcion_P=' . $row['Descripcion_P'] . 
-                            '&Existencias_P=' . $row['Existencias_P'] . '&Precio_P=' . $row['Precio_P'] . '&Tiene_Descuento_P=' . $row['Tiene_Descuento_P'] . 
-                            '&Descuento_P=' . $row['Descuento_P'] . '">
-                            <img src="fotos/' . $row['Imagen_P'] . '" alt="' . $row['Nombre_P'] . '"></a>';
+                        echo '<form action="producto.php" method="post">';
+                        echo '<input type="hidden" name="Imagen_P" value="' . $row['Imagen_P'] . '">';
+                        echo '<input type="hidden" name="Nombre_P" value="' . $row['Nombre_P'] . '">';
+                        echo '<input type="hidden" name="ID_Producto" value="' . $row['ID_Producto'] . '">';
+                        echo '<input type="hidden" name="Descripcion_P" value="' . $row['Descripcion_P'] . '">';
+                        echo '<input type="hidden" name="Existencias_P" value="' . $row['Existencias_P'] . '">';
+                        echo '<input type="hidden" name="Precio_P" value="' . $row['Precio_P'] . '">';
+                        echo '<input type="hidden" name="Tiene_Descuento_P" value="' . $row['Tiene_Descuento_P'] . '">';
+                        echo '<input type="hidden" name="Descuento_P" value="' . $row['Descuento_P'] . '">';
+                        echo '<button type="submit" id="btn-imagen"><img src="fotos/' . $row['Imagen_P'] . '" alt="' . $row['Nombre_P'] . '"></button>';
+                        echo '</form>';
                         echo '<h4>' . $row['Nombre_P'] . '</h4>';
                         echo '<div class="centrar-card">';
                         echo '<p><i class="fa-solid fa-fingerprint"></i> ' . $row['ID_Producto'] . '</p>';

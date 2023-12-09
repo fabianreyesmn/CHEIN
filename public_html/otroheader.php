@@ -48,7 +48,7 @@
                 }
             ?>
             <p>
-                <a class="links" href=""><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
+                <a class="links" href="carrito.php"><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
                 <span id="carritoContador" class="carrito-contador">0</span>
             </p>
         </div>

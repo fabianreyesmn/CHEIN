@@ -1,0 +1,7 @@
+body{
+    font-family: 'GFS Didot', serif;
+}
+
+a:link, a:visited, a:active{
+    text-decoration: none;
+}
