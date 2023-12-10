@@ -63,8 +63,10 @@
                     $usuario = $resultado->fetch_assoc();
                     // Verificar la contraseña
                     if (password_verify($password, $usuario['Contrasena_U'])) {
+                        $id = $usuario['ID_Usuario'];
                         $rango = $usuario['Rango_U'];
                         if($usuario['Esta_Bloqueada'] < 3){
+                            $_SESSION['id'] = $id;
                             $_SESSION['nombre'] = $cuenta;
                             $_SESSION['rango'] = $rango;
                             if (isset($_POST['remember'])){

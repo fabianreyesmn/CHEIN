@@ -149,7 +149,7 @@ label{
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-#btn-imagen{
+.btn-imagen{
     border: none;
     background-color: #0000;
     width: 100%;
@@ -204,7 +204,7 @@ label{
     padding: 5px;
 }
 
-#agregar-p{
+.agregar-p{
     background-color: rgba(187, 187, 187, 0.2);
     border: 1px solid #2c2c2c;
     border-radius: 50%;
@@ -215,9 +215,20 @@ label{
     font-size: 20px;
 }
 
-#agregar-p:hover{
+.agregar-p:hover{
     /* background-color: rgb(235, 235, 235); */
     color: rgb(32, 32, 32);
+}
+
+.no-agregar-p{
+    background-color: rgba(187, 187, 187, 0.2);
+    border: 1px solid #2c2c2c;
+    border-radius: 50%;
+    line-height: 1;
+    padding: 12px;
+    color: #979797;
+    border: none;
+    font-size: 20px;
 }
 
 .tachado{

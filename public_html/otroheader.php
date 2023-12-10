@@ -3,10 +3,32 @@
         session_start();
     }
 
-    if (isset($_SESSION['nombre']) && isset($_SESSION['rango'])) {
+    $servername = "localhost:3306";
+    $username = "root";
+    $password = "";
+    $dbname = "chein";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Conexión fallida: " . $conn->connect_error);
+    }
+
+    $agregados = null;
+
+    if (isset($_SESSION['id']) && isset($_SESSION['nombre']) && isset($_SESSION['rango'])) {
+        $id_usuario = $_SESSION['id'];
         $nombre_usuario = $_SESSION['nombre'];
         $rango_usuario = $_SESSION['rango'];
+
+        $sql = "SELECT SUM(Cantidad) AS suma FROM carrito WHERE ID_Usuario = $id_usuario;";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            $agregados = $row['suma'];
+        }
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -44,12 +66,12 @@
                     echo "<p><a class='links'>Hola, $nombre_usuario</a></p>";
                     echo '<p><a class="links" id="btnMostrarMenu" href="logout.php?logout"><i class="fa-solid fa-right-from-bracket">&nbsp;</i>Cerrar Sesion</a></p>';
                 }else{
-                    echo '<p><a class="links" id="btnMostrarMenu"><i class="fa-regular fa-user" style="color: #050505;">&nbsp;</i>Iniciar Sesion</a></p>';
+                    echo '<p><a class="links" name="btnMostrarMenu"><i class="fa-regular fa-user" style="color: #050505;">&nbsp;</i>Iniciar Sesion</a></p>';
                 }
             ?>
             <p>
                 <a class="links" href="carrito.php"><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
-                <span id="carritoContador" class="carrito-contador">0</span>
+                <span id="carritoContador" class="carrito-contador"><?php echo $agregados; ?></span>
             </p>
         </div>
     </div>
@@ -103,10 +125,13 @@
 
 
     </div>
+    <?php
+        $conn->close();
+    ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             btnOcultarMenu = document.getElementById('menuCierre');
-            var btnMostrarMenu = document.getElementById('btnMostrarMenu');
+            var btnMostrarMenu = document.getElementsByName('btnMostrarMenu');
             var menuFlotante = document.getElementById('contenedor');
 
             btnOcultarMenu.addEventListener('click', function() {
@@ -117,12 +142,14 @@
                 }
             });
 
-            btnMostrarMenu.addEventListener('click', function() {
-                var estiloDisplay = window.getComputedStyle(menuFlotante).display;
-                
-                if (estiloDisplay === 'none') {
-                    menuFlotante.style.display = 'grid';
-                }
+            btnMostrarMenu.forEach(function(boton) {
+                boton.addEventListener('click', function() {
+                    var estiloDisplay = window.getComputedStyle(menuFlotante).display;
+                    
+                    if (estiloDisplay === 'none') {
+                        menuFlotante.style.display = 'grid';
+                    }
+                });
             });
         });
 

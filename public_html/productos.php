@@ -146,7 +146,7 @@
                         echo '<input type="hidden" name="Precio_P" value="' . $row['Precio_P'] . '">';
                         echo '<input type="hidden" name="Tiene_Descuento_P" value="' . $row['Tiene_Descuento_P'] . '">';
                         echo '<input type="hidden" name="Descuento_P" value="' . $row['Descuento_P'] . '">';
-                        echo '<button type="submit" id="btn-imagen"><img src="fotos/' . $row['Imagen_P'] . '" alt="' . $row['Nombre_P'] . '"></button>';
+                        echo '<button type="submit" class="btn-imagen"><img src="fotos/' . $row['Imagen_P'] . '" alt="' . $row['Nombre_P'] . '"></button>';
                         echo '</form>';
                         echo '<h4>' . $row['Nombre_P'] . '</h4>';
                         echo '<div class="centrar-card">';
@@ -160,7 +160,14 @@
                         }elseif ($row['Existencias_P'] == 0){
                             echo '<p class="rojo">' . $row['Existencias_P'] . ' pzas.</p>';
                         }
-                        echo '<button id="agregar-p"><i class="fa-solid fa-cart-plus"></i></button>';
+                        echo '<form id="agregar-car' . $row['ID_Producto'] . '">';
+                        echo '<input type="hidden" name="ID_Producto" value="' . $row['ID_Producto'] . '">';
+                        if (isset($_SESSION['id']) && $_SESSION['id'] !== null){
+                            echo '<button type="button" onclick="agregarAlCarrito(' . $row['ID_Producto'] . ')" class="agregar-p"><i class="fa-solid fa-cart-plus"></i></button>';
+                        }else{
+                            echo '<button name="btnMostrarMenu" type="button" class="no-agregar-p"><i class="fa-solid fa-cart-plus"></i></button>';
+                        }
+                        echo '</form>';
                         echo '</div>';
                         
                         if ($row['Tiene_Descuento_P']) {
@@ -186,8 +193,9 @@
 
     <?php
         $conn->close();
-        include "footer.php"
-        ?>
+        include "footer.php";
+    ?>
+    <script src="scripts/scripts_productos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
