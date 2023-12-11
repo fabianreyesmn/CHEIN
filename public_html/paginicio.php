@@ -29,12 +29,13 @@
         padding: 0px;
         display: grid;
         grid-template-columns: 2;
-        grid-template-rows: 5;
+        grid-template-rows: 6;
         grid-template-areas: "carrusel carrusel"
                              "categorias categorias"
                              "otro mensaje"
                              "enviar enviar"
                              "estilos estilos"
+                             "cupones cupones"
                               ;
       }
       .acomodarr .carrusel{
@@ -43,6 +44,10 @@
         grid-area: estilos;
         text-align: center;
         background-color: whitesmoke;
+      }
+      .acomodarr .cupones{
+        grid-area: cupones;
+        text-align: center;
       }
       .acomodarr .categorias{
         grid-area: categorias;
@@ -88,7 +93,7 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <video class="video" style="height: 600px; width: 100%;" autoplay="true" muted="true" loop="true" >
-          <source  src="imagenes/videomodelo1final.mp4" type="video/mp4">
+          <source  src="imagenesSio/videomodelo1final.mp4" type="video/mp4">
         </video>
         <div class="carousel-caption d-none d-md-block">
           <!-- <h5>CHEIN</h5> -->
@@ -97,7 +102,7 @@
       </div>
       <div class="carousel-item">
         <video class="video" style="height: 600px; width: 100%;" autoplay="true" muted="true" loop="true" >
-          <source src="imagenes/videoModelo2.mp4" type="video/mp4">
+          <source src="imagenesSio/videoModelo2.mp4" type="video/mp4">
         </video>
         <div class="carousel-caption d-none d-md-block">
           <!-- <h5>CHEIN</h5> -->
@@ -106,7 +111,7 @@
       </div>
       <div class="carousel-item">
         <video class="video" style="height: 600px; width: 100%;" autoplay="true" muted="true" loop="true" >
-          <source src="imagenes/shoot.mp4" type="video/mp4">
+          <source src="imagenesSio/shoot.mp4" type="video/mp4">
         </video>
         <div class="carousel-caption d-none d-md-block">
           <!-- <h5>CHEIN</h5> -->
@@ -129,23 +134,23 @@
 <div class="categorias">
 <p class="titulop" style="font-size:40px">Top Categories</p>
 <div class="contenedor contenedor2">
-  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenes/chamarra_azul.png" /></a>
+  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenesSio/chamarra_azul.png" /></a>
   <div style="color: rgb(155, 153, 153); font-size: 20px;" class="texto-encima prueba ">Chamarras</div>
 </div>
 <div class="contenedor contenedor2">
-  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenes/pantalon.png" /></a>
+  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenesSio/pantalon.png" /></a>
   <div style="color: rgb(155, 153, 153);  font-size: 20px;" class="texto-encima prueba">Pantalones</div>
 </div>
 <div class="contenedor contenedor2">
-  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenes/scream.png" /></a>
+  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenesSio/scream.png" /></a>
   <div style="color: rgb(155, 153, 153);  font-size: 20px;" class="texto-encima prueba">Camisetas</div>
 </div>
 <div class="contenedor contenedor2">
-  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenes/sudadera.png" /></a>
+  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenesSio/sudadera.png" /></a>
   <div style="color: rgb(155, 153, 153);  font-size: 20px;" class="texto-encima prueba">Sudaderas</div>
 </div>
 <div class="contenedor contenedor2">
-  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenes/bolso.png" /></a>
+  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenesSio/bolso.png" /></a>
   <div style="color: rgb(155, 153, 153);  font-size: 20px" class="texto-encima prueba">Accesorios</div>
 </div>
 <br><br><br><br>
@@ -154,18 +159,42 @@
 <div class="estilos">
 <p style="font-size:40px" class="titulop">Get the Look</p>
 <p class="textoc">#CHEINSTYLE</p>
-<a href=""><img class="imagen1" src="imagenes/party.png" alt=""></a>
-<a href=""><img class="imagen1" src="imagenes/trendy.png" alt=""></a>
-<a href=""><img class="imagen1" src="imagenes/leather.png" alt=""></a>
-<a href=""><img class="imagen1" src="imagenes/casual.png" alt=""></a>
+<a href=""><img class="imagen1" src="imagenesSio/party.png" alt=""></a>
+<a href=""><img class="imagen1" src="imagenesSio/trendy.png" alt=""></a>
+<a href=""><img class="imagen1" src="imagenesSio/leather.png" alt=""></a>
+<a href=""><img class="imagen1" src="imagenesSio/casual.png" alt=""></a>
 <br><br><br><br>
 </div>
 <div class="otro">
-<a href=""><img src="imagenes/howtogift.png" alt=""></a>
+<a href=""><img src="imagenesSio/howtogift.png" alt=""></a>
 <br><br><br><br>
 </div>
 <div class="mensaje">
 <p class="textoc" style="font-size: 20px;">La forma más fácil de acertar este año, <br> encontrar lo que has estado buscando para tus seres queridos <br> o incluso para ti mismo.</p>
+</div>
+<div class="cupones">
+<!-- Cesar en este apartado van los links hacia el carrito -->
+<p style="font-size:40px" class="titulop">Descuentos</p>
+<p class="textoc" style="font-size: 20px;">Los mejores descuentos solo en CHEIN, agregalos a tu carrito y disfruta tus prendas a un precio mas bajo.</p><br>
+<div class="contenedor contenedor2">
+<a href="">
+   
+  <img class="imagen2" style="height: 300px; width: 230px;" src="imagenes/Descuento_primera_compra.png" alt="">
+</a> 
+&nbsp;&nbsp;&nbsp;
+</div>
+<div class="contenedor contenedor2">
+<a href="">
+  <img class="imagen2" style="height: 300px; width: 230px;" src="imagenes/Desc_25.png" alt="">
+</a>&nbsp;&nbsp;&nbsp;
+</div>
+<div class="contenedor contenedor2">
+<a href="">
+  <img class="imagen2" style="height: 300px; width: 230px;" src="imagenes/media_45.png" alt="">
+</a>&nbsp;&nbsp;&nbsp;
+</div>
+<p class="textoc" style="text-align:left; font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solo miembros.</p>
+<br><br><br>
 </div>
 </div>
 </body>
