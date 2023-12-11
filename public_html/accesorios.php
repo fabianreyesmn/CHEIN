@@ -10,10 +10,6 @@
 </head>
 <body>
     <?php
-    $servername = "localhost";
-    $username = "cheinspa_admin";
-    $password = "passWord#24";
-    $dbname = "cheinspa_Chein";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 

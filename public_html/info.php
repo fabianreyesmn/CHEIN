@@ -10,9 +10,9 @@
 
 <?php
     $servidor='localhost';
-    $cuenta='cheinspa_admin';
-    $password='passWord#24';
-    $bd='cheinspa_Chein';
+    $cuenta='root';
+    $password='';
+    $bd='chein';
      
     $conexion = new mysqli($servidor,$cuenta,$password,$bd);
 

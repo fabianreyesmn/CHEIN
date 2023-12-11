@@ -5,3 +5,111 @@ body{
 a:link, a:visited, a:active{
     text-decoration: none;
 }
+
+p{
+    font-size: 16px;
+}
+
+.sin-log{
+    padding: 30px;
+    text-align: center;
+}
+
+.principal{
+    padding: 50px;
+}
+
+.contenedor{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-top: 30px;
+    border-top: 2px solid rgb(180, 180, 180);
+    border-bottom: 2px solid rgb(180, 180, 180);
+}
+
+.lista{
+    padding: 15px 10px;
+}
+
+.registro{
+    display: flex;
+    align-items: center;
+    height: auto;
+    padding: 3px 0;
+}
+
+.registro p{
+    width: 100px;
+    margin-bottom: 0;
+}
+
+.registro button{
+    margin-bottom: 0;
+}
+
+#descripcion{
+    width: 400px;
+}
+
+.menmas{
+    border-radius: 50%;
+    color: whitesmoke;
+    background-color: rgb(51, 51, 51);
+    border: 0px;
+}
+
+.menmas:hover{
+    background-color: rgb(75, 75, 75);
+}
+
+.restar{
+    margin-left: 40px;
+
+}
+
+.sumar{
+    margin-right: 40px;
+}
+
+#cantidad{
+    width: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.centrar{
+    text-align: center;
+}
+
+.trash{
+    background-color: #0000;
+    border: none;
+}
+
+.total{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 0;
+}
+
+.a-pagar{
+    margin-top: 50px;
+    width: 100px;
+    height: 40px;
+    border: 2px solid rgb(80, 80, 80);
+    border-radius: 20px;
+    background-color: rgb(32, 32, 32);
+}
+
+.a-pagar a:link, .a-pagar a:visited, .a-pagar a:active{
+    text-decoration: none;
+    color: rgb(233, 233, 233);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.a-pagar:hover{
+    background-color: rgb(48, 48, 48);
+}

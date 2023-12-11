@@ -75,7 +75,17 @@
                 }
             ?>
             <p>
-                <a class="links" href="carrito.php"><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
+                <?php
+                    if (isset($_SESSION['id']) && $_SESSION['id'] !== null){
+                        ?>
+                        <a class="links" href="carrito.php"><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
+                        <?php
+                    }else{
+                        ?>
+                        <a name="btnMostrarMenu" class="links"><i class="fa-solid fa-bag-shopping" style="color: #000000;"></i></a>
+                        <?php
+                    }
+                ?>
                 <span id="carritoContador" class="carrito-contador"><?php echo $agregados; ?></span>
             </p>
         </div>

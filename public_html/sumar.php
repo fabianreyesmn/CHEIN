@@ -17,7 +17,7 @@
     $agregados = 0;
     $exis = 0;
 
-    if (isset($_SESSION['id']) && isset($_POST['agregarAlCarrito'])) {
+    if (isset($_SESSION['id']) && isset($_POST['sumarCarrito'])) {
         $id_usuario = $_SESSION['id'];
         $id_producto = $_POST['ID_Producto'];
 
@@ -61,13 +61,12 @@
             }
         }
 
-        $sql = "SELECT SUM(Cantidad) AS sumaTotal FROM carrito WHERE ID_Usuario = $id_usuario;";
+        $sql = "SELECT SUM(Cantidad) AS suma FROM carrito WHERE ID_Usuario = $id_usuario AND ID_Producto = $id_producto;";
         $result = $conn->query($sql);
-
         if ($result->num_rows > 0){
             $row = $result->fetch_assoc();
-            $nuevoTotalCarrito = $row['sumaTotal'];
-            echo $nuevoTotalCarrito;
+            $agregados = $row['suma'];
+            echo $agregados;
         }
     }
     $conn->close();
