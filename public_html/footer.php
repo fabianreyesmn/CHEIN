@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/48174618d9.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
-    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+    <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville:wght@400;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>footer</title>
     <style>
@@ -89,7 +91,7 @@
         <div class="iconos">
             <p class="titulom">Redes sociales</p>
             &nbsp;&nbsp;&nbsp;<a href=""><i class="fa-brands fa-facebook fa-lg " style="color: #000000;"></i></a><br><br>
-            &nbsp;&nbsp;&nbsp;<a href=""><i class="fa-brands fa-instagram fa-lg " style="color: #000000;"></i></a><br><br>
+            &nbsp;&nbsp;&nbsp;<a href="https://www.instagram.com/cheinbb/"><i class="fa-brands fa-instagram fa-lg " style="color: #000000;"></i></a><br><br>
             &nbsp;&nbsp;&nbsp;<a href=""><i class="fa-brands fa-x-twitter fa-lg " style="color: #000000;"></i></a><br><br>
             &nbsp;&nbsp;&nbsp;<a href=""><i class="fa-brands fa-tiktok fa-lg" style="color: #000000;"></i></a><br><br>
             &nbsp;&nbsp;&nbsp;<a href=""><i class="fa-brands fa-youtube fa-lg" style="color: #000000;"></i></a><br><br>
@@ -97,6 +99,7 @@
         </div>
         <div class="abajo2">
             <br>
+            <p style="text-align: left; font-size: 14px;">Esta página es un proyecto escolar por parte de la Universidad Autónoma de Aguascalientes </p>
             <p style="text-align: left; font-size: 14px;">Términos y condiciones de compra • Política de privacidad • Política de cookies • Configurar cookies • SiteMap </p>
         </div>
         <div class="abajo3">
