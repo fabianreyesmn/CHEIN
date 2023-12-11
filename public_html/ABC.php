@@ -1,19 +1,20 @@
 <?php
-SESSION_START();
+    SESSION_START();
 ?>
-<!DOCTYPE html>
-<html lang="es">
+
+<?php include("otroheader.php") ?>
 
 <head>
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/48174618d9.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABC</title>
     <link rel="stylesheet" href="estilos/estilosABC.css">
 </head>
-<?php include("otroheader.php") ?>
 
 <body id="html">
     <div class="contenido2">
@@ -54,43 +55,47 @@ SESSION_START();
                     <input type="hidden" name="formulario" value="productos">
                     <input id="boton" type="submit" value="Enviar">
                     <script>
+                        function toggleExistencias() {
+                            var existenciasInput = document.getElementById('existencias_producto');
+                            var agotadoCheckbox = document.getElementById('agotado_producto');
+                            var existenciasHidden = document.getElementById('existencias_hidden');
+
+                            if (agotadoCheckbox.checked) {
+                                existenciasInput.style.display = 'none';
+                                existenciasHidden.value = '0';
+                            } else {
+                                existenciasInput.style.display = 'block';
+                                existenciasHidden.value = '';
+                            }
+                        }
+
                         function toggleDescuento() {
                             var descuentoInput = document.getElementById('descuento_producto');
                             var tieneDescuentoCheckbox = document.getElementById('tiene_descuento');
                             var descuentoHidden = document.getElementById('descuento_hidden');
 
                             if (tieneDescuentoCheckbox.checked) {
-                                descuentoInput.style.display = 'block';
-                                descuentoHidden.value = '';
-                            } else {
                                 descuentoInput.style.display = 'none';
                                 descuentoHidden.value = '0';
+                            } else {
+                                descuentoInput.style.display = 'block';
+                                descuentoHidden.value = '';
                             }
                         }
-
-                        // Llama a la función al cargar la página para asegurarte de que el campo de descuento tenga el estado correcto
-                        window.onload = toggleDescuento;
                     </script>
                     <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($_POST["formulario"]) && $_POST["formulario"] == "productos") {
 
                             $servidor = 'localhost';
-                            $usuario = 'root';
-                            $contrasena = '';
-                            $base_de_datos = 'chein';
+                            $usuario = 'cheinspa_admin';
+                            $contrasena = 'passWord#24';
+                            $base_de_datos = 'cheinspa_Chein';
 
                             $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
                             if ($conexion->connect_error) {
                                 die("Conexión fallida: " . $conexion->connect_error);
                             } else {
-                                $query = "SELECT MAX(ID_Producto) as maxID FROM Producto";
-                                $result = $conexion->query($query);
-                                $row = $result->fetch_assoc();
-                                $lastID = $row['maxID'];
-
-                                // Incrementar el último ID de producto para obtener un nuevo ID
-                                $newID = $lastID + 1;
                                 $nombre_producto = $_POST["nombre_producto"];
                                 $descripcion_producto = $_POST["descripcion_producto"];
                                 $categoria_producto = $_POST["categoria_producto"];
@@ -108,9 +113,8 @@ SESSION_START();
                                         $imagen_producto = $nombreArchivo;
                                         $tiene_descuento_producto = isset($_POST["tiene_descuento"]) ? 1 : 0;
                                         $descuento_producto = $_POST["descuento_producto"];
-
                                         $sql = "INSERT INTO Producto (ID_Producto, Nombre_P, Descripcion_P, Categoria_P, Existencias_P, Esta_Agotado_P, Precio_P, Imagen_P, Tiene_Descuento_P, Descuento_P) 
-                                VALUES ('$newID', '$nombre_producto', '$descripcion_producto', '$categoria_producto', '$existencias_producto', '$agotado_producto', '$precio_producto', '$imagen_producto', '$tiene_descuento_producto', '$descuento_producto');";
+                    VALUES (DEFAULT, '$nombre_producto', '$descripcion_producto', '$categoria_producto', '$existencias_producto', '$agotado_producto', '$precio_producto', '$imagen_producto', '$tiene_descuento_producto', '$descuento_producto');";
                                         if ($conexion->query($sql) === TRUE) {
                                             echo "<div class='agregado'>";
                                             echo "<h4>Producto Agregado</h4>";
@@ -151,9 +155,9 @@ SESSION_START();
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "bajas") {
                 $servidor = 'localhost';
-                $usuario = 'root';
-                $contrasena = '';
-                $base_de_datos = 'chein';
+                            $usuario = 'cheinspa_admin';
+                            $contrasena = 'passWord#24';
+                            $base_de_datos = 'cheinspa_Chein';
 
                 $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
                 if ($conexion->connect_error) {
@@ -197,9 +201,9 @@ SESSION_START();
             if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "cambios") {
 
                 $servidor = 'localhost';
-                $usuario = 'root';
-                $contrasena = '';
-                $base_de_datos = 'chein';
+                            $usuario = 'cheinspa_admin';
+                            $contrasena = 'passWord#24';
+                            $base_de_datos = 'cheinspa_Chein';
 
                 $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
                 if ($conexion->connect_error) {
@@ -280,9 +284,9 @@ SESSION_START();
             }
             if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "realizar-cambios") {
                 $servidor = 'localhost';
-                $usuario = 'root';
-                $contrasena = '';
-                $base_de_datos = 'chein';
+                            $usuario = 'cheinspa_admin';
+                            $contrasena = 'passWord#24';
+                            $base_de_datos = 'cheinspa_Chein';
 
                 $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
                 if ($conexion->connect_error) {
@@ -302,7 +306,7 @@ SESSION_START();
                     if ($agotado == 1) {
                         $existencias = 0;
                     }
-                    if($tiene_descuento == 0){
+                    if ($tiene_descuento == 0) {
                         $descuento = 0;
                     }
 
@@ -350,4 +354,5 @@ SESSION_START();
         </div>
     </div>
 </body>
+
 <?php include("footer.php") ?>

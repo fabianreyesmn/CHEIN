@@ -10,9 +10,9 @@
 
 <?php
     $servidor='localhost';
-    $cuenta='root';
-    $password='';
-    $bd='chein';
+    $cuenta='cheinspa_admin';
+    $password='passWord#24';
+    $bd='cheinspa_Chein';
      
     $conexion = new mysqli($servidor,$cuenta,$password,$bd);
 
@@ -117,6 +117,6 @@
 
 <script>
     function reiniciarPagina(){
-        window.location.href = "otroheader.php";
+        window.location.href = "index.php";
     }
 </script>

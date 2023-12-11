@@ -3,15 +3,15 @@
         session_start();
     }
 
-    $servername = "localhost:3306";
-    $username = "root";
-    $password = "";
-    $dbname = "chein";
+    $servername = "localhost";
+    $username = "cheinspa_admin";
+    $password = "passWord#24";
+    $dbname = "cheinspa_Chein";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
+        die("Conexionn fallida: " . $conn->connect_error);
     }
 
     $agregados = null;
@@ -29,10 +29,8 @@
         }
     }
 
-?>
+?> 
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="estilos/estilosLogin.css">
@@ -45,7 +43,7 @@
     
 </head>
 <body>
-    <div class="cute">
+    <div style="color: black;" class="cute">
         <div class="cute1">
             <p><a class="links" href="productos.php">TIENDA</a></p>
             <p><a class="links" href="faqG.php">Q&A</a></p>
@@ -64,7 +62,7 @@
                         }
                     }
                     echo "<p><a class='links'>Hola, $nombre_usuario</a></p>";
-                    echo '<p><a class="links" id="btnMostrarMenu" href="logout.php?logout"><i class="fa-solid fa-right-from-bracket">&nbsp;</i>Cerrar Sesion</a></p>';
+                    echo '<p><a class="links" href="logout.php?logout"><i class="fa-solid fa-right-from-bracket">&nbsp;</i>Cerrar Sesion</a></p>';
                 }else{
                     echo '<p><a class="links" name="btnMostrarMenu"><i class="fa-regular fa-user" style="color: #050505;">&nbsp;</i>Iniciar Sesion</a></p>';
                 }
@@ -159,7 +157,7 @@
             var errorMensaje = document.getElementById('passwordMatchError');
 
             if (password1 !== password2) {
-                errorMensaje.textContent = 'Las contraseñas no coinciden';
+                errorMensaje.textContent = 'Las contrasenas no coinciden';
                 return false;
             } else {
                 errorMensaje.textContent = '';
@@ -168,4 +166,3 @@
         }
     </script>   
 </body>
-</html>

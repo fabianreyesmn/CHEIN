@@ -1,6 +1,8 @@
 <head>
     <link rel="stylesheet" type="text/css" href="estilos/estilosLogin.css">
     <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville:wght@400;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon">
 </head>
 
 
@@ -81,4 +83,3 @@
             }
         });
 </script>
-
