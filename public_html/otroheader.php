@@ -3,10 +3,17 @@
         session_start();
     }
 
+    /*
     $servername = "localhost";
     $username = "cheinspa_admin";
     $password = "passWord#24";
     $dbname = "cheinspa_Chein";
+    */
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "chein";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 

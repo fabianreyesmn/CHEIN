@@ -1,5 +1,5 @@
 <?php
-    SESSION_START();
+SESSION_START();
 ?>
 
 <?php include("otroheader.php") ?>
@@ -87,10 +87,17 @@
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         if (isset($_POST["formulario"]) && $_POST["formulario"] == "productos") {
 
+                            /*
+            $servidor = 'localhost';
+            $usuario = 'cheinspa_admin';
+            $contrasena = 'passWord#24';
+            $base_de_datos = 'cheinspa_Chein';
+            */
+
                             $servidor = 'localhost';
-                            $usuario = 'cheinspa_admin';
-                            $contrasena = 'passWord#24';
-                            $base_de_datos = 'cheinspa_Chein';
+                            $usuario = 'root';
+                            $contrasena = '';
+                            $base_de_datos = 'chein';
 
                             $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
                             if ($conexion->connect_error) {
@@ -153,35 +160,87 @@
                 </div>
             </form>
             <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "bajas") {
-                $servidor = 'localhost';
-                            $usuario = 'cheinspa_admin';
-                            $contrasena = 'passWord#24';
-                            $base_de_datos = 'cheinspa_Chein';
 
-                $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
-                if ($conexion->connect_error) {
-                    die("Conexión fallida: " . $conexion->connect_error);
-                }
+            /*
+            $servidor = 'localhost';
+            $usuario = 'cheinspa_admin';
+            $contrasena = 'passWord#24';
+            $base_de_datos = 'cheinspa_Chein';
+            */
+
+            $servidor = 'localhost';
+            $usuario = 'root';
+            $contrasena = '';
+            $base_de_datos = 'chein';
+
+            $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
+            if ($conexion->connect_error) {
+                die("Conexión fallida: " . $conexion->connect_error);
+            }
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["formulario"]) && $_POST["formulario"] == "bajas") {
                 $id = $_POST['id'];
                 $query = "SELECT * FROM producto WHERE ID_Producto = $id";
                 $result = $conexion->query($query);
                 if ($result->num_rows > 0) {
-                    $deleteQuery = "DELETE FROM producto WHERE ID_Producto = $id";
-                    if ($conexion->query($deleteQuery) === TRUE) {
-                        echo "<div class='aprobado'>";
-                        echo "<h4>El producto ha sido eliminado con éxito.</h4>";
-                        echo "</div>";
-                    } else {
-                        echo "<div class='denegado'>";
-                        echo "<h4>Error al eliminar el producto: " . $conexion->error . "</h4>";
-                        echo "</div>";
+                    $producto = $result->fetch_assoc();
+                    echo '<form id="form2" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '" method="post" enctype="multipart/form-data">';
+                    echo '<legend>Eliminar producto</legend>';
+
+                    echo '<label for="id_producto">ID del producto</label><br>';
+                    echo '<input type="text" id="id_producto" name="id_producto" value="' . $id . '" readonly><br>';
+
+                    echo '<label for="nombre_producto">Nombre del producto</label><br>';
+                    echo '<input type="text" id="nombre_producto" name="nombre_producto" value="' . $producto['Nombre_P'] . '" readonly><br>';
+
+                    echo '<label for="descripcion_producto">Descripcion del producto</label><br>';
+                    echo '<textarea id="descripcion_producto" name="descripcion_producto" rows="7" cols="40" readonly>';
+                    echo $producto['Descripcion_P'];
+                    echo '</textarea><br>';
+
+                    echo '<label for="categoria_producto">Categoria</label><br>';
+                    echo '<input type="text" id="categoria_producto" name="categoria_producto" value="' . $producto['Categoria_P'] . '" readonly><br>';
+
+                    echo '<label for="existencias_producto">Cantidad en existencia</label><br>';
+                    echo '<input type="text" id="existencias_producto" name="existencias_producto" value="' . $producto['Existencias_P'] . '" readonly><br>';
+
+                    echo '<label for="agotado_producto">Esta Agotado?</label><br>';
+                    echo '<input type="checkbox" id="agotado_producto" name="agotado_producto" value="1"';
+                    if ($producto['Esta_Agotado_P'] == 1) {
+                        echo ' checked';
                     }
+                    echo ' disabled><br>';
+
+                    echo '<label for="precio_producto">Precio</label><br>';
+                    echo '<input type="text" id="precio_producto" name="precio_producto" value="' . $producto['Precio_P'] . '" readonly><br>';
+
+                    echo '<label for="imagen_producto">Imagen actual: ' . $producto['Imagen_P'] . '</label><br>';
+                    echo '<input type="file" id="imagen_producto" name="imagen_producto" disabled><br>';
+
+                    echo '<label for="tiene_descuento">Tiene descuento</label><br>';
+                    echo '<input type="checkbox" id="tiene_descuento" name="tiene_descuento" value="1"';
+                    if ($producto['Tiene_Descuento_P'] == 1) {
+                        echo ' checked';
+                    }
+                    echo ' disabled><br>';
+
+                    echo '<label for="descuento_producto">Descuento</label><br>';
+                    echo '<input type="text" id="descuento_producto" name="descuento_producto" value="' . $producto['Descuento_P'] . '" readonly><br>';
+
+                    echo '<input type="hidden" name="formulario" value="eliminar">';
+                    echo '<input type="hidden" name="id" value="' . $id . '">';
+                    echo '<button type="submit" name="confirmar" value="si">Sí</button>';
+                    echo '<button type="submit" name="confirmar" value="no">No</button>';
+                    echo '</form>';
+                }
+            }
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirmar"]) && $_POST["confirmar"] == "si") {
+                $id = $_POST['id'];
+                $deleteQuery = "DELETE FROM producto WHERE ID_Producto = $id";
+                if ($conexion->query($deleteQuery) === TRUE) {
+                    echo "Producto eliminado.";
                 } else {
-                    // The product does not exist, display a message
-                    echo "<div class='denegado'>";
-                    echo "<h4>El producto no existe.</h4>";
-                    echo "</div>";
+                    echo "Error al eliminar el producto: " . $conexion->error;
                 }
             }
             ?>
@@ -198,12 +257,19 @@
                 </div>
             </form>
             <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "cambios") {
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["formulario"]) && $_POST["formulario"] == "cambios") {
+
+                /*
+            $servidor = 'localhost';
+            $usuario = 'cheinspa_admin';
+            $contrasena = 'passWord#24';
+            $base_de_datos = 'cheinspa_Chein';
+            */
 
                 $servidor = 'localhost';
-                            $usuario = 'cheinspa_admin';
-                            $contrasena = 'passWord#24';
-                            $base_de_datos = 'cheinspa_Chein';
+                $usuario = 'root';
+                $contrasena = '';
+                $base_de_datos = 'chein';
 
                 $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
                 if ($conexion->connect_error) {
@@ -282,11 +348,18 @@
                     }
                 }
             }
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["formulario"] == "realizar-cambios") {
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["formulario"]) && $_POST["formulario"] == "realizar-cambios") {
+                /*
+            $servidor = 'localhost';
+            $usuario = 'cheinspa_admin';
+            $contrasena = 'passWord#24';
+            $base_de_datos = 'cheinspa_Chein';
+            */
+
                 $servidor = 'localhost';
-                            $usuario = 'cheinspa_admin';
-                            $contrasena = 'passWord#24';
-                            $base_de_datos = 'cheinspa_Chein';
+                $usuario = 'root';
+                $contrasena = '';
+                $base_de_datos = 'chein';
 
                 $conexion = new mysqli($servidor, $usuario, $contrasena, $base_de_datos);
                 if ($conexion->connect_error) {
@@ -353,6 +426,93 @@
             ?>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Crear los elementos canvas para las gráficas -->
+    <div style="width: 50%; height: 400px;">
+        <canvas id="productosChart"></canvas>
+    </div>
+    <div style="width: 50%; height: 400px;">
+        <canvas id="usuariosChart"></canvas>
+    </div>
+
+    <?php
+    $conexion = new mysqli('localhost', 'root', '', 'chein');
+
+    $sqlProductos = "SELECT Nombre_P, Existencias_P FROM producto";
+    $resultadoProductos = $conexion->query($sqlProductos);
+
+    $sqlUsuarios = "SELECT COUNT(ID_Usuario) as usuarios FROM usuario";
+    $resultadoUsuarios = $conexion->query($sqlUsuarios);
+
+    $datosProductos = [];
+    $datosUsuarios = [];
+
+    while ($filaProductos = $resultadoProductos->fetch_assoc()) {
+        $datosProductos[] = $filaProductos;
+    }
+
+    $filaUsuarios = $resultadoUsuarios->fetch_assoc();
+    $datosUsuarios[] = $filaUsuarios;
+
+    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        echo json_encode(['productos' => $datosProductos, 'usuarios' => $datosUsuarios]);
+        exit;
+    }
+    ?>
+
+    <!-- Crear las gráficas con Chart.js -->
+    <script>
+        var ctxProductos = document.getElementById('productosChart').getContext('2d');
+        var productosChart = new Chart(ctxProductos, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode(array_column($datosProductos, 'Nombre_P')); ?>,
+                datasets: [{
+                    label: 'Existencias',
+                    data: <?php echo json_encode(array_column($datosProductos, 'Existencias_P')); ?>,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        var ctxUsuarios = document.getElementById('usuariosChart').getContext('2d');
+        var usuariosChart = new Chart(ctxUsuarios, {
+            type: 'pie',
+            data: {
+                labels: ['Usuarios registrados'],
+                datasets: [{
+                    label: 'Usuarios registrados',
+                    data: <?php echo json_encode(array_column($datosUsuarios, 'usuarios')); ?>,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        function actualizarGraficas() {
+            fetch('ABC.php', {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    ventasChart.data.labels = data.ventas.map(item => item.Nombre_P);
+                    ventasChart.data.datasets[0].data = data.ventas.map(item => item.ventas);
+                    ventasChart.update();
+
+                    usuariosChart.data.datasets[0].data = data.usuarios.map(item => item.usuarios);
+                    usuariosChart.update();
+                });
+        }
+
+        // Actualizar las gráficas cada 5 segundos
+        setInterval(actualizarGraficas, 5000);
+    </script>
 </body>
 
 <?php include("footer.php") ?>
