@@ -262,11 +262,112 @@ input[type="submit"].frecuperar, input[type="button"].frecuperar {
     border-radius: 5px;
 }
 
-
 input[type="submit"].frecuperar:hover, input[type="button"].frecuperar:hover{
     background-color: rgb(54, 54, 54);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     color: white;
 }
 
+input[type="submit"]#forma-pago{
+    margin: 10px 0 10px 1365px;
+    height: 45px;
+    width: 100px;
+    padding: 5px;
+    font-size: 15px;
+    color: black;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+}
 
+input[type="submit"]:hover#forma-pago{
+    background-color: rgb(54, 54, 54);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    color: white;
+}
+
+
+#pago{
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+}
+
+#div-1{
+    flex: 70%;
+    margin: 20px ;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+#div-2{
+    padding: 10px;
+    flex: 30%;
+    border: 1px solid black;
+    margin: 20px ;
+    background-color: white;
+}
+
+#tabla-div-1{
+    width: 70%;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+#tabla-div-1 tbody, tr{
+    border: 1px solid black;
+}
+
+#tabla-div-1 td, th{
+    padding: 20px 0 20px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+h2#titulopago{
+    font-size:25px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+#pagar-ult{
+    text-align: center;
+    margin: 10px auto;
+    padding:20px 35px;
+    border: 1px solid;
+    border-radius: 7px;
+    width: 600px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#informacion-pago label{
+    padding: 5px 0;
+}
+
+#informacion-pago input{
+    margin: 0 0 7px 0;
+    width: 300px;
+    height: 30px;
+}
+
+#informacion-pago select{
+    margin: 0 0 7px 0;
+    width: 300px;
+    height: 30px;
+}
+
+#btn-1:hover{
+    background-color: rgb(54, 54, 54);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    color: white;
+}
+
+#btn-1{
+    height: 45px;
+    width: 100%;
+    padding: 5px;
+    font-size: 15px;
+    color: black;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+}
