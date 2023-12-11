@@ -31,12 +31,13 @@
         padding: 0px;
         display: grid;
         grid-template-columns: 2;
-        grid-template-rows: 5;
+        grid-template-rows: 6;
         grid-template-areas: "carrusel carrusel"
                              "categorias categorias"
                              "otro mensaje"
                              "enviar enviar"
                              "estilos estilos"
+                             "cupones cupones"
                               ;
       }
       .acomodarr .carrusel{
@@ -45,6 +46,10 @@
         grid-area: estilos;
         text-align: center;
         background-color: whitesmoke;
+      }
+      .acomodarr .cupones{
+        grid-area: cupones;
+        text-align: center;
       }
       .acomodarr .categorias{
         grid-area: categorias;
@@ -168,6 +173,30 @@
 </div>
 <div class="mensaje">
 <p class="textoc" style="font-size: 20px;">La forma más fácil de acertar este año, <br> encontrar lo que has estado buscando para tus seres queridos <br> o incluso para ti mismo.</p>
+</div>
+<div class="cupones">
+<!-- Cesar en este apartado van los links hacia el carrito -->
+<p style="font-size:40px" class="titulop">Descuentos</p>
+<p class="textoc" style="font-size: 20px;">Los mejores descuentos solo en CHEIN, agregalos a tu carrito y disfruta tus prendas a un precio mas bajo.</p><br>
+<div class="contenedor contenedor2">
+<a href="">
+   
+  <img class="imagen2" style="height: 300px; width: 230px;" src="imagenes/Descuento_primera_compra.png" alt="">
+</a> 
+&nbsp;&nbsp;&nbsp;
+</div>
+<div class="contenedor contenedor2">
+<a href="">
+  <img class="imagen2" style="height: 300px; width: 230px;" src="imagenes/Desc_25.png" alt="">
+</a>&nbsp;&nbsp;&nbsp;
+</div>
+<div class="contenedor contenedor2">
+<a href="">
+  <img class="imagen2" style="height: 300px; width: 230px;" src="imagenes/media_45.png" alt="">
+</a>&nbsp;&nbsp;&nbsp;
+</div>
+<p class="textoc" style="text-align:left; font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solo miembros.</p>
+<br><br><br>
 </div>
 </div>
 </body>
