@@ -99,9 +99,12 @@
         </div>
         <div class="abajo2">
             <br>
-            <p style="text-align: left; font-size: 14px;">Términos y condiciones de compra • Política de privacidad • Política de cookies • Configurar cookies • SiteMap </p>
+            <p style="text-align: left; font-size: 14px;"> Esta página es un proyecto escolar por parte de la Universidad Autónoma de Aguascalientes </p>
+            <p style="text-align: left; font-size: 14px;"> Términos y condiciones de compra • Política de privacidad • Política de cookies • Configurar cookies • SiteMap </p>
         </div>
         <div class="abajo3">
+            <br>
+            <br>
             <br>
             <p style="text-align: right; font-size: 14px;"><i class="fa-solid fa-globe fa-lg" style="color: #000000;"></i> ES Espanol    &#169;CHEIN</p>
         </div>
