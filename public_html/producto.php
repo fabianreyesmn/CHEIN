@@ -1,3 +1,5 @@
+<?php include "otroheader.php"; ?>
+
 <?php
     $Nombre_P = $_POST['Nombre_P'];
     $ID_Producto = $_POST['ID_Producto'];
@@ -9,8 +11,6 @@
     $Descuento_P = $_POST['Descuento_P'];
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,7 @@
     <title><?php echo $Nombre_P; ?></title>
 </head>
 <body>
-    <?php include "otroheader.php"; ?>
+    
     <div class="principal">
         <div class="imagen">
             <?php
@@ -45,4 +45,3 @@
     </div>
     <?php include "footer.php"; ?>
 </body>
-</html>

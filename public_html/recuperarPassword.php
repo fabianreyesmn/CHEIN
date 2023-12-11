@@ -1,5 +1,7 @@
 <head>
     <link rel="stylesheet" href="estilos/estilosLogin.css">
+    <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -9,10 +11,10 @@
             <div id="titulo"> <h1>Recuperar contraseña</h1> </div>
             <div id="recuperarContenedor">
                 <?php
-                $servidor = 'localhost:3307';
-                $cuenta = 'root';
-                $password = '';
-                $bd = 'chein';
+                $servidor = 'localhost';
+                $cuenta = 'cheinspa_admin';
+                $password = 'passWord#24';
+                $bd = 'cheinspa_Chein';
 
                 $conexion = new mysqli($servidor, $cuenta, $password, $bd);
 

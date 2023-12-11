@@ -133,7 +133,7 @@
     });
 
     $(document).ready(function() {
-        $(document).on("click", "#btnRecargar", function() {
+        $(document).off("click", "#btnRecargar").on("click", "#btnRecargar", function(event) {
             event.preventDefault();
             // Recarga el captcha llamando a la función cargarCaptcha
             cargarCaptcha('captcha.php');

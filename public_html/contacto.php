@@ -1,11 +1,13 @@
+<?php include "otroheader.php"; ?>
+
 <head>
     <link rel="stylesheet" href="estilos/estilosGi.css">
+    <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/2c2420c96b.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&family=Libre+Baskerville:wght@400;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>CHEIN</title>
 </head>
-
-<?php include "otroheader.php"; ?>
 
 <body style="background-image: url('imagenes/g.png');" >
 

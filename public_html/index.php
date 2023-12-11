@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php 
+  include 'otroheader.php'; 
+?>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="imagenes/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <script src="scripts/scripts.js"></script>
     <title>CHEIN</title>
-    <?php include 'otroheader.php'; ?>
     <style>
       .imagen1:hover {
         filter: grayscale(100%);
@@ -51,7 +52,7 @@
       }
       .acomodarr .enviar{grid-area: enviar;}
       .acomodarr .otro{
-         text-align: center;
+        text-align: center;
         grid-area: otro;
       }
       .acomodarr .mensaje{
@@ -72,14 +73,15 @@
       .contenedor2:hover .imagen2 {-webkit-transform:scale(1.1);transform:scale(1.1);}
       .contenedor2 {overflow:hidden;}
       @font-face {
-      font-family: myFirstFont;
-      src: url(imagenes/Eina02-SemiBold.ttf);
-    }
-    .prueba{
-      font-family: myFirstFont;
-    }
+        font-family: myFirstFont;
+        src: url(imagenes/Eina02-SemiBold.ttf);
+      }
+      .prueba{
+        font-family: myFirstFont;
+      }
     </style>
 </head>
+
 <body>
   <div class="acomodarr">
     <div class="carrusel">
@@ -92,7 +94,7 @@
         </video>
         <div class="carousel-caption d-none d-md-block">
           <!-- <h5>CHEIN</h5> -->
-          <p style="font-family: 'GFS Didot', serif; color:whitesmoke;">Descubre tu estilo único en cada prenda. En nuestra tienda, la moda es más que ropa, es una expresión de tu personalidad.</p>
+          <p style="font-family: 'GFS Didot', serif; color:whitesmoke; font-size:20px;">El estilo no tiene reglas, las creas tú</p>
         </div>
       </div>
       <div class="carousel-item">
