@@ -93,7 +93,7 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <video class="video" style="height: 600px; width: 100%;" autoplay="true" muted="true" loop="true" >
-          <source  src="imagenesSio/videomodelo1final.mp4" type="video/mp4">
+          <source  src="imagenes/videomodelo1final.mp4" type="video/mp4">
         </video>
         <div class="carousel-caption d-none d-md-block">
           <!-- <h5>CHEIN</h5> -->
@@ -102,7 +102,7 @@
       </div>
       <div class="carousel-item">
         <video class="video" style="height: 600px; width: 100%;" autoplay="true" muted="true" loop="true" >
-          <source src="imagenesSio/videoModelo2.mp4" type="video/mp4">
+          <source src="imagenes/videoModelo2.mp4" type="video/mp4">
         </video>
         <div class="carousel-caption d-none d-md-block">
           <!-- <h5>CHEIN</h5> -->
@@ -111,7 +111,7 @@
       </div>
       <div class="carousel-item">
         <video class="video" style="height: 600px; width: 100%;" autoplay="true" muted="true" loop="true" >
-          <source src="imagenesSio/shoot.mp4" type="video/mp4">
+          <source src="imagenes/shoot.mp4" type="video/mp4">
         </video>
         <div class="carousel-caption d-none d-md-block">
           <!-- <h5>CHEIN</h5> -->
@@ -134,23 +134,23 @@
 <div class="categorias">
 <p class="titulop" style="font-size:40px">Top Categories</p>
 <div class="contenedor contenedor2">
-  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenesSio/chamarra_azul.png" /></a>
+  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenes/chamarra_azul.png" /></a>
   <div style="color: rgb(155, 153, 153); font-size: 20px;" class="texto-encima prueba ">Chamarras</div>
 </div>
 <div class="contenedor contenedor2">
-  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenesSio/pantalon.png" /></a>
+  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenes/pantalon.png" /></a>
   <div style="color: rgb(155, 153, 153);  font-size: 20px;" class="texto-encima prueba">Pantalones</div>
 </div>
 <div class="contenedor contenedor2">
-  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenesSio/scream.png" /></a>
+  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenes/scream.png" /></a>
   <div style="color: rgb(155, 153, 153);  font-size: 20px;" class="texto-encima prueba">Camisetas</div>
 </div>
 <div class="contenedor contenedor2">
-  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenesSio/sudadera.png" /></a>
+  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenes/sudadera.png" /></a>
   <div style="color: rgb(155, 153, 153);  font-size: 20px;" class="texto-encima prueba">Sudaderas</div>
 </div>
 <div class="contenedor contenedor2">
-  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenesSio/bolso.png" /></a>
+  <a href=""><img class="imagen2" style="height: 300px; width: 250px;" src="imagenes/bolso.png" /></a>
   <div style="color: rgb(155, 153, 153);  font-size: 20px" class="texto-encima prueba">Accesorios</div>
 </div>
 <br><br><br><br>
@@ -159,14 +159,14 @@
 <div class="estilos">
 <p style="font-size:40px" class="titulop">Get the Look</p>
 <p class="textoc">#CHEINSTYLE</p>
-<a href=""><img class="imagen1" src="imagenesSio/party.png" alt=""></a>
-<a href=""><img class="imagen1" src="imagenesSio/trendy.png" alt=""></a>
-<a href=""><img class="imagen1" src="imagenesSio/leather.png" alt=""></a>
-<a href=""><img class="imagen1" src="imagenesSio/casual.png" alt=""></a>
+<a href=""><img class="imagen1" src="imagenes/party.png" alt=""></a>
+<a href=""><img class="imagen1" src="imagenes/trendy.png" alt=""></a>
+<a href=""><img class="imagen1" src="imagenes/leather.png" alt=""></a>
+<a href=""><img class="imagen1" src="imagenes/casual.png" alt=""></a>
 <br><br><br><br>
 </div>
 <div class="otro">
-<a href=""><img src="imagenesSio/howtogift.png" alt=""></a>
+<a href=""><img src="imagenes/howtogift.png" alt=""></a>
 <br><br><br><br>
 </div>
 <div class="mensaje">
