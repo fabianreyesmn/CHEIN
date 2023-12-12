@@ -75,11 +75,11 @@ SESSION_START();
                             var descuentoHidden = document.getElementById('descuento_hidden');
 
                             if (tieneDescuentoCheckbox.checked) {
-                                descuentoInput.style.display = 'none';
-                                descuentoHidden.value = '0';
-                            } else {
                                 descuentoInput.style.display = 'block';
                                 descuentoHidden.value = '';
+                            } else {
+                                descuentoInput.style.display = 'none';
+                                descuentoHidden.value = '0';
                             }
                         }
                     </script>
@@ -103,6 +103,13 @@ SESSION_START();
                             if ($conexion->connect_error) {
                                 die("Conexión fallida: " . $conexion->connect_error);
                             } else {
+                                $query = "SELECT MAX(ID_Producto) as maxID FROM Producto";
+                                $result = $conexion->query($query);
+                                $row = $result->fetch_assoc();
+                                $lastID = $row['maxID'];
+
+                                // Incrementar el último ID de producto para obtener un nuevo ID
+                                $newID = $lastID + 1;
                                 $nombre_producto = $_POST["nombre_producto"];
                                 $descripcion_producto = $_POST["descripcion_producto"];
                                 $categoria_producto = $_POST["categoria_producto"];
@@ -121,7 +128,7 @@ SESSION_START();
                                         $tiene_descuento_producto = isset($_POST["tiene_descuento"]) ? 1 : 0;
                                         $descuento_producto = $_POST["descuento_producto"];
                                         $sql = "INSERT INTO Producto (ID_Producto, Nombre_P, Descripcion_P, Categoria_P, Existencias_P, Esta_Agotado_P, Precio_P, Imagen_P, Tiene_Descuento_P, Descuento_P) 
-                    VALUES (DEFAULT, '$nombre_producto', '$descripcion_producto', '$categoria_producto', '$existencias_producto', '$agotado_producto', '$precio_producto', '$imagen_producto', '$tiene_descuento_producto', '$descuento_producto');";
+                    VALUES ('$newID', '$nombre_producto', '$descripcion_producto', '$categoria_producto', '$existencias_producto', '$agotado_producto', '$precio_producto', '$imagen_producto', '$tiene_descuento_producto', '$descuento_producto');";
                                         if ($conexion->query($sql) === TRUE) {
                                             echo "<div class='agregado'>";
                                             echo "<h4>Producto Agregado</h4>";
