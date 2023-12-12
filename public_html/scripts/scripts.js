@@ -21,6 +21,23 @@ $(document).ready(function() {
     });     
 });
 
+function mostrarPopup() {
+    document.getElementById('miPopup').style.display = 'flex';
+}
+
+function cerrarPopup() {
+    document.getElementById('miPopup').style.display = 'none';
+}
+
+window.onload = function() {
+    // mostrarPopup(); // Puedes decidir si mostrar el popup al cargar la página
+}
+
+document.querySelector('#btn-sus').addEventListener('click', function(event) {
+    event.preventDefault();
+    mostrarPopup();
+});
+
 document.getElementById('formLogin').addEventListener('submit', function (event) {
     event.preventDefault();
     if (validarFormulario()) {
