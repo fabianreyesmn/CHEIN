@@ -73,12 +73,15 @@
         }
 
         // Subtotal de cada producto en el carrito
-        $sql = "SELECT Precio_P FROM producto WHERE ID_Producto = $id_producto;";
+        $sql = "SELECT Precio_P, Descuento_P FROM producto WHERE ID_Producto = $id_producto;";
         $result = $conn->query($sql);
         if ($result->num_rows > 0){
             $row = $result->fetch_assoc();
             $precio_p = $row['Precio_P'];
-            $respuesta[1] = $precio_p * $agregados;
+            $descuento_p = $row['Descuento_P'];
+            $respuesta[1] = round((($precio_p - $descuento_p) * $agregados), 2);
+            $respuesta[1] = round($respuesta[1], 2);
+            round($respuesta[1], 2);
         }
 
         // Total a pagar, TOTAL
@@ -88,14 +91,17 @@
             while ($row = $result->fetch_assoc()) {
                 $elemento = $row['ID_Producto'];
                 $articulos = $row['Cantidad'];
-                $sqlp = "SELECT Precio_P FROM producto WHERE ID_Producto = $elemento;";
+                $sqlp = "SELECT Precio_P, Descuento_P FROM producto WHERE ID_Producto = $elemento;";
                 $resultp = $conn->query($sqlp);
                 if ($resultp->num_rows > 0){
                     $rowp = $resultp->fetch_assoc();
                     $precio_prod = $rowp['Precio_P'];
-                    $respuesta[2] += $precio_prod * $articulos;
+                    $descuento_prod = $rowp['Descuento_P'];
+                    $respuesta[2] += round((($precio_prod - $descuento_prod) * $articulos), 2);
                 }
             }
+            $respuesta[2] = number_format($respuesta[2], 2, '.', '');
+            number_format($respuesta[2], 2, '.', '');
         }
 
         // Artículos totales en el carrito (Piezas individuales)

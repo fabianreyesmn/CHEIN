@@ -42,16 +42,17 @@
                             if ($resultprod->num_rows > 0){
                                 $descripcion = $rowprod['Descripcion_P'];
                                 $precio = $rowprod['Precio_P'];
+                                $descuento = $rowprod['Descuento_P'];
                                 echo '<div class="registro">';
                                 echo '<p><i class="fa-solid fa-fingerprint"></i> ' . $producto . '</p>';
                                 echo '<p id="descripcion" class="centrar">' . $descripcion . '</p>';
                                 echo '<button type="button" onclick="restarCarrito(' . $row['ID_Producto'] . ')" class="restar centrar menmas"><i class="fa-solid fa-minus"></i></button>';
                                 echo '<p id="cantidad' . $row['ID_Producto'] . '" class="centrar">' . $cant . '</p>';
                                 echo '<button type="button" onclick="sumarCarrito(' . $row['ID_Producto'] . ')" class="sumar centrar menmas"><i class="fa-solid fa-plus"></i></button>';
-                                echo '<p id="sub' . $row['ID_Producto'] . '">$ ' . $cant * $precio . '</p>';
+                                echo '<p id="sub' . $row['ID_Producto'] . '">$ ' . round(($cant * ($precio - $descuento)), 2) . '</p>';
                                 echo '<button type="button" onclick="quitarCarrito(' . $row['ID_Producto'] . ')" class="trash"><a href="carrito.php"><i class="fa-solid fa-trash"></i></a></button>';
                                 echo '</div>';
-                                $total += $cant * $precio;
+                                $total += round(($cant * ($precio - $descuento)), 2);
                             }
                         }
                     } else{
@@ -63,7 +64,7 @@
                 echo '</div>';
                 echo '<div class="total">';
                 echo '<h3>Total a pagar</h3>';
-                echo '<h5 id="total-pagar">$ ' . $total . '</h5>';
+                echo '<h5 id="total-pagar">$ ' . round($total, 2) . '</h5>';
                 echo '<button type="button" class="a-pagar"><a href="productos.php">Pagar</a></button>';
                 echo '</div>';
                 echo '</div>';
