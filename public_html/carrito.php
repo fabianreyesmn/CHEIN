@@ -64,8 +64,8 @@
                 echo '</div>';
                 echo '<div class="total">';
                 echo '<h3>Total a pagar</h3>';
-                echo '<h5 id="total-pagar">$ ' . round($total, 2) . '</h5>';
-                echo '<button type="button" class="a-pagar"><a href="productos.php">Pagar</a></button>';
+                echo '<h5><i class="fa-solid fa-dollar-sign"></i> ' . $total . '</h5>';
+                echo '<button type="button" class="a-pagar"><a href="realizarpago.php">Pagar</a></button>';
                 echo '</div>';
                 echo '</div>';
             }
