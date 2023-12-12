@@ -8,7 +8,7 @@
     $password = "passWord#24";
     $dbname = "cheinspa_Chein";*/
 
-    $servername = "localhost:3307";
+    $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "chein";
