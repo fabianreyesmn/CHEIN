@@ -5,10 +5,6 @@
 include 'otroheader.php';
 
 require('../fpdf/fpdf.php');
-require('../PHPMailer/PHPMailer.php');
-require('../PHPMailer/SMTP.php');
-require('../PHPMailer/Exception.php');
-
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -316,3 +312,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+    include 'footer.php';
+    ?>
