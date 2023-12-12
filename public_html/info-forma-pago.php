@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h2>Información de Pago</h2>
 
                     <label for="nombre">Nombre en la Tarjeta:</label><br>
-                    <input type="text" id="nombre" name="nombre" required><br>
+                    <input type="text" id="nombreTarjeta" name="nombreTarjeta" required><br>
 
                     <label for="numero">Número de Tarjeta:</label><br>
                     <input type="text" id="numero" name="numero" pattern="\d{16}" placeholder="16 dígitos" required><br>

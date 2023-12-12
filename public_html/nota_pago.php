@@ -44,7 +44,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST["metodo-seleccionado"] == "mastercard") {
         $metodoPago = "Mastercard";
-        $nombre = $_POST["nombre"];
+        $nombreTarjeta = $_POST["nombreTarjeta"];
         $numero = $_POST["numero"];
         $expiracion = $_POST["expiracion"];
         $cvv = $_POST["cvv"];
@@ -63,6 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefono = $_POST["telefono"];
     $pais = $_POST["pais"];
     $impuestos = 0;
+    $descuento = 0;
+    $validCoupons = ['111CHEIN', 'ACC25BB', 'MEDIACHEIN23'];
 
     switch ($pais) {
         case 'espana':
@@ -75,9 +77,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             break;
     }
 
+    if (in_array($cupon, $validCoupons)) {
+        switch ($cupon) {
+            case '111CHEIN':
+                $descuento = 40;
+                break;
+            case 'ACC25BB':
+                $descuento = 25;
+                break;
+            case 'MEDIACHEIN23':
+                $descuento = 45;
+                break;
+        }
+    }
 
     //Esto se saca sin importar que tipo de pago se hace, por eso lo puse afuera
-    $sql = "SELECT p.Nombre_P, c.Cantidad, c.Cantidad * p.Precio_P * (1 - p.Descuento_P) AS Precio_Total FROM carrito c JOIN producto p ON c.ID_Producto = p.ID_Producto WHERE c.ID_Usuario = '$id_usuario';";
+    $sql = "SELECT p.Nombre_P, c.Cantidad, p.Precio_P AS Precio_Total FROM carrito c JOIN producto p ON c.ID_Producto = p.ID_Producto WHERE c.ID_Usuario = '$id_usuario';";
     $resultado = $conn->query($sql);
 ?>
     <div id="pagar-ult">
@@ -99,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $montoTotal = 0;
         if ($resultado->num_rows > 0) {
 
-            echo "<p>Nota de pago de " . $nombre . "</p>";
+            echo "<p>Nota de pago de " . $nombre_completo . "</p>";
             echo "<table>";
             echo "<tr><th>Nombre del Producto</th><th>Cantidad</th><th>Precio Total</th></tr>";
 
@@ -111,26 +126,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "</tr>";
 
                 $montoTotal += $row["Precio_Total"];
+                $subtotal = $montoTotal;
                 $productos[] = $row;
             }
 
             echo "</table>";
-            echo "<p><strong>Subtotal:</strong> " . $montoTotal . "</p>";
+            echo "<p><strong>Subtotal:</strong> " . $subtotal . "</p>";
 
             $montoTotal += $montoTotal * ($impuestos / 100); // Agregar impuestos
             $montoTotal += $envio; // Agregar costo de envío
+            $montoAntesDescuento = $montoTotal;
+            $montoTotal -= $montoTotal * ($descuento / 100);
 
             echo "<p><strong>Cobro de envio:</strong> " . $envio . "</p>";
             echo "<p><strong>Impuestos:</strong> " . $impuestos . "%</p>";
+            echo "<p><strong>Monto total con impuestos y envio:</strong> " . $montoAntesDescuento . "</p>";
             echo "<p><strong>Modo de pago:</strong> " . $metodoPago . "</p>";
             echo "<p><strong>Direccion de envio:</strong> . $direccion . $ciudad . $codigo_postal </p>";
 
-            if (isset($cupon) && !empty($cupon)) {
-                echo "<p><strong>Cupón:</strong> " . $cupon . "</p>";
+            if (isset($cupon) && in_array($cupon, $validCoupons)) {
+                echo "<p><strong>Descuento:</strong> " . $cupon . "</p>";
+            } else {
+                echo "<p><strong>Descuento:</strong> No se aplicó ningún descuento</p>";
             }
             echo "<p><strong>Monto total por pagar:</strong> " . $montoTotal . "</p>";
         ?>
-    </div>
 <?php
             $pdf = new FPDF();
             $pdf->AddPage();
@@ -167,11 +187,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Totales
             $pdf->SetFont('Arial', 'B', 10); // Cambiar el tamaño de la fuente a 10 y poner en negrita
+            $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Subtotal: $' . $subtotal), 0, 1, 'R'); // Alineado a la derecha
+            $pdf->SetFont('Arial', '', 10); // Cambiar el tamaño de la fuente a 10
             $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Cobro de envío: $' . $envio), 0, 1, 'R'); // Alineado a la derecha
             $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Impuestos: $' . $impuestos), 0, 1, 'R'); // Alineado a la derecha
-            if (isset($cupon) && !empty($cupon)) {
-                $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', "Cupón: " . $cupon), 0, 1, 'R');
+            $pdf->SetFont('Arial', 'B', 10); // Cambiar el tamaño de la fuente a 10 y poner en negrita
+            $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Subtotal con envio e impuestos: $' . $montoAntesDescuento), 0, 1, 'R'); // Alineado a la derecha
+            $pdf->SetFont('Arial', '', 10); // Cambiar el tamaño de la fuente a 10
+            if ($descuento > 0) {
+                $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Cupón: ' . $cupon), 0, 1, 'R');
+                $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Descuento: ' . $descuento . '%'), 0, 1, 'R');
             }
+            $pdf->SetFont('Arial', 'B', 10); // Cambiar el tamaño de la fuente a 10 y poner en negrita
             $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Monto total por pagar: $' . $montoTotal), 0, 1, 'R'); // Alineado a la derecha
 
             // Antes del método de pago
@@ -184,11 +211,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $pdf->SetFont('Arial', '', 10); // Cambiar el tamaño de la fuente a 10
             if ($metodoPago == "Mastercard") {
-                $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Nombre: ' . $nombre), 0, 1, 'R');
+                $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Comprado por: ' . $nombre_completo), 0, 1, 'R');
+                $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Nombre en la tarjeta: ' . $nombreTarjeta), 0, 1, 'R');
                 $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Número de tarjeta: ' . $numero), 0, 1, 'R');
                 $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Fecha de expiración: ' . $expiracion), 0, 1, 'R');
                 $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'CVV: ' . $cvv), 0, 1, 'R');
             } else if ($metodoPago == "PayPal") {
+                $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Comprado por: ' . $nombre_completo), 0, 1, 'R');
                 $pdf->Cell($detailWidth, 10, iconv('UTF-8', 'ISO-8859-1', 'Monto: ' . $monto), 0, 1, 'R');
             }
 
@@ -223,10 +252,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             foreach ($productos as $producto) {
                 $emailContent .= "<tr><td align='right'>{$producto["Nombre_P"]} - {$producto["Cantidad"]} - $ {$producto["Precio_Total"]}</td></tr>";
             }
-
+            if ($descuento > 0) {
+                $emailContent .= "<tr><td align='right'>Cupón: {$cupon}</td></tr>";
+                $emailContent .= "<tr><td align='right'>Descuento: {$descuento}%</td></tr>";
+            }
             $emailContent .= "
-<tr><td align='right'><strong>Cobro de envío: $ {$envio}</strong></td></tr>
-<tr><td align='right'><strong>Impuestos: $ {$impuestos}</strong></td></tr>
+<tr><td align='right'><strong>Subtotal: $ {$subtotal}</strong></td></tr>
+<tr><td align='right'>Cobro de envío: $ {$envio}</td></tr>
+<tr><td align='right'>Impuestos: $ {$impuestos}</strong></td></tr>
+<tr><td align='right'><strong>Monto con impuestos y envio: $ {$montoAntesDescuento}</strong></td></tr>";
+            if ($descuento > 0) {
+                $emailContent .= "<tr><td align='right'>Cupón: {$cupon}<td></tr>";
+                $emailContent .= "<tr><td align='right'>Descuento: {$descuento}%</td></tr>";
+            }
+            $emailContent .= "
 <tr><td align='right'><strong>Monto total por pagar: $ {$montoTotal}</strong></td></tr>
 <tr><td align='right'><hr></td></tr> <!-- Línea de separación -->
 <tr><td align='right'><strong>Modo de pago: {$metodoPago}</strong></td></tr>
@@ -234,16 +273,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($metodoPago == "Mastercard") {
                 $emailContent .= "
-    <tr><td align='right'>Nombre: {$nombre}</td></tr>
+    <tr><td align='right'>Comprado por: {$nombre_completo}</td></tr>
+    <tr><td align='right'>Nombre en la tarjeta: {$nombreTarjeta}</td></tr>
     <tr><td align='right'>Número de tarjeta: {$numero}</td></tr>
     <tr><td align='right'>Fecha de expiración: {$expiracion}</td></tr>
     <tr><td align='right'>CVV: {$cvv}</td></tr>
     ";
             } else if ($metodoPago == "PayPal") {
                 $emailContent .= "<tr><td align='right'>Monto: {$monto}</td></tr>";
-            }
-            if (isset($cupon) && !empty($cupon)) {
-                $emailContent .= "<tr><td align='right'><strong>Cupón: {$cupon}</strong></td></tr>";
             }
             $emailContent .= "
 <tr><td align='right'><strong>Dirección de envío: {$direccion} {$ciudad} / {$codigo_postal}</strong></td></tr>
@@ -272,7 +309,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->Body    = $emailContent;
 
                 $mail->send();
-                echo 'Mensaje enviado con éxito. Gracias por contactarnos.';
+                echo 'Informacion de su pedido enviado con éxito. Gracias por su compra.';
+                echo '</div>';
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
