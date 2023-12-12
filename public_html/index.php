@@ -170,6 +170,20 @@
 <p class="textoc" style="font-size: 20px;">La forma más fácil de acertar este año, <br> encontrar lo que has estado buscando para tus seres queridos <br> o incluso para ti mismo.</p>
 </div>
 </div>
+<div class="cupones" style="width: 500px; margin: auto; text-align: center;">
+  <!-- Cesar en este apartado van los links hacia el carrito -->
+  <p style="font-size:40px" class="titulop">Descuentos</p>
+  <p class="textoc" style="font-size: 20px;">Los mejores descuentos solo en CHEIN, agregalos a tu carrito y disfruta tus prendas a un precio mas bajo.</p><br>
+  <div class="contenedor contenedor2">
+    <a href="carrito.php">
+      <img class="imagen2" style="height: 300px; width: 230px;" src="imagenes/Descuento_primera_compra.png" alt="">
+    </a> 
+    &nbsp;&nbsp;&nbsp;
+  </div>
+  <p class="textoc" style="font-size: 15px;">Solo miembros.</p>
+  <br><br><br>
+</div>
+</div>
 </body>
 
 <?php include 'footer.php'; ?>
