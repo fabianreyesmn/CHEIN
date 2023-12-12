@@ -29,7 +29,7 @@ p{
 }
 
 .lista{
-    padding: 15px 10px;
+    padding: 22px 10px;
 }
 
 .registro{
@@ -87,6 +87,11 @@ p{
     border: none;
 }
 
+.trash a:link, .trash a:visited, .trash a:active{
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+}
+
 .total{
     display: flex;
     flex-direction: column;
@@ -95,7 +100,7 @@ p{
 }
 
 .a-pagar{
-    margin-top: 50px;
+    margin-top: 40px;
     width: 100px;
     height: 40px;
     border: 2px solid rgb(80, 80, 80);
