@@ -45,7 +45,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/48174618d9.js" crossorigin="anonymous"></script>
-    <script src="scripts/scripts.js"></script>
     <title>CHEIN</title>
     
 </head>
@@ -56,9 +55,14 @@
             <p><a class="links" href="faqG.php">Q&A</a></p>
             <p><a class="links" href="contacto.php">CONTACTANOS</a></p>
             <p><a class="links" href="acerca_de.php">ABOUT</a></p>
+            <?php
+                 if (isset($nombre_usuario) && $nombre_usuario !== null){
+                    echo "<p><a class='links' id='btn-sus'>Suscribirse</a></p>";
+                 }
+            ?>
         </div>
         <div class="cute2">
-            <p class="titulo"><a class="links" href="index.php">CHEIN</a></p>
+            <p class="titulo"><a class="links" href="index.php">CHEIN</a></p> 
         </div>
         <div class="cute3">
             <?php
@@ -143,6 +147,77 @@
     <?php
         $conn->close();
     ?>
+
+    <div class="popup" id="miPopup">
+        <div class="popup-content" >
+            <span class="close" onclick="cerrarPopup()">&times;</span>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                    <h2 class="he ji">Suscríbete</h2>
+                    <p class="he">¡Recibe nuestras últimas novedades y ofertas especiales!</p>
+                    <p class="he">Correo eléctronico*</p>
+                    <input placeholder="Direccion de email" class="field" type="email" tabindex="1" name="email" required><br/>
+                    <br>
+                    <input type="submit" class="btn-super" value="Enviar Datos">
+                                <?php
+                                use PHPMailer\PHPMailer\PHPMailer;
+                                use PHPMailer\PHPMailer\SMTP;
+                                use PHPMailer\PHPMailer\Exception;
+
+                                require 'PHPMailer/src/Exception.php';
+                                require 'PHPMailer/src/PHPMailer.php';
+                                require 'PHPMailer/src/SMTP.php';
+                                
+                                $mail = new PHPMailer(true);
+
+                                if($_SERVER["REQUEST_METHOD"] == "POST"){
+                                    $email = $_POST["email"];
+        
+
+                                    try {
+                                        $mail->SMTPDebug = 0;
+                                        $mail->isSMTP();                                            
+                                        $mail->Host       = 'smtp.gmail.com';                       
+                                        $mail->SMTPAuth   = true;                                  
+                                        $mail->Username   = 'cesar.correo.pruebas09@gmail.com';           
+                                        $mail->Password   = 'zwgg bprl puao ycab';                  
+                                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+                                        $mail->Port       = 465;                                   
+                            
+                                        //Recipients
+                                        $mail->setFrom('cesar.correo.pruebas09@gmail.com', 'Cesar');
+                                        $mail->addAddress($email);    
+                            
+                                        //Content
+                                        $mail->isHTML(true);                                  
+                                        $mail->Subject = 'CHEIN';
+                                        $imagePath = 'imagenes/cupon.jpg';
+                                        $mail->addEmbeddedImage($imagePath, 'cupon','cupon.jpg');
+                                        $mail->Body = '
+
+                            
+                                        <p><strong> ¡Bienvenido/a a CHEIN! Tu suscripción ha sido exitosa</strong></p>
+                                        <p><strong>¡Gracias por unirte a la familia CHEIN! Nos emociona tenerte como parte de nuestra comunidad de amantes de la moda. Con tu suscripción, ahora estarás al tanto de todas nuestras últimas ofertas, tendencias y novedades exclusivas. En breve, nos pondremos en contacto contigo para proporcionarte la información o la solucion que necesitas.</strong></p>
+                                        <p><strong>No dudes en explorar nuestro catálogo en línea o visitar nuestras tiendas para descubrir las últimas tendencias y encontrar esa prenda perfecta que refleje tu estilo único.</strong></p>
+                                        <p><strong>Para darte la bienvenida, hemos preparado un regalo especial para ti: ¡tu primer cupón de descuento!</strong></p>
+                                        <p><strong>Una vez más, gracias por suscribirte a CHEIN. ¡Esperamos que disfrutes de tu experiencia de compra con nosotros!</strong></p>
+                                        <p><strong>Con estilo,
+                                        El equipo de CHEIN</strong></p>
+                                        <img src="cid:cupon" alt="Firma del Director" width="200">
+                                        ';
+                            
+                                        $mail->send();
+                                        
+                                        echo "<div id='msgEnviado'>";
+                                        echo "</div>";
+                                    } catch (Exception $e) {
+                                        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                                    }
+                                }     
+                            ?>
+                </form>
+        </div>
+    </div>         
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             btnOcultarMenu = document.getElementById('menuCierre');
@@ -182,4 +257,5 @@
             }
         }
     </script>   
+    <script src="scripts/scripts.js"></script>
 </body>

@@ -24,7 +24,11 @@ function sumarCarrito(idProducto) {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            document.getElementById('cantidad' + idProducto).innerText = xhr.responseText;
+            var respuesta = JSON.parse(xhr.responseText);
+            document.getElementById('cantidad' + idProducto).innerText = respuesta[0];
+            document.getElementById('sub' + idProducto).innerText = '$ ' + respuesta[1];
+            document.getElementById('total-pagar').innerText = '$ ' + respuesta[2];
+            document.getElementById('carritoContador').innerText = respuesta[3];
             console.log(xhr.responseText);
         }
     };
@@ -41,10 +45,30 @@ function restarCarrito(idProducto) {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            document.getElementById('cantidad' + idProducto).innerText = xhr.responseText;
+            var respuesta = JSON.parse(xhr.responseText);
+            document.getElementById('cantidad' + idProducto).innerText = respuesta[0];
+            document.getElementById('sub' + idProducto).innerText = '$ ' + respuesta[1];
+            document.getElementById('total-pagar').innerText = '$ ' + respuesta[2];
+            document.getElementById('carritoContador').innerText = respuesta[3];
             console.log(xhr.responseText);
         }
     };
 
     xhr.send('restarCarrito=true&ID_Producto=' + idProducto + '&cantidad=' + cantidad);
+}
+
+function quitarCarrito(idProducto) {
+    var cantidad = 1;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'quitar.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+        }
+    };
+
+    xhr.send('quitarCarrito=true&ID_Producto=' + idProducto + '&cantidad=' + cantidad);
 }

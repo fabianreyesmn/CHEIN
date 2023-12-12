@@ -371,3 +371,67 @@ h2#titulopago{
     background-color: white;
     border-radius: 5px;
 }
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+.ji{
+  color: #967969;
+  font-family: 'GFS Didot', serif;
+  letter-spacing: 7px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.he{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+.field{
+    width:500px;
+    border: solid 1px #ccc;
+    padding: 10px;
+    
+      
+}
+.btn-super{
+    border-radius: 3px;
+    display: inline-block;
+    padding: 15px 15px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    border: 0;
+    color: white;
+    background-color: #C19A6B;
+  }
+
+  .btn-super:hover{
+    background-color:#E5AA70;
+   
+  }
+  .btn-super:active{
+    background-color: #DAA06D;
+  }
